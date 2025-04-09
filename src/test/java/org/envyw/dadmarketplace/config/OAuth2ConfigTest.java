@@ -44,13 +44,13 @@ public class OAuth2ConfigTest {
         StepVerifier.create(discordClient)
                 .assertNext(registration -> {
 
-                    assertThat(((ClientRegistration) registration).getAuthorizationGrantType())
+                    assertThat(registration.getAuthorizationGrantType())
                             .isEqualTo(AuthorizationGrantType.AUTHORIZATION_CODE);
 
-                    assertThat(((ClientRegistration) registration).getScopes())
+                    assertThat(registration.getScopes())
                             .containsExactlyInAnyOrder("identify", "email");
 
-                    assertThat(((ClientRegistration) registration).getRedirectUri())
+                    assertThat(registration.getRedirectUri())
                             .endsWith("/login/oauth2/code/discord");
                 })
                 .verifyComplete();
