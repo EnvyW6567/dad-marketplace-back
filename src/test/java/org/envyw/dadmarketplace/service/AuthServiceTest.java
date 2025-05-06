@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.web.server.ServerWebExchange;
@@ -74,5 +75,26 @@ public class AuthServiceTest {
         // Then
         StepVerifier.create(resultMono)
                 .verifyComplete();
+    }
+
+    @Test
+    @DisplayName("OAuth 인증 과정에서 예외가 발생하면 커스텀 에러로 처리되어야 한다")
+    public void shouldHandleOAuthExceptionWithCustomError() {
+        // Given
+        ServerWebExchange exchange = mock(ServerWebExchange.class);
+        String clientRegistrationId = "discord";
+
+        when(authorizationRequestResolver.resolve(any(ServerWebExchange.class), eq(clientRegistrationId)))
+                .thenReturn(Mono.error(new IllegalArgumentException("OAuth 인증 과정에서 오류 발생")));
+
+        // When
+        Mono<String> resultMono = authService.getAuthorizationRequestUrl(exchange, clientRegistrationId);
+
+        // Then
+        StepVerifier.create(resultMono)
+                .expectErrorMatches(throwable ->
+                        throwable instanceof AuthenticationException &&
+                                throwable.getMessage().contains("OAuth 인증 URL을 생성하는데 실패했습니다"))
+                .verify();
     }
 }
