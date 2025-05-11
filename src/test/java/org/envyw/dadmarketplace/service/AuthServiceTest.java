@@ -1,5 +1,6 @@
 package org.envyw.dadmarketplace.service;
 
+import org.envyw.dadmarketplace.exception.errorCode.AuthErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -94,7 +95,7 @@ public class AuthServiceTest {
         StepVerifier.create(resultMono)
                 .expectErrorMatches(throwable ->
                         throwable instanceof AuthenticationException &&
-                                throwable.getMessage().contains("OAuth 인증 URL을 생성하는데 실패했습니다"))
+                                throwable.getMessage().contains(AuthErrorCode.OAUTH_URL_GENERATION_FAILED.formatMessage()))
                 .verify();
     }
 }
