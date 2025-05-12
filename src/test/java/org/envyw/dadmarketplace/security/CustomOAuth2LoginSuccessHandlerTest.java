@@ -72,8 +72,8 @@ public class CustomOAuth2LoginSuccessHandlerTest {
     public void shouldRedirectToHomePageOnSuccess() {
         // given
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put("id", "12345678", "https://www.imgae.url/12345678");
-        attributes.put("username", "테스트유저", "https://www.imgae.url/테스트유저");
+        attributes.put("id", "12345678");
+        attributes.put("username", "테스트유저");
 
         OAuth2User oauth2User = new DefaultOAuth2User(
                 Collections.emptyList(),
@@ -87,7 +87,7 @@ public class CustomOAuth2LoginSuccessHandlerTest {
 
         when(webFilterExchange.getExchange()).thenReturn(exchange);
         when(exchange.getResponse()).thenReturn(response);
-        when(response.setStatusCode(HttpStatus.FOUND)).thenReturn(Mono.empty());
+        doReturn(Mono.empty()).when(response.setStatusCode(HttpStatus.FOUND));
         when(response.getHeaders()).thenReturn(mock(org.springframework.http.HttpHeaders.class));
         when(response.setComplete()).thenReturn(Mono.empty());
 
