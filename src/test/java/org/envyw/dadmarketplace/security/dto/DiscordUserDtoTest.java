@@ -3,6 +3,7 @@ package org.envyw.dadmarketplace.security.dto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DiscordUserDtoTest {
@@ -13,15 +14,16 @@ public class DiscordUserDtoTest {
         // given
         String id = "12345678";
         String username = "테스트유저";
+        String avatarUrl = "https://cdn.discordapp.com/avatars/12345678/asdbsd.png";
 
         // when
         DiscordUserDto dto = new DiscordUserDto(id, username, avatarUrl, null);
 
         // then
-        assertThat(dto.getId()).isEqualTo(id);
-        assertThat(dto.getUsername()).isEqualTo(username);
-        assertThat(dto.getAvatarUrl()).isNull();
-        assertThat(dto.getEmail()).isNull();
+        assertThat(dto.id()).isEqualTo(id);
+        assertThat(dto.username()).isEqualTo(username);
+        assertThat(dto.avatarUrl()).isEqualTo(avatarUrl);
+        assertThat(dto.email()).isNull();
     }
 
     @Test
@@ -37,10 +39,10 @@ public class DiscordUserDtoTest {
         DiscordUserDto dto = new DiscordUserDto(id, username, avatarUrl, email);
 
         // then
-        assertThat(dto.getId()).isEqualTo(id);
-        assertThat(dto.getUsername()).isEqualTo(username);
-        assertThat(dto.getAvatarUrl()).isEqualTo(avatarUrl);
-        assertThat(dto.getEmail()).isEqualTo(email);
+        assertThat(dto.id()).isEqualTo(id);
+        assertThat(dto.username()).isEqualTo(username);
+        assertThat(dto.avatarUrl()).isEqualTo(avatarUrl);
+        assertThat(dto.email()).isEqualTo(email);
     }
 
     @Test
@@ -48,7 +50,7 @@ public class DiscordUserDtoTest {
     public void shouldThrowExceptionWhenIdIsNull() {
         // when, then
         assertThatThrownBy(() -> new DiscordUserDto(null, "테스트유저", null, null))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NullPointerException.class);
     }
 
     @Test
@@ -56,14 +58,14 @@ public class DiscordUserDtoTest {
     public void shouldThrowExceptionWhenUsernameIsNull() {
         // when, then
         assertThatThrownBy(() -> new DiscordUserDto("12345678", null, null, null))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NullPointerException.class);
     }
 
     @Test
     @DisplayName("아바타 URL이 null이면 예외가 발생해야 한다")
-    public void shouldThrowExceptionWhenUsernameIsNull() {
+    public void shouldThrowExceptionWhenAvatarIsNull() {
         // when, then
         assertThatThrownBy(() -> new DiscordUserDto("12345678", "1234", null, null))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(NullPointerException.class);
     }
 }
