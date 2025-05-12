@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.http.server.reactive.MockServerHttpResponse;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -61,10 +62,10 @@ public class CustomOAuth2LoginSuccessHandlerTest {
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo("12345678");
-        assertThat(result.getUsername()).isEqualTo("테스트유저");
-        assertThat(result.getAvatarUrl()).contains("12345678/abcdef");
-        assertThat(result.getEmail()).isEqualTo("test@example.com");
+        assertThat(result.id()).isEqualTo("12345678");
+        assertThat(result.username()).isEqualTo("테스트유저");
+        assertThat(result.avatarUrl()).contains("12345678/abcdef");
+        assertThat(result.email()).isEqualTo("test@example.com");
     }
 
     @Test
@@ -87,8 +88,8 @@ public class CustomOAuth2LoginSuccessHandlerTest {
 
         when(webFilterExchange.getExchange()).thenReturn(exchange);
         when(exchange.getResponse()).thenReturn(response);
-        doReturn(Mono.empty()).when(response.setStatusCode(HttpStatus.FOUND));
-        when(response.getHeaders()).thenReturn(mock(org.springframework.http.HttpHeaders.class));
+        when(response.setStatusCode(HttpStatus.FOUND)).thenReturn(true);
+        when(response.getHeaders()).thenReturn(mock(HttpHeaders.class));
         when(response.setComplete()).thenReturn(Mono.empty());
 
         // when
