@@ -1,4 +1,13 @@
 package org.envyw.dadmarketplace.security.dto;
 
-public record DiscordUserDto() {
+import lombok.Builder;
+import lombok.NonNull;
+
+@Builder
+public record DiscordUserDto(
+        @NonNull String id,
+        @NonNull String username,
+        @NonNull String avatarUrl,
+        String email
+) {
 }
