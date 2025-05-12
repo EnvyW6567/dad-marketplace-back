@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
 
-    public DiscordUserDto extractDiscordUserInfo(OAuth2User oauth2User) {
+    private DiscordUserDto extractDiscordUserInfo(OAuth2User oauth2User) {
         String id = oauth2User.getAttribute("id");
         String username = oauth2User.getAttribute("username");
         String avatar = oauth2User.getAttribute("avatar");
@@ -35,7 +35,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
     public Mono<Void> onAuthenticationSuccess(WebFilterExchange webFilterExchange, Authentication authentication) {
         if (authentication instanceof OAuth2AuthenticationToken oauth2Token) {
             OAuth2User oauth2User = oauth2Token.getPrincipal();
-            DiscordUserDto userInfo = extractDiscordUserInfo(oauth2User);
+            DiscordUserDto userInfo = this.extractDiscordUserInfo(oauth2User);
 
             log.info("디스코드 사용자 인증 성공: id={}, username={}", userInfo.id(), userInfo.username());
         }
