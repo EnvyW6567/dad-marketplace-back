@@ -22,6 +22,7 @@ public class AuthController {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(HttpStatus.FOUND);
         response.getHeaders().setLocation(URI.create("/oauth2/authorization/discord"));
+        
         return response.setComplete();
     }
 
