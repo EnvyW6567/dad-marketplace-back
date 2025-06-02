@@ -1,6 +1,5 @@
 package org.envyw.dadmarketplace.security;
 
-import org.envyw.dadmarketplace.security.dto.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

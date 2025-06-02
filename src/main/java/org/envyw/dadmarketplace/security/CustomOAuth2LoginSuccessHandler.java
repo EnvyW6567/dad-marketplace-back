@@ -1,6 +1,7 @@
-package org.envyw.dadmarketplace.security.dto;
+package org.envyw.dadmarketplace.security;
 
 import lombok.extern.slf4j.Slf4j;
+import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.core.Authentication;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
 
-    private DiscordUserDto extractDiscordUserInfo(OAuth2User oauth2User) {
+    public DiscordUserDto extractDiscordUserInfo(OAuth2User oauth2User) {
         String id = oauth2User.getAttribute("id");
         String username = oauth2User.getAttribute("username");
         String avatar = oauth2User.getAttribute("avatar");
