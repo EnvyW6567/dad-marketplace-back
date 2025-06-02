@@ -38,7 +38,8 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
             OAuth2User oauth2User = oauth2Token.getPrincipal();
             DiscordUserDto userInfo = this.extractDiscordUserInfo(oauth2User);
 
-            log.info("디스코드 사용자 인증 성공: id={}, username={}", userInfo.id(), userInfo.username());
+            log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}", userInfo.id(), userInfo.username(),
+                    userInfo.avatarUrl());
         }
 
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
