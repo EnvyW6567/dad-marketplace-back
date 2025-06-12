@@ -57,27 +57,13 @@ public class User {
     @Column("updated_at")
     private LocalDateTime updatedAt;
 
-    /**
-     * 사용자 정보를 업데이트합니다.
-     *
-     * @param username    새로운 사용자명
-     * @param displayName 새로운 표시명
-     * @param email       새로운 이메일
-     * @param avatarUrl   새로운 아바타 URL
-     */
-    public void updateInfo(String username, String displayName, String email, String avatarUrl) {
-        this.username = username;
-        this.displayName = displayName;
-        this.email = email;
-        this.avatarUrl = avatarUrl;
+    public void updateInfo(DiscordUserDto discordUser) {
+        this.username = discordUser.username();
+        this.displayName = discordUser.displayName();
+        this.email = discordUser.email();
+        this.avatarUrl = discordUser.avatarUrl();
     }
 
-    /**
-     * Discord OAuth2 정보로부터 User 엔티티를 생성합니다.
-     *
-     * @param discordUser 디스코드 OAuth2 인증 후 얻은 사용자 정보
-     * @return 생성된 User 엔티티
-     */
     public static User fromDiscordUser(DiscordUserDto discordUser) {
         return User.builder()
                 .discordId(discordUser.id())
