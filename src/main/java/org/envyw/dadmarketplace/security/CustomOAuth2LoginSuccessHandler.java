@@ -30,8 +30,6 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                 .map(a -> String.format("https://cdn.discordapp.com/avatars/%s/%s.png", id, a))
                 .orElse("https://dafault-avatar-url.png");
 
-        log.info("디스코드 OAuth2User 정보 = {}", oauth2User.toString());
-
         return new DiscordUserDto(id, username, avatarUrl, email, displayName);
     }
 
