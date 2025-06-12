@@ -178,7 +178,7 @@ class UserTest {
     @DisplayName("이메일이 100자를 초과하면 유효성 검증에 실패한다")
     void shouldFailValidationWhenEmailIsTooLong() {
         // Given
-        String longEmail = "a".repeat(90) + "@test.com"; // 101자
+        String longEmail = "a".repeat(64) + "@veryveryveryveryveryverylongdomain.com";
         User user = User.builder()
                 .discordId("123456789012345678")
                 .username("testuser")
