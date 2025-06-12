@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -181,6 +182,7 @@ class UserTest {
         String longEmail = "a".repeat(64) + "@veryveryveryveryveryverylongdomain.com";
         User user = User.builder()
                 .discordId("123456789012345678")
+
                 .username("testuser")
                 .displayName("Test User")
                 .email(longEmail)
@@ -207,8 +209,16 @@ class UserTest {
                 .avatarUrl("https://old-avatar.com/old.png")
                 .build();
 
+        DiscordUserDto discordUser = DiscordUserDto.builder()
+                .id("123456789012345678")
+                .username("newuser")
+                .displayName("NewUser")
+                .email("new@example.com")
+                .avatarUrl("https://new-avatar.com/new.png")
+                .build();
+
         // When
-        user.updateInfo("newuser", "New User", "new@example.com", "https://new-avatar.com/new.png");
+        user.updateInfo(discordUser);
 
         // Then
         assertThat(user.getUsername()).isEqualTo("newuser");
