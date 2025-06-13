@@ -6,10 +6,10 @@ server:
 
 spring:
   application:
-    name: dad-marketplace
+    name: dad-marketplacek
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/${MYSQL_DATABASE}
-    username: ${MYSQL_USERNAME}
+    url: r2dbc:mysql://localhost:3307/${MYSQL_DATABASE}
+    username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
   web:
     resources:
