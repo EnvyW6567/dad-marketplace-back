@@ -22,7 +22,7 @@ public class UserService {
                             discordUser.id(), discordUser.username());
 
                     existingUser.updateInfo(discordUser);
-                    
+
                     return userRepository.save(existingUser);
                 })
                 .switchIfEmpty(
