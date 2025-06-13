@@ -212,7 +212,7 @@ class UserTest {
         DiscordUserDto discordUser = DiscordUserDto.builder()
                 .id("123456789012345678")
                 .username("newuser")
-                .displayName("NewUser")
+                .displayName("New User")
                 .email("new@example.com")
                 .avatarUrl("https://new-avatar.com/new.png")
                 .build();
@@ -244,5 +244,36 @@ class UserTest {
 
         // Then
         assertThat(violations).isEmpty();
+    }
+
+    @Test
+    @DisplayName("FromDiscordUser 메서드는 올바른 DiscordUserDto 입력에 대해 User 객체를 생성해야한다")
+    void fromDiscordUserTest() {
+        // Given
+        String discordId = "123456789012345678";
+        String username = "testuser";
+        String displayName = "Test User";
+        String email = "test@example.com";
+        String avatarUrl = "https://cdn.discordapp.com/avatars/123/abc.png";
+
+        DiscordUserDto discordUser = DiscordUserDto.builder()
+                .id(discordId)
+                .username(username)
+                .displayName(displayName)
+                .email(email)
+                .avatarUrl(avatarUrl)
+                .build();
+
+        // When
+        User user = User.fromDiscordUser(discordUser);
+
+        // Then
+        assertThat(user.getDiscordId()).isEqualTo(discordId);
+        assertThat(user.getUsername()).isEqualTo(username);
+        assertThat(user.getDisplayName()).isEqualTo(displayName);
+        assertThat(user.getEmail()).isEqualTo(email);
+        assertThat(user.getAvatarUrl()).isEqualTo(avatarUrl);
+        assertThat(user.getCreatedAt()).isNull(); // DB에서 자동 생성
+        assertThat(user.getUpdatedAt()).isNull(); // DB에서 자동 생성
     }
 }
