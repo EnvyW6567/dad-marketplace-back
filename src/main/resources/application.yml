@@ -39,3 +39,6 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
+app:
+  jwt:
+    key-id: dad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-key
