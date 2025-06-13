@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.security.jwt.exception.InvalidTokenTypeException;
 import org.envyw.dadmarketplace.security.jwt.exception.JwtAuthenticationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.*;
@@ -20,16 +21,17 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtTokenService {
+    @Value("${app.jwt.access-token-expiration:7200}")
+    private static long ACCESS_TOKEN_EXPIRATION;
+
+    @Value("${app.jwt.refresh-token-expiration:604800}")
+    private static long REFRESH_TOKEN_EXPIRATION;
 
     private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
 
     private static final String ISSUER = "dad-marketplace";
     private static final String AUDIENCE = "dad-marketplace-client";
-
-    private static final long ACCESS_TOKEN_EXPIRATION_HOURS = 1;
-    private static final long REFRESH_TOKEN_EXPIRATION_DAYS = 7;
-
     private static final String TOKEN_TYPE_CLAIM = "tokenType";
     private static final String ACCESS_TOKEN_TYPE = "ACCESS";
     private static final String REFRESH_TOKEN_TYPE = "REFRESH";
@@ -62,7 +64,6 @@ public class JwtTokenService {
         try {
             Jwt jwt = jwtDecoder.decode(tokenValue);
 
-            // 권한 정보 추출
             List<String> authorities = jwt.getClaimAsStringList(AUTHORITIES_CLAIM);
             List<SimpleGrantedAuthority> grantedAuthorities = authorities.stream()
                     .map(SimpleGrantedAuthority::new)
@@ -85,7 +86,7 @@ public class JwtTokenService {
 
     public JwtClaimsSet buildAccessTokenClaims(User user) {
         Instant now = Instant.now();
-        Instant expiration = now.plus(ACCESS_TOKEN_EXPIRATION_HOURS, ChronoUnit.HOURS);
+        Instant expiration = now.plus(ACCESS_TOKEN_EXPIRATION, ChronoUnit.SECONDS);
 
         return JwtClaimsSet.builder()
                 .issuer(ISSUER)
@@ -104,7 +105,7 @@ public class JwtTokenService {
 
     public JwtClaimsSet buildRefreshTokenClaims(User user) {
         Instant now = Instant.now();
-        Instant expiration = now.plus(REFRESH_TOKEN_EXPIRATION_DAYS, ChronoUnit.DAYS);
+        Instant expiration = now.plus(REFRESH_TOKEN_EXPIRATION, ChronoUnit.SECONDS);
 
         return JwtClaimsSet.builder()
                 .issuer(ISSUER)
