@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: dad-marketplacek
+    name: dad-marketplace
   r2dbc:
     url: r2dbc:mysql://localhost:3307/${MYSQL_DATABASE}
     username: ${MYSQL_USER}
@@ -38,3 +38,7 @@ logging:
     root: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+app:
+  jwt:
+    key-id: dad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-key
