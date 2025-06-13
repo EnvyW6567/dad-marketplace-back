@@ -1,10 +1,10 @@
 package org.envyw.dadmarketplace.integration;
 
 import io.r2dbc.spi.ConnectionFactory;
+import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.config.R2dbcConfig;
 import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.repository.UserRepository;
-import org.envyw.dadmarketplace.security.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.service.UserService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

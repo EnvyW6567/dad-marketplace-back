@@ -1,5 +1,6 @@
 package org.envyw.dadmarketplace.security;
 
+import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.envyw.dadmarketplace.service.UserService;
@@ -33,7 +34,7 @@ import static org.mockito.Mockito.*;
 public class CustomOAuth2LoginSuccessHandlerTest {
 
     @Mock
-    UserService userService;
+    private UserService userService;
 
     @InjectMocks
     private CustomOAuth2LoginSuccessHandler handler;

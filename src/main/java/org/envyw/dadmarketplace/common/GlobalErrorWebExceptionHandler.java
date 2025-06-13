@@ -1,4 +1,4 @@
-package org.envyw.dadmarketplace.exception;
+package org.envyw.dadmarketplace.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
