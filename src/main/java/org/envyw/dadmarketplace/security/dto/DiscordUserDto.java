@@ -8,6 +8,7 @@ public record DiscordUserDto(
         @NonNull String id,
         @NonNull String username,
         @NonNull String avatarUrl,
-        String email
+        String email,
+        String displayName
 ) {
 }

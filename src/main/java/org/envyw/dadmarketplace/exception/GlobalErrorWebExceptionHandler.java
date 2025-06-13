@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 @Configuration
-@Order(-2) // WebFlux 기본 핸들러보다 높은 우선순위
+@Order(-2)
 @Slf4j
 public class GlobalErrorWebExceptionHandler implements ErrorWebExceptionHandler {
 
@@ -39,9 +39,6 @@ public class GlobalErrorWebExceptionHandler implements ErrorWebExceptionHandler 
     }
 
     private HttpStatus determineHttpStatus(Throwable ex) {
-        if (ex instanceof OAuth2AuthenticationException) {
-            return HttpStatus.UNAUTHORIZED;
-        }
         return HttpStatus.INTERNAL_SERVER_ERROR;
     }
 }

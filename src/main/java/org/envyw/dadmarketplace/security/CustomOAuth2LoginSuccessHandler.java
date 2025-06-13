@@ -23,13 +23,14 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
         String username = oauth2User.getAttribute("username");
         String avatar = oauth2User.getAttribute("avatar");
         String email = oauth2User.getAttribute("email");
+        String displayName = oauth2User.getAttribute("global_name");
 
         String avatarUrl = Optional.ofNullable(avatar)
                 .filter(a -> !a.isBlank())
                 .map(a -> String.format("https://cdn.discordapp.com/avatars/%s/%s.png", id, a))
                 .orElse("https://dafault-avatar-url.png");
 
-        return new DiscordUserDto(id, username, avatarUrl, email);
+        return new DiscordUserDto(id, username, avatarUrl, email, displayName);
     }
 
     @Override
@@ -38,8 +39,10 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
             OAuth2User oauth2User = oauth2Token.getPrincipal();
             DiscordUserDto userInfo = this.extractDiscordUserInfo(oauth2User);
 
-            log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}", userInfo.id(), userInfo.username(),
-                    userInfo.avatarUrl());
+            log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}, displayName={}", userInfo.id(),
+                    userInfo.username(),
+                    userInfo.avatarUrl(),
+                    userInfo.displayName());
         }
 
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();

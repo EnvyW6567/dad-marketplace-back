@@ -8,9 +8,9 @@ spring:
   application:
     name: dad-marketplace
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/mydatabase
-    username: myuser
-    password: secret
+    url: r2dbc:mysql://localhost:3306/${MYSQL_DATABASE}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
   web:
     resources:
       add-mappings: false
