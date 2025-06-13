@@ -1,6 +1,8 @@
 package org.envyw.dadmarketplace.security;
 
+import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +21,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +31,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomOAuth2LoginSuccessHandlerTest {
+
+    @Mock
+    UserService userService;
 
     @InjectMocks
     private CustomOAuth2LoginSuccessHandler handler;
@@ -84,7 +90,17 @@ public class CustomOAuth2LoginSuccessHandlerTest {
                 oauth2User,
                 Collections.emptyList(),
                 "discord");
+        User mockUser = User.builder()
+                .id(1L)
+                .discordId("12345678")
+                .username("테스트유저")
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build();
 
+
+        when(userService.saveOrUpdateUser(any(DiscordUserDto.class)))
+                .thenReturn(Mono.just(mockUser));
         when(webFilterExchange.getExchange()).thenReturn(exchange);
         when(exchange.getResponse()).thenReturn(response);
         when(response.setStatusCode(HttpStatus.FOUND)).thenReturn(true);
