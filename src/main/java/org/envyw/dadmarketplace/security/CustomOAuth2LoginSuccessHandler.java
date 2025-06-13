@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.server.WebFilterExchange;
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
+@Component
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
     private final UserService userService;

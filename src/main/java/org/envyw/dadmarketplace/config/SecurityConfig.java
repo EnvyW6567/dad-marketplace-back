@@ -3,7 +3,6 @@ package org.envyw.dadmarketplace.config;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.security.CustomOAuth2LoginSuccessHandler;
-import org.envyw.dadmarketplace.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -12,7 +11,6 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 import org.springframework.security.oauth2.client.web.server.DefaultServerOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizationRequestResolver;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -20,7 +18,7 @@ import org.springframework.security.web.server.authentication.ServerAuthenticati
 @Slf4j
 public class SecurityConfig {
 
-    private final UserService userService;
+    private final CustomOAuth2LoginSuccessHandler authenticationSuccessHandler;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
@@ -30,16 +28,12 @@ public class SecurityConfig {
                                 "/favicon.ico", "/login/oauth2/code/discord", "/debug/**").permitAll()
                         .anyExchange().authenticated())
                 .oauth2Login(oauth2 -> oauth2
-                        .authenticationSuccessHandler(authenticationSuccessHandler()))
+                        .authenticationSuccessHandler(authenticationSuccessHandler))
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .build();
     }
 
-    @Bean
-    public ServerAuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new CustomOAuth2LoginSuccessHandler(userService);
-    }
 
     @Bean
     public ServerOAuth2AuthorizationRequestResolver serverOAuth2AuthorizationRequestResolver(
