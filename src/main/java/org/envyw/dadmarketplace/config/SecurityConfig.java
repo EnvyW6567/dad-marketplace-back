@@ -1,7 +1,9 @@
 package org.envyw.dadmarketplace.config;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.security.CustomOAuth2LoginSuccessHandler;
+import org.envyw.dadmarketplace.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -14,8 +16,11 @@ import org.springframework.security.web.server.authentication.ServerAuthenticati
 
 @Configuration
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 @Slf4j
 public class SecurityConfig {
+
+    private final UserService userService;
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
@@ -33,7 +38,7 @@ public class SecurityConfig {
 
     @Bean
     public ServerAuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new CustomOAuth2LoginSuccessHandler();
+        return new CustomOAuth2LoginSuccessHandler(userService);
     }
 
     @Bean

@@ -1,7 +1,9 @@
 package org.envyw.dadmarketplace.security;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.core.Authentication;
@@ -15,8 +17,10 @@ import java.net.URI;
 import java.util.Optional;
 
 @Slf4j
+@RequiredArgsConstructor
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
+    private final UserService userService;
 
     public DiscordUserDto extractDiscordUserInfo(OAuth2User oauth2User) {
         String id = oauth2User.getAttribute("id");
@@ -43,12 +47,28 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                     userInfo.username(),
                     userInfo.avatarUrl(),
                     userInfo.displayName());
+
+            return userService.saveOrUpdateUser(userInfo)
+                    .doOnSuccess(savedUser ->
+                            log.info("사용자 정보 저장/업데이트 완료: id={}, dbId={}",
+                                    savedUser.getDiscordId(), savedUser.getId()))
+                    .doOnError(error ->
+                            log.error("사용자 정보 저장/업데이트 실패: discordId={}, error={}",
+                                    userInfo.id(), error.getMessage(), error))
+                    .then(redirectToHomePage(webFilterExchange))
+                    .onErrorResume(error -> {
+                        log.error("OAuth2 인증 성공 처리 중 오류 발생", error);
+                        return redirectToHomePage(webFilterExchange);
+                    });
         }
 
+        return redirectToHomePage(webFilterExchange);
+    }
+
+    private Mono<Void> redirectToHomePage(WebFilterExchange webFilterExchange) {
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
         response.setStatusCode(HttpStatus.FOUND);
         response.getHeaders().setLocation(URI.create("/"));
-
         return response.setComplete();
     }
 }
