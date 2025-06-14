@@ -22,10 +22,10 @@ import java.util.List;
 @Slf4j
 public class JwtTokenService {
     @Value("${app.jwt.access-token-expiration:7200}")
-    private static long ACCESS_TOKEN_EXPIRATION;
+    private long ACCESS_TOKEN_EXPIRATION;
 
     @Value("${app.jwt.refresh-token-expiration:604800}")
-    private static long REFRESH_TOKEN_EXPIRATION;
+    private long REFRESH_TOKEN_EXPIRATION;
 
     private final JwtEncoder jwtEncoder;
     private final JwtDecoder jwtDecoder;
@@ -87,6 +87,7 @@ public class JwtTokenService {
     public JwtClaimsSet buildAccessTokenClaims(User user) {
         Instant now = Instant.now();
         Instant expiration = now.plus(ACCESS_TOKEN_EXPIRATION, ChronoUnit.SECONDS);
+        log.info("now={}, expiration={}, EXPIRATION_VALUE={}", now, expiration, ACCESS_TOKEN_EXPIRATION);
 
         return JwtClaimsSet.builder()
                 .issuer(ISSUER)
@@ -106,6 +107,7 @@ public class JwtTokenService {
     public JwtClaimsSet buildRefreshTokenClaims(User user) {
         Instant now = Instant.now();
         Instant expiration = now.plus(REFRESH_TOKEN_EXPIRATION, ChronoUnit.SECONDS);
+        log.info("now={}, expiration={}, EXPIRATION_VALUE={}", now, expiration, REFRESH_TOKEN_EXPIRATION);
 
         return JwtClaimsSet.builder()
                 .issuer(ISSUER)
@@ -114,6 +116,7 @@ public class JwtTokenService {
                 .issuedAt(now)
                 .expiresAt(expiration)
                 .claim(TOKEN_TYPE_CLAIM, REFRESH_TOKEN_TYPE)
+                .claim(AUTHORITIES_CLAIM, List.of("ROLE_USER"))
                 .build();
     }
 
