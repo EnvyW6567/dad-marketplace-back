@@ -60,7 +60,7 @@ public class AuthServiceTest {
                 .updatedAt(LocalDateTime.now())
                 .build();
 
-        refreshJwt = createMockJwt("REFRESH");
+        refreshJwt = createMockRefreshJwtToken();
         refreshReqDto = new RefreshReqDto("valid.refresh.token");
     }
 
@@ -146,7 +146,7 @@ public class AuthServiceTest {
         verify(jwtTokenService).renewAccessToken(refreshJwt, testUser);
     }
 
-    private Jwt createMockJwt(String tokenType) {
+    private Jwt createMockRefreshJwtToken() {
         return Jwt.withTokenValue("mock.jwt.token")
                 .header("alg", "RS256")
                 .header("typ", "JWT")
@@ -155,7 +155,7 @@ public class AuthServiceTest {
                 .audience(List.of("dad-marketplace-client"))
                 .issuedAt(Instant.now())
                 .expiresAt(Instant.now().plus(1, ChronoUnit.HOURS))
-                .claim("tokenType", tokenType)
+                .claim("tokenType", "REFRESH")
                 .claim("username", "testuser")
                 .claim("email", "test@example.com")
                 .claim("displayName", "Test User")
