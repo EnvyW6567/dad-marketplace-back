@@ -1,0 +1,36 @@
+{
+  "body": [
+    {
+      "id": 1,
+      "name": "Poor"
+    },
+    {
+      "id": 2,
+      "name": "Common"
+    },
+    {
+      "id": 3,
+      "name": "Uncommon"
+    },
+    {
+      "id": 4,
+      "name": "Rare"
+    },
+    {
+      "id": 5,
+      "name": "Epic"
+    },
+    {
+      "id": 6,
+      "name": "Legendary"
+    },
+    {
+      "id": 7,
+      "name": "Unique"
+    },
+    {
+      "id": 8,
+      "name": "Artifact"
+    }
+  ]
+}

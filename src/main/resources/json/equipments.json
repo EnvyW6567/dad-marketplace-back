@@ -1,0 +1,1169 @@
+{
+  "body": [
+    {
+      "name": "Arcane Hood",
+      "archetype": "ArcaneHood"
+    },
+    {
+      "name": "Armet",
+      "archetype": "Armet"
+    },
+    {
+      "name": "Barbuta Helm",
+      "archetype": "BarbutaHelm"
+    },
+    {
+      "name": "Ceremonial Headdress",
+      "archetype": "CeremonialHeaddress"
+    },
+    {
+      "name": "Chapel De Fer",
+      "archetype": "ChapelDeFer"
+    },
+    {
+      "name": "Chaperon",
+      "archetype": "Chaperon"
+    },
+    {
+      "name": "Coif",
+      "archetype": "Coif"
+    },
+    {
+      "name": "Crusader Helm",
+      "archetype": "CrusaderHelm"
+    },
+    {
+      "name": "Darkgrove Hood",
+      "archetype": "DarkgroveHood"
+    },
+    {
+      "name": "Elkwood Crown",
+      "archetype": "ElkwoodCrown"
+    },
+    {
+      "name": "Feathered Hat",
+      "archetype": "FeatheredHat"
+    },
+    {
+      "name": "Forest Hood",
+      "archetype": "ForestHood"
+    },
+    {
+      "name": "Gjermundbu",
+      "archetype": "Gjermundbu"
+    },
+    {
+      "name": "Great Helm",
+      "archetype": "GreatHelm"
+    },
+    {
+      "name": "Hounskull",
+      "archetype": "Hounskull"
+    },
+    {
+      "name": "Kettle Hat",
+      "archetype": "KettleHat"
+    },
+    {
+      "name": "Leather Bonnet",
+      "archetype": "LeatherBonnet"
+    },
+    {
+      "name": "Leather Cap",
+      "archetype": "LeatherCap"
+    },
+    {
+      "name": "Norman Nasal Helm",
+      "archetype": "NormanNasalHelm"
+    },
+    {
+      "name": "Occultist Hood",
+      "archetype": "OccultistHood"
+    },
+    {
+      "name": "Open Sallet",
+      "archetype": "OpenSallet"
+    },
+    {
+      "name": "Ranger Hood",
+      "archetype": "RangerHood"
+    },
+    {
+      "name": "Rogue Cowl",
+      "archetype": "RogueCowl"
+    },
+    {
+      "name": "Sallet",
+      "archetype": "Sallet"
+    },
+    {
+      "name": "Shadow Hood",
+      "archetype": "ShadowHood"
+    },
+    {
+      "name": "Shadow Mask",
+      "archetype": "ShadowMask"
+    },
+    {
+      "name": "Spangenhelm",
+      "archetype": "Spangenhelm"
+    },
+    {
+      "name": "Straw Hat",
+      "archetype": "StrawHat"
+    },
+    {
+      "name": "Topfhelm",
+      "archetype": "Topfhelm"
+    },
+    {
+      "name": "Viking Helm",
+      "archetype": "VikingHelm"
+    },
+    {
+      "name": "Visored Barbuta Helm",
+      "archetype": "VisoredBarbutaHelm"
+    },
+    {
+      "name": "Visored Sallet",
+      "archetype": "VisoredSallet"
+    },
+    {
+      "name": "Wizard Hat",
+      "archetype": "WizardHat"
+    },
+    {
+      "name": "Cobalt Chapel De Fer",
+      "archetype": "CobaltChapelDeFer"
+    },
+    {
+      "name": "Cobalt Hat",
+      "archetype": "CobaltHat"
+    },
+    {
+      "name": "Cobalt Hood",
+      "archetype": "CobaltHood"
+    },
+    {
+      "name": "Cobalt Viking Helm",
+      "archetype": "CobaltVikingHelm"
+    },
+    {
+      "name": "Copperlight Kettle Hat",
+      "archetype": "CopperlightKettleHat"
+    },
+    {
+      "name": "Copperlight Shadow Hood",
+      "archetype": "CopperlightShadowHood"
+    },
+    {
+      "name": "Copperlight Straw Hat",
+      "archetype": "CopperlightStrawHat"
+    },
+    {
+      "name": "Cowl of Darkness",
+      "archetype": "CowlOfDarkness"
+    },
+    {
+      "name": "Dread Hood",
+      "archetype": "DreadHood"
+    },
+    {
+      "name": "Frostlight Crusader Helm",
+      "archetype": "FrostlightCrusaderHelm"
+    },
+    {
+      "name": "Frostlight Feathered Hat",
+      "archetype": "FrostlightFeatheredHat"
+    },
+    {
+      "name": "Frostlight Hood",
+      "archetype": "FrostlightHood"
+    },
+    {
+      "name": "Frostlight Norman Nasal Helm",
+      "archetype": "FrostlightNormanNasalHelm"
+    },
+    {
+      "name": "Frostlight Wizard Hat",
+      "archetype": "FrostlightWizardHat"
+    },
+    {
+      "name": "Golden Armet",
+      "archetype": "GoldenArmet"
+    },
+    {
+      "name": "Golden Gjermundbu",
+      "archetype": "GoldenGjermundbu"
+    },
+    {
+      "name": "Golden Hounskull",
+      "archetype": "GoldenHounskull"
+    },
+    {
+      "name": "Golden Leaf Hood",
+      "archetype": "GoldenLeafHood"
+    },
+    {
+      "name": "Golden Scarf",
+      "archetype": "GoldenScarf"
+    },
+    {
+      "name": "Rubysilver Barbuta Helm",
+      "archetype": "RubysilverBarbutaHelm"
+    },
+    {
+      "name": "Rubysilver Cap",
+      "archetype": "RubysilverCap"
+    },
+    {
+      "name": "Rubysilver Hood",
+      "archetype": "RubysilverHood"
+    },
+    {
+      "name": "Adventurer Tunic",
+      "archetype": "AdventurerTunic"
+    },
+    {
+      "name": "Arcane Garb",
+      "archetype": "ArcaneGarb"
+    },
+    {
+      "name": "Bloodwoven Robe",
+      "archetype": "BloodwovenRobe"
+    },
+    {
+      "name": "Champion Armor",
+      "archetype": "ChampionArmor"
+    },
+    {
+      "name": "Crusader Armor",
+      "archetype": "CrusaderArmor"
+    },
+    {
+      "name": "Dark Cuirass",
+      "archetype": "DarkCuirass"
+    },
+    {
+      "name": "Dark Plate Armor",
+      "archetype": "DarkPlateArmor"
+    },
+    {
+      "name": "Darkgrove Robe",
+      "archetype": "DarkgroveRobe"
+    },
+    {
+      "name": "Doublet",
+      "archetype": "Doublet"
+    },
+    {
+      "name": "Fine Cuirass",
+      "archetype": "FineCuirass"
+    },
+    {
+      "name": "Frock",
+      "archetype": "Frock"
+    },
+    {
+      "name": "Grand Brigandine",
+      "archetype": "GrandBrigandine"
+    },
+    {
+      "name": "Heavy Gambeson",
+      "archetype": "HeavyGambeson"
+    },
+    {
+      "name": "Light Aketon",
+      "archetype": "LightAketon"
+    },
+    {
+      "name": "Marauder Outfit",
+      "archetype": "MarauderOutfit"
+    },
+    {
+      "name": "Mystic Vestments",
+      "archetype": "MysticVestments"
+    },
+    {
+      "name": "Northern Full Tunic",
+      "archetype": "NorthernFullTunic"
+    },
+    {
+      "name": "Occultist Robe",
+      "archetype": "OccultistRobe"
+    },
+    {
+      "name": "Occultist Tunic",
+      "archetype": "OccultistTunic"
+    },
+    {
+      "name": "Oracle Robe",
+      "archetype": "OracleRobe"
+    },
+    {
+      "name": "Ornate Jazerant",
+      "archetype": "OrnateJazerant"
+    },
+    {
+      "name": "Padded Tunic",
+      "archetype": "PaddedTunic"
+    },
+    {
+      "name": "Pourpoint",
+      "archetype": "Pourpoint"
+    },
+    {
+      "name": "Regal Gambeson",
+      "archetype": "RegalGambeson"
+    },
+    {
+      "name": "Ritual Robe",
+      "archetype": "RitualRobe"
+    },
+    {
+      "name": "Studded Leather",
+      "archetype": "StuddedLeather"
+    },
+    {
+      "name": "Templar Armor",
+      "archetype": "TemplarArmor"
+    },
+    {
+      "name": "Troubadour Outfit",
+      "archetype": "TroubadourOutfit"
+    },
+    {
+      "name": "Wanderer Attire",
+      "archetype": "WandererAttire"
+    },
+    {
+      "name": "Warden Outfit",
+      "archetype": "WardenOutfit"
+    },
+    {
+      "name": "Cobalt Frock",
+      "archetype": "CobaltFrock"
+    },
+    {
+      "name": "Cobalt Regal Gambeson",
+      "archetype": "CobaltRegalGambeson"
+    },
+    {
+      "name": "Cobalt Templar Armor",
+      "archetype": "CobaltTemplarArmor"
+    },
+    {
+      "name": "Copperlight Attire",
+      "archetype": "CopperlightAttire"
+    },
+    {
+      "name": "Copperlight Outfit",
+      "archetype": "CopperlightOutfit"
+    },
+    {
+      "name": "Copperlight Sanctum Plate Armor",
+      "archetype": "CopperlightSanctumPlateArmor"
+    },
+    {
+      "name": "Copperlight Tunic",
+      "archetype": "CopperlightTunic"
+    },
+    {
+      "name": "Dark Matter Tunic",
+      "archetype": "DarkMatterTunic"
+    },
+    {
+      "name": "Frostlight Abyss Plate Armor",
+      "archetype": "FrostlightAbyssPlateArmor"
+    },
+    {
+      "name": "Frostlight Aketon",
+      "archetype": "FrostlightAketon"
+    },
+    {
+      "name": "Frostlight Oracle Robe",
+      "archetype": "FrostlightOracleRobe"
+    },
+    {
+      "name": "Frostlight Warden Outfit",
+      "archetype": "FrostlightWardenOutfit"
+    },
+    {
+      "name": "Golden Padded Tunic",
+      "archetype": "GoldenPaddedTunic"
+    },
+    {
+      "name": "Golden Plate",
+      "archetype": "GoldenPlate"
+    },
+    {
+      "name": "Golden Robe",
+      "archetype": "GoldenRobe"
+    },
+    {
+      "name": "Robe of Darkness",
+      "archetype": "RobeOfDarkness"
+    },
+    {
+      "name": "Rubysilver Cuirass",
+      "archetype": "RubysilverCuirass"
+    },
+    {
+      "name": "Rubysilver Doublet",
+      "archetype": "RubysilverDoublet"
+    },
+    {
+      "name": "Rubysilver Vestments",
+      "archetype": "RubysilverVestments"
+    },
+    {
+      "name": "Studded Wyvern Leather",
+      "archetype": "StuddedWyvernLeather"
+    },
+    {
+      "name": "Tri-Pelt Doublet",
+      "archetype": "TriPeltDoublet"
+    },
+    {
+      "name": "Tri-Pelt Northern Full Tunic",
+      "archetype": "TriPeltNorthernFullTunic"
+    },
+    {
+      "name": "Bardic Pants",
+      "archetype": "BardicPants"
+    },
+    {
+      "name": "Buttoned Leggings",
+      "archetype": "ButtonedLeggings"
+    },
+    {
+      "name": "Cloth Pants",
+      "archetype": "ClothPants"
+    },
+    {
+      "name": "Copperlight Leggings",
+      "archetype": "CopperlightLeggings"
+    },
+    {
+      "name": "Dark Leather Leggings",
+      "archetype": "DarkLeatherLeggings"
+    },
+    {
+      "name": "Heavy Leather Leggings",
+      "archetype": "HeavyLeatherLeggings"
+    },
+    {
+      "name": "Leather Chausses",
+      "archetype": "LeatherChausses"
+    },
+    {
+      "name": "Leather Leggings",
+      "archetype": "LeatherLeggings"
+    },
+    {
+      "name": "Loose Trousers",
+      "archetype": "LooseTrousers"
+    },
+    {
+      "name": "Occultist Pants",
+      "archetype": "OccultistPants"
+    },
+    {
+      "name": "Padded Leggings",
+      "archetype": "PaddedLeggings"
+    },
+    {
+      "name": "Plate Pants",
+      "archetype": "PlatePants"
+    },
+    {
+      "name": "Sleek Hide Pants",
+      "archetype": "SleekHidePants"
+    },
+    {
+      "name": "Tanglethread Trousers",
+      "archetype": "TanglethreadTrousers"
+    },
+    {
+      "name": "Brave Hunter's Pants",
+      "archetype": "BraveHuntersPants"
+    },
+    {
+      "name": "Cobalt Plate Pants",
+      "archetype": "CobaltPlatePants"
+    },
+    {
+      "name": "Cobalt Trousers",
+      "archetype": "CobaltTrousers"
+    },
+    {
+      "name": "Copperlight Pants",
+      "archetype": "CopperlightPants"
+    },
+    {
+      "name": "Copperlight Plate Pants",
+      "archetype": "CopperlightPlatePants"
+    },
+    {
+      "name": "Demonclad Leggings",
+      "archetype": "DemoncladLeggings"
+    },
+    {
+      "name": "Frostlight Leather Leggings",
+      "archetype": "FrostlightLeatherLeggings"
+    },
+    {
+      "name": "Frostlight Plate Pants",
+      "archetype": "FrostlightPlatePants"
+    },
+    {
+      "name": "Frostlight Trousers",
+      "archetype": "FrostlightTrousers"
+    },
+    {
+      "name": "Golden Chausses",
+      "archetype": "GoldenChausses"
+    },
+    {
+      "name": "Golden Leggings",
+      "archetype": "GoldenLeggings"
+    },
+    {
+      "name": "Golden Plate Pants",
+      "archetype": "GoldenPlatePants"
+    },
+    {
+      "name": "Rubysilver Leggings",
+      "archetype": "RubysilverLeggings"
+    },
+    {
+      "name": "Rubysilver Plate Pants",
+      "archetype": "RubysilverPlatePants"
+    },
+    {
+      "name": "Wolf Hunter Leggings",
+      "archetype": "WolfHunterLeggings"
+    },
+    {
+      "name": "Arcane Gloves",
+      "archetype": "ArcaneGloves"
+    },
+    {
+      "name": "Bloodwoven Gloves",
+      "archetype": "BloodwovenGloves"
+    },
+    {
+      "name": "Elkwood Gloves",
+      "archetype": "ElkwoodGloves"
+    },
+    {
+      "name": "Gloves of Utility",
+      "archetype": "GlovesOfUtility"
+    },
+    {
+      "name": "Heavy Gauntlets",
+      "archetype": "HeavyGauntlets"
+    },
+    {
+      "name": "Leather Gloves",
+      "archetype": "LeatherGloves"
+    },
+    {
+      "name": "Light Gauntlets",
+      "archetype": "LightGauntlets"
+    },
+    {
+      "name": "Mystic Gloves",
+      "archetype": "MysticGloves"
+    },
+    {
+      "name": "Rawhide Gloves",
+      "archetype": "RawhideGloves"
+    },
+    {
+      "name": "Reinforced Gloves",
+      "archetype": "ReinforcedGloves"
+    },
+    {
+      "name": "Riveted Gloves",
+      "archetype": "RivetedGloves"
+    },
+    {
+      "name": "Runestone Gloves",
+      "archetype": "RunestoneGloves"
+    },
+    {
+      "name": "Cobalt Heavy Gauntlet",
+      "archetype": "CobaltHeavyGauntlet"
+    },
+    {
+      "name": "Cobalt Leather Gloves",
+      "archetype": "CobaltLeatherGloves"
+    },
+    {
+      "name": "Copperlight Gauntlets",
+      "archetype": "CopperlightGauntlets"
+    },
+    {
+      "name": "Copperlight Riveted Gloves",
+      "archetype": "CopperlightRivetedGloves"
+    },
+    {
+      "name": "Demon Grip Gloves",
+      "archetype": "DemonGripGloves"
+    },
+    {
+      "name": "Frostlight Gauntlets",
+      "archetype": "FrostlightGauntlets"
+    },
+    {
+      "name": "Frostlight Mystic Gloves",
+      "archetype": "FrostlightMysticGloves"
+    },
+    {
+      "name": "Frostlight Riveted Gloves",
+      "archetype": "FrostlightRivetedGloves"
+    },
+    {
+      "name": "Frostlight Runestone Gloves",
+      "archetype": "FrostlightRunestoneGloves"
+    },
+    {
+      "name": "Golden Gauntlets",
+      "archetype": "GoldenGauntlets"
+    },
+    {
+      "name": "Golden Gloves",
+      "archetype": "GoldenGloves"
+    },
+    {
+      "name": "Gravewolf Gloves",
+      "archetype": "GravewolfGloves"
+    },
+    {
+      "name": "Rubysilver Gauntlets",
+      "archetype": "RubysilverGauntlets"
+    },
+    {
+      "name": "Rubysilver Rawhide Gloves",
+      "archetype": "RubysilverRawhideGloves"
+    },
+    {
+      "name": "Adventurer Boots",
+      "archetype": "AdventurerBoots"
+    },
+    {
+      "name": "Buckled Boots",
+      "archetype": "BuckledBoots"
+    },
+    {
+      "name": "Buttoned Boots",
+      "archetype": "ButtonedBoots"
+    },
+    {
+      "name": "Cuffed Boots",
+      "archetype": "CuffedBoots"
+    },
+    {
+      "name": "Darkleaf Boots",
+      "archetype": "DarkleafBoots"
+    },
+    {
+      "name": "Dashing Boots",
+      "archetype": "DashingBoots"
+    },
+    {
+      "name": "Forest Boots",
+      "archetype": "ForestBoots"
+    },
+    {
+      "name": "Heavy Boots",
+      "archetype": "HeavyBoots"
+    },
+    {
+      "name": "Laced Turnshoe",
+      "archetype": "LacedTurnshoe"
+    },
+    {
+      "name": "Lightfoot Boots",
+      "archetype": "LightfootBoots"
+    },
+    {
+      "name": "Low Boots",
+      "archetype": "LowBoots"
+    },
+    {
+      "name": "Occultist Boots",
+      "archetype": "OccultistBoots"
+    },
+    {
+      "name": "Old Shoes",
+      "archetype": "OldShoes"
+    },
+    {
+      "name": "Plate Boots",
+      "archetype": "PlateBoots"
+    },
+    {
+      "name": "Rugged Boots",
+      "archetype": "RuggedBoots"
+    },
+    {
+      "name": "Stillmend Boots",
+      "archetype": "StillmendBoots"
+    },
+    {
+      "name": "Stitched Turnshoe",
+      "archetype": "StitchedTurnshoe"
+    },
+    {
+      "name": "Turnshoe",
+      "archetype": "Turnshoe"
+    },
+    {
+      "name": "Wizard Shoes",
+      "archetype": "WizardShoes"
+    },
+    {
+      "name": "Cobalt Lightfoot Boots",
+      "archetype": "CobaltLightfootBoots"
+    },
+    {
+      "name": "Cobalt Plate Boots",
+      "archetype": "CobaltPlateBoots"
+    },
+    {
+      "name": "Copperlight Lightfoot Boots",
+      "archetype": "CopperlightLightfootBoots"
+    },
+    {
+      "name": "Copperlight Plate Boots",
+      "archetype": "CopperlightPlateBoots"
+    },
+    {
+      "name": "Foul Boots",
+      "archetype": "FoulBoots"
+    },
+    {
+      "name": "Frostlight Lightfoot Boots",
+      "archetype": "FrostlightLightfootBoots"
+    },
+    {
+      "name": "Frostlight Plate Boots",
+      "archetype": "FrostlightPlateBoots"
+    },
+    {
+      "name": "Frostlight Rugged Boots",
+      "archetype": "FrostlightRuggedBoots"
+    },
+    {
+      "name": "Golden Boots",
+      "archetype": "GoldenBoots"
+    },
+    {
+      "name": "Golden Plate Boots",
+      "archetype": "GoldenPlateBoots"
+    },
+    {
+      "name": "Rubysilver Adventurer Boots",
+      "archetype": "RubysilverAdventurerBoots"
+    },
+    {
+      "name": "Rubysilver Plate Boots",
+      "archetype": "RubysilverPlateBoots"
+    },
+    {
+      "name": "Shoes of Darkness",
+      "archetype": "ShoesOfDarkness"
+    },
+    {
+      "name": "Adventurer Cloak",
+      "archetype": "AdventurerCloak"
+    },
+    {
+      "name": "Mercurial Cloak",
+      "archetype": "MercurialCloak"
+    },
+    {
+      "name": "Radiant Cloak",
+      "archetype": "RadiantCloak"
+    },
+    {
+      "name": "Splendid Cloak",
+      "archetype": "SplendidCloak"
+    },
+    {
+      "name": "Tattered Cloak",
+      "archetype": "TatteredCloak"
+    },
+    {
+      "name": "Vigilant Cloak",
+      "archetype": "VigilantCloak"
+    },
+    {
+      "name": "Watchman Cloak",
+      "archetype": "WatchmanCloak"
+    },
+    {
+      "name": "Cloak of Darkness",
+      "archetype": "CloakOfDarkness"
+    },
+    {
+      "name": "Frostlight Cloak",
+      "archetype": "FrostlightCloak"
+    },
+    {
+      "name": "Golden Cloak",
+      "archetype": "GoldenCloak"
+    },
+    {
+      "name": "Bare Hands",
+      "archetype": "BareHands"
+    },
+    {
+      "name": "Arming Sword",
+      "archetype": "ArmingSword"
+    },
+    {
+      "name": "Crystal Sword",
+      "archetype": "CrystalSword"
+    },
+    {
+      "name": "Falchion",
+      "archetype": "Falchion"
+    },
+    {
+      "name": "Longsword",
+      "archetype": "Longsword"
+    },
+    {
+      "name": "Rapier",
+      "archetype": "Rapier"
+    },
+    {
+      "name": "Short Sword",
+      "archetype": "ShortSword"
+    },
+    {
+      "name": "Viking Sword",
+      "archetype": "VikingSword"
+    },
+    {
+      "name": "Zweihander",
+      "archetype": "Zweihander"
+    },
+    {
+      "name": "Blade of Righteousness",
+      "archetype": "BladeOfRighteousness"
+    },
+    {
+      "name": "Demon's Glee",
+      "archetype": "DemonsGlee"
+    },
+    {
+      "name": "Divine Blade",
+      "archetype": "DivineBlade"
+    },
+    {
+      "name": "Divine Short Sword",
+      "archetype": "DivineShortSword"
+    },
+    {
+      "name": "Falchion of Honor",
+      "archetype": "FalchionOfHonor"
+    },
+    {
+      "name": "Frostlight Crystal Sword",
+      "archetype": "FrostlightCrystalSword"
+    },
+    {
+      "name": "Golden Viking Sword",
+      "archetype": "GoldenVikingSword"
+    },
+    {
+      "name": "Grimslayer",
+      "archetype": "Grimslayer"
+    },
+    {
+      "name": "Short Sword of Righteousness",
+      "archetype": "ShortSwordOfRighteousness"
+    },
+    {
+      "name": "Sovereign's Ghostblade",
+      "archetype": "SovereignsGhostblade"
+    },
+    {
+      "name": "Sterling Blade",
+      "archetype": "SterlingBlade"
+    },
+    {
+      "name": "Sterling Short Sword",
+      "archetype": "SterlingShortSword"
+    },
+    {
+      "name": "Void Blade",
+      "archetype": "VoidBlade"
+    },
+    {
+      "name": "Club",
+      "archetype": "Club"
+    },
+    {
+      "name": "Flanged Mace",
+      "archetype": "FlangedMace"
+    },
+    {
+      "name": "Lute",
+      "archetype": "Lute"
+    },
+    {
+      "name": "Morning Star",
+      "archetype": "MorningStar"
+    },
+    {
+      "name": "Quarterstaff",
+      "archetype": "Quarterstaff"
+    },
+    {
+      "name": "Torch",
+      "archetype": "Torch"
+    },
+    {
+      "name": "War Hammer",
+      "archetype": "WarHammer"
+    },
+    {
+      "name": "War Maul",
+      "archetype": "WarMaul"
+    },
+    {
+      "name": "Boneshaper",
+      "archetype": "Boneshaper"
+    },
+    {
+      "name": "Divine Rod",
+      "archetype": "DivineRod"
+    },
+    {
+      "name": "Divine Staff",
+      "archetype": "DivineStaff"
+    },
+    {
+      "name": "Light Bringer",
+      "archetype": "LightBringer"
+    },
+    {
+      "name": "Rod of Righteousness",
+      "archetype": "RodOfRighteousness"
+    },
+    {
+      "name": "Staff of Righteousness",
+      "archetype": "StaffOfRighteousness"
+    },
+    {
+      "name": "Sterling Rod",
+      "archetype": "SterlingRod"
+    },
+    {
+      "name": "Sterling Staff",
+      "archetype": "SterlingStaff"
+    },
+    {
+      "name": "Troll's Bane",
+      "archetype": "TrollsBane"
+    },
+    {
+      "name": "Castillon Dagger",
+      "archetype": "CastillonDagger"
+    },
+    {
+      "name": "Kris Dagger",
+      "archetype": "KrisDagger"
+    },
+    {
+      "name": "Rondel Dagger",
+      "archetype": "RondelDagger"
+    },
+    {
+      "name": "Stiletto Dagger",
+      "archetype": "StilettoDagger"
+    },
+    {
+      "name": "Dagger of Righteousness",
+      "archetype": "DaggerOfRighteousness"
+    },
+    {
+      "name": "Divine Dagger",
+      "archetype": "DivineDagger"
+    },
+    {
+      "name": "Icefang",
+      "archetype": "Icefang"
+    },
+    {
+      "name": "Sterling Dagger",
+      "archetype": "SterlingDagger"
+    },
+    {
+      "name": "Throwing Knife",
+      "archetype": "ThrowingKnife"
+    },
+    {
+      "name": "Bardiche",
+      "archetype": "Bardiche"
+    },
+    {
+      "name": "Halberd",
+      "archetype": "Halberd"
+    },
+    {
+      "name": "Spear",
+      "archetype": "Spear"
+    },
+    {
+      "name": "Frostlight Spear",
+      "archetype": "FrostlightSpear"
+    },
+    {
+      "name": "Spear of Rot",
+      "archetype": "SpearOfRot"
+    },
+    {
+      "name": "Battle Axe",
+      "archetype": "BattleAxe"
+    },
+    {
+      "name": "Double Axe",
+      "archetype": "DoubleAxe"
+    },
+    {
+      "name": "Felling Axe",
+      "archetype": "FellingAxe"
+    },
+    {
+      "name": "Hatchet",
+      "archetype": "Hatchet"
+    },
+    {
+      "name": "Horseman's Axe",
+      "archetype": "HorsemansAxe"
+    },
+    {
+      "name": "Axe of Righteousness",
+      "archetype": "AxeOfRighteousness"
+    },
+    {
+      "name": "Divine Axe",
+      "archetype": "DivineAxe"
+    },
+    {
+      "name": "Francisca Axe",
+      "archetype": "FranciscaAxe"
+    },
+    {
+      "name": "Golden Felling Axe",
+      "archetype": "GoldenFellingAxe"
+    },
+    {
+      "name": "Sterling Axe",
+      "archetype": "SterlingAxe"
+    },
+    {
+      "name": "Longbow",
+      "archetype": "Longbow"
+    },
+    {
+      "name": "Recurve Bow",
+      "archetype": "RecurveBow"
+    },
+    {
+      "name": "Survival Bow",
+      "archetype": "SurvivalBow"
+    },
+    {
+      "name": "Bow of Righteousness",
+      "archetype": "BowOfRighteousness"
+    },
+    {
+      "name": "Centaur's Madness",
+      "archetype": "CentaursMadness"
+    },
+    {
+      "name": "Divine Bow",
+      "archetype": "DivineBow"
+    },
+    {
+      "name": "Sterling Bow",
+      "archetype": "SterlingBow"
+    },
+    {
+      "name": "Crossbow",
+      "archetype": "Crossbow"
+    },
+    {
+      "name": "Hand Crossbow",
+      "archetype": "HandCrossbow"
+    },
+    {
+      "name": "Windlass Crossbow",
+      "archetype": "WindlassCrossbow"
+    },
+    {
+      "name": "Ceremonial Staff",
+      "archetype": "CeremonialStaff"
+    },
+    {
+      "name": "Crystal Ball",
+      "archetype": "CrystalBall"
+    },
+    {
+      "name": "Magic Staff",
+      "archetype": "MagicStaff"
+    },
+    {
+      "name": "Spellbook",
+      "archetype": "Spellbook"
+    },
+    {
+      "name": "Cyclops Vision Crystal",
+      "archetype": "CyclopsVisionCrystal"
+    },
+    {
+      "name": "Mana Sphere",
+      "archetype": "ManaSphere"
+    },
+    {
+      "name": "Staff of Gluttony",
+      "archetype": "StaffOfGluttony"
+    },
+    {
+      "name": "Tome of Sheol",
+      "archetype": "TomeOfSheol"
+    },
+    {
+      "name": "Buckler",
+      "archetype": "Buckler"
+    },
+    {
+      "name": "Heater Shield",
+      "archetype": "HeaterShield"
+    },
+    {
+      "name": "Lantern Shield",
+      "archetype": "LanternShield"
+    },
+    {
+      "name": "Pavise",
+      "archetype": "Pavise"
+    },
+    {
+      "name": "Round Shield",
+      "archetype": "RoundShield"
+    },
+    {
+      "name": "Frostlight Lantern Shield",
+      "archetype": "FrostlightLanternShield"
+    }
+  ]
+}
+
