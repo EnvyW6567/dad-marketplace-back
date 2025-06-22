@@ -1,0 +1,326 @@
+# .github/workflows/ci-cd.yml
+name: CI/CD Pipeline for Dad Marketplace
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch: # 수동 실행 허용
+
+env:
+  # Java 및 Gradle 버전 설정
+  JAVA_VERSION: '21'
+  JAVA_DISTRIBUTION: 'temurin'
+  GRADLE_VERSION: '8.5' # Gradle 4.0.0은 너무 오래된 버전이므로 8.5 권장
+  
+  # 프로젝트 설정
+  PROJECT_NAME: 'dad-marketplace'
+  
+  # 테스트 환경 변수
+  SPRING_PROFILES_ACTIVE: 'test'
+
+jobs:
+  # 1단계: 코드 품질 검사 및 보안 스캔
+  code-quality:
+    name: "코드 품질 검사"
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # SonarCloud를 위한 전체 히스토리
+
+    - name: Java 환경 설정
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+    - name: Gradle 캐시 설정
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Gradle 실행 권한 부여
+      run: chmod +x ./gradlew
+
+    - name: 코드 스타일 검사 (Checkstyle)
+      run: ./gradlew checkstyleMain checkstyleTest
+      continue-on-error: true
+
+    - name: SpotBugs 정적 분석
+      run: ./gradlew spotbugsMain spotbugsTest
+      continue-on-error: true
+
+    # - name: SonarCloud 분석 (선택사항)
+    #   uses: SonarSource/sonarcloud-github-action@master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # 2단계: TDD 테스트 실행 (가장 중요한 단계)
+  test:
+    name: "TDD 테스트 실행"
+    runs-on: ubuntu-latest
+    needs: code-quality
+    
+    strategy:
+      matrix:
+        test-type: [unit, integration]
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: testpassword
+          MYSQL_DATABASE: testdb
+          MYSQL_USER: testuser
+          MYSQL_PASSWORD: testpassword
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Java 환경 설정
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+    - name: Gradle 캐시 설정
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Gradle 실행 권한 부여
+      run: chmod +x ./gradlew
+
+    - name: 환경 변수 설정
+      run: |
+        echo "MYSQL_DATABASE=testdb" >> $GITHUB_ENV
+        echo "MYSQL_USER=testuser" >> $GITHUB_ENV
+        echo "MYSQL_PASSWORD=testpassword" >> $GITHUB_ENV
+        echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
+        echo "DISCORD_CLIENT_ID=test_client_id" >> $GITHUB_ENV
+        echo "DISCORD_CLIENT_SECRET=test_client_secret" >> $GITHUB_ENV
+
+    - name: 단위 테스트 실행
+      if: matrix.test-type == 'unit'
+      run: |
+        ./gradlew test --tests "*Test" \
+          --exclude-task integrationTest \
+          --continue
+      env:
+        SPRING_PROFILES_ACTIVE: test
+
+    - name: 통합 테스트 실행
+      if: matrix.test-type == 'integration'
+      run: |
+        ./gradlew test --tests "*IntegrationTest" \
+          --continue
+      env:
+        SPRING_PROFILES_ACTIVE: test
+
+    - name: 테스트 결과 업로드
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.test-type }}
+        path: |
+          build/reports/tests/
+          build/test-results/
+        retention-days: 7
+
+    - name: 테스트 커버리지 리포트 생성
+      if: matrix.test-type == 'unit'
+      run: ./gradlew jacocoTestReport
+
+    - name: 커버리지 결과 업로드
+      if: matrix.test-type == 'unit'
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: build/reports/jacoco/
+        retention-days: 7
+
+    # Codecov 커버리지 업로드 (선택사항)
+    # - name: Codecov 커버리지 업로드
+    #   if: matrix.test-type == 'unit'
+    #   uses: codecov/codecov-action@v3
+    #   with:
+    #     file: build/reports/jacoco/test/jacocoTestReport.xml
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+
+  # 3단계: 빌드 및 아티팩트 생성
+  build:
+    name: "애플리케이션 빌드"
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Java 환경 설정
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: ${{ env.JAVA_DISTRIBUTION }}
+
+    - name: Gradle 캐시 설정
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Gradle 실행 권한 부여
+      run: chmod +x ./gradlew
+
+    - name: 애플리케이션 빌드
+      run: ./gradlew build -x test
+
+    - name: JAR 파일 업로드
+      uses: actions/upload-artifact@v4
+      with:
+        name: application-jar
+        path: build/libs/*.jar
+        retention-days: 7
+
+    - name: 빌드 정보 생성
+      run: |
+        echo "BUILD_NUMBER=${{ github.run_number }}" >> build-info.txt
+        echo "COMMIT_SHA=${{ github.sha }}" >> build-info.txt
+        echo "BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> build-info.txt
+        echo "BRANCH=${{ github.ref_name }}" >> build-info.txt
+
+    - name: 빌드 정보 업로드
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-info
+        path: build-info.txt
+        retention-days: 7
+
+  # 4단계: Docker 이미지 빌드 (선택사항)
+  docker-build:
+    name: "Docker 이미지 빌드"
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Docker Buildx 설정
+      uses: docker/setup-buildx-action@v3
+
+    - name: Docker Hub 로그인
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: 빌드 아티팩트 다운로드
+      uses: actions/download-artifact@v4
+      with:
+        name: application-jar
+        path: build/libs/
+
+    - name: Docker 메타데이터 추출
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: |
+          ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+
+    - name: Docker 이미지 빌드 및 푸시
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        platforms: linux/amd64,linux/arm64
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  # 5단계: 배포 (main 브랜치만)
+  deploy:
+    name: "배포"
+    runs-on: ubuntu-latest
+    needs: [build, docker-build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    
+    steps:
+    - name: 배포 시작 알림
+      run: |
+        echo "🚀 프로덕션 배포를 시작합니다..."
+        echo "커밋: ${{ github.sha }}"
+        echo "브랜치: ${{ github.ref_name }}"
+
+    # 실제 배포 로직은 사용하는 플랫폼에 따라 달라집니다
+    # 예: AWS, Azure, GCP, Heroku 등
+    
+    - name: 배포 완료 알림
+      run: echo "✅ 배포가 완료되었습니다!"
+
+  # 6단계: 알림 (선택사항)
+  notify:
+    name: "빌드 결과 알림"
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    if: always()
+    
+    steps:
+    - name: 성공 알림
+      if: needs.test.result == 'success' && needs.build.result == 'success'
+      run: |
+        echo "✅ 모든 테스트가 통과하고 빌드가 성공했습니다!"
+        echo "커밋: ${{ github.sha }}"
+        echo "브랜치: ${{ github.ref_name }}"
+
+    - name: 실패 알림
+      if: needs.test.result == 'failure' || needs.build.result == 'failure'
+      run: |
+        echo "❌ 테스트 또는 빌드가 실패했습니다!"
+        echo "커밋: ${{ github.sha }}"
+        echo "브랜치: ${{ github.ref_name }}"
+
+    # Slack 알림 (선택사항)
+    # - name: Slack 알림
+    #   uses: 8398a7/action-slack@v3
+    #   with:
+    #     status: ${{ job.status }}
+    #     channel: '#dev-notifications'
+    #     webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+    #   if: always()
