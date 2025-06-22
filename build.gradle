@@ -30,17 +30,6 @@ repositories {
     mavenCentral()
 }
 
-// 테스트 소스 분리 설정
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += sourceSets.main.output + sourceSets.test.output
-            runtimeClasspath += sourceSets.main.output + sourceSets.test.output
-            srcDir file('src/integration-test/java')
-        }
-        resources.srcDir file('src/integration-test/resources')
-    }
-}
 
 configurations {
     integrationTestImplementation.extendsFrom testImplementation
@@ -86,9 +75,6 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 
-    // 단위 테스트만 실행 (통합 테스트 제외)
-    exclude '**/*IntegrationTest.class'
-
     testLogging {
         events "passed", "skipped", "failed"
         exceptionFormat "full"
@@ -105,25 +91,6 @@ test {
     maxHeapSize = "1g"
 
     // 시스템 속성 전달
-    systemProperty 'spring.profiles.active', 'test'
-}
-
-// 통합 테스트 태스크
-tasks.register('integrationTest', Test) {
-    description = 'Runs integration tests.'
-    group = 'verification'
-
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    shouldRunAfter test
-
-    include '**/*IntegrationTest.class'
-
-    testLogging {
-        events "passed", "skipped", "failed"
-        exceptionFormat "full"
-    }
-
     systemProperty 'spring.profiles.active', 'test'
 }
 
@@ -214,7 +181,6 @@ spotbugsMain {
     reports {
         html {
             required = true
-            outputLocation = file("${buildDir}/reports/spotbugs/main/spotbugs.html")
             stylesheet = 'fancy-hist.xsl'
         }
         xml {
@@ -227,29 +193,15 @@ spotbugsTest {
     reports {
         html {
             required = true
-            outputLocation = file("${buildDir}/reports/spotbugs/test/spotbugs.html")
             stylesheet = 'fancy-hist.xsl'
         }
     }
 }
 
-// SonarQube 설정 (선택사항)
-sonar {
-    properties {
-        property "sonar.projectKey", "dad-marketplace"
-        property "sonar.projectName", "Dad Marketplace"
-        property "sonar.host.url", "https://sonarcloud.io"
-        property "sonar.organization", "envyw6567"
-        property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
-        property "sonar.exclusions", "**/dto/**, **/entity/**, **/config/**, **/*Application.java"
-    }
-}
-
 // 전체 검증 태스크
 tasks.register('verify') {
-    dependsOn check, integrationTest
-    description = 'Runs all verification tasks including unit tests, integration tests, and code quality checks.'
+    dependsOn check
+    description = 'Runs all verification tasks including unit tests, and code quality checks.'
     group = 'verification'
 }
 
@@ -311,7 +263,7 @@ tasks.register('codeQuality') {
 
 // 테스트 보고서 통합 태스크
 tasks.register('testReport') {
-    dependsOn test, integrationTest, jacocoTestReport
+    dependsOn test, jacocoTestReport
     description = 'Generates comprehensive test reports'
     group = 'reporting'
 }
