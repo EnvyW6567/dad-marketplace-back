@@ -73,7 +73,7 @@ jobs:
     
     strategy:
       matrix:
-        test-type: [unit, integration]
+        test-type: [unit]
     
     services:
       mysql:
@@ -127,15 +127,6 @@ jobs:
       if: matrix.test-type == 'unit'
       run: |
         ./gradlew test --tests "*Test" \
-          --exclude-task integrationTest \
-          --continue
-      env:
-        SPRING_PROFILES_ACTIVE: test
-
-    - name: 통합 테스트 실행
-      if: matrix.test-type == 'integration'
-      run: |
-        ./gradlew test --tests "*IntegrationTest" \
           --continue
       env:
         SPRING_PROFILES_ACTIVE: test
