@@ -30,12 +30,6 @@ repositories {
     mavenCentral()
 }
 
-
-configurations {
-    integrationTestImplementation.extendsFrom testImplementation
-    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
@@ -152,10 +146,8 @@ jacocoTestCoverageVerification {
     }
 }
 
-// Checkstyle 설정
 checkstyle {
     toolVersion = '10.12.4'
-    configFile = file("config/checkstyle/checkstyle.xml")
     maxErrors = 0
     maxWarnings = 0
     ignoreFailures = false
@@ -174,7 +166,6 @@ spotbugs {
     ignoreFailures = false
     showStackTraces = true
     showProgress = true
-    excludeFilter = file("config/spotbugs/exclude.xml")
 }
 
 spotbugsMain {
