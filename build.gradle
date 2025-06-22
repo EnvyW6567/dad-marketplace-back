@@ -1,12 +1,18 @@
+import org.springframework.boot.gradle.tasks.run.BootRun
+
+// build.gradle - 최신 Gradle 버전 호환
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.4.4'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'jacoco'
+    id 'checkstyle'
+    id 'com.github.spotbugs' version '6.0.7'
+    id 'org.sonarqube' version '4.4.1.3373' // SonarQube 플러그인 (선택사항)
 }
 
 group = 'org.envyw'
-version = '0.0.1-SNAPSHOT'
+version = System.getenv('BUILD_NUMBER') ?: '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
@@ -24,14 +30,30 @@ repositories {
     mavenCentral()
 }
 
+// 테스트 소스 분리 설정
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += sourceSets.main.output + sourceSets.test.output
+            runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 
@@ -43,39 +65,288 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     runtimeOnly 'io.asyncer:r2dbc-mysql'
 
-
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.security:spring-security-test'
-
     testImplementation 'org.testcontainers:testcontainers'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mysql'
     testImplementation 'org.testcontainers:r2dbc'
-
     testImplementation 'com.tngtech.archunit:archunit-junit5:1.2.1'
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testRuntimeOnly 'io.r2dbc:r2dbc-h2'
 }
 
+// 테스트 설정
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+
+    // 단위 테스트만 실행 (통합 테스트 제외)
+    exclude '**/*IntegrationTest.class'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showExceptions true
+        showCauses true
+        showStackTraces true
+    }
+
+    // 병렬 실행 설정
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+
+    // 메모리 설정
+    minHeapSize = "128m"
+    maxHeapSize = "1g"
+
+    // 시스템 속성 전달
+    systemProperty 'spring.profiles.active', 'test'
+}
+
+// 통합 테스트 태스크
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    shouldRunAfter test
+
+    include '**/*IntegrationTest.class'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+
+    systemProperty 'spring.profiles.active', 'test'
+}
+
+// Jacoco 설정
 jacoco {
     toolVersion = "0.8.11"
 }
 
-tasks.named('test', Test) {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
 jacocoTestReport {
     dependsOn test
+
     reports {
         xml.required = true
         html.required = true
+        csv.required = false
     }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    '**/dto/**',
+                    '**/entity/**',
+                    '**/config/**',
+                    '**/*Application*',
+                    '**/exception/**'
+            ])
+        }))
+    }
+
+    finalizedBy jacocoTestCoverageVerification
+}
+
+jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
+
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.80 // 80% 커버리지 최소 요구사항
+            }
+        }
+
+        rule {
+            element = 'CLASS'
+            excludes = [
+                    '*.dto.*',
+                    '*.entity.*',
+                    '*.config.*',
+                    '*.*Application',
+                    '*.exception.*'
+            ]
+
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.70
+            }
+        }
+    }
+}
+
+// Checkstyle 설정
+checkstyle {
+    toolVersion = '10.12.4'
+    configFile = file("config/checkstyle/checkstyle.xml")
+    maxErrors = 0
+    maxWarnings = 0
+    ignoreFailures = false
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+// SpotBugs 설정
+spotbugs {
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
+    excludeFilter = file("config/spotbugs/exclude.xml")
+}
+
+spotbugsMain {
+    reports {
+        html {
+            required = true
+            outputLocation = file("${buildDir}/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+        xml {
+            required = false
+        }
+    }
+}
+
+spotbugsTest {
+    reports {
+        html {
+            required = true
+            outputLocation = file("${buildDir}/reports/spotbugs/test/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+// SonarQube 설정 (선택사항)
+sonar {
+    properties {
+        property "sonar.projectKey", "dad-marketplace"
+        property "sonar.projectName", "Dad Marketplace"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "envyw6567"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.exclusions", "**/dto/**, **/entity/**, **/config/**, **/*Application.java"
+    }
+}
+
+// 전체 검증 태스크
+tasks.register('verify') {
+    dependsOn check, integrationTest
+    description = 'Runs all verification tasks including unit tests, integration tests, and code quality checks.'
+    group = 'verification'
+}
+
+// 빌드 정보 생성
+tasks.register('generateBuildInfo') {
+    def outputFile = file("${buildDir}/resources/main/build-info.properties")
+    outputs.file(outputFile)
+    outputs.upToDateWhen { false } // 항상 실행되도록 설정
+
+    doLast {
+        def buildInfoFile = outputFile
+        buildInfoFile.parentFile.mkdirs()
+
+        def properties = new Properties()
+        properties.setProperty('build.version', project.version.toString())
+        properties.setProperty('build.timestamp', new Date().format('yyyy-MM-dd HH:mm:ss'))
+        properties.setProperty('build.number', System.getenv('BUILD_NUMBER') ?: 'local')
+        properties.setProperty('git.commit', System.getenv('GITHUB_SHA') ?: 'unknown')
+        properties.setProperty('git.branch', System.getenv('GITHUB_REF_NAME') ?: 'unknown')
+
+        buildInfoFile.withOutputStream { outputStream ->
+            properties.store(outputStream, 'Build Information')
+        }
+
+        logger.info("Build info generated at: ${buildInfoFile.absolutePath}")
+    }
+}
+
+// processResources 태스크가 generateBuildInfo에 의존하도록 설정
+processResources {
+    dependsOn generateBuildInfo
+
+    // 빌드 정보 파일이 생성되지 않았을 때의 fallback
+    doFirst {
+        def buildInfoFile = file("${buildDir}/resources/main/build-info.properties")
+        if (!buildInfoFile.exists()) {
+            buildInfoFile.parentFile.mkdirs()
+            buildInfoFile.createNewFile()
+        }
+    }
+}
+
+// Docker 이미지 빌드를 위한 커스텀 태스크
+tasks.register('buildDockerImage', Exec) {
+    group = 'docker'
+    description = 'Build Docker image'
+
+    dependsOn build
+
+    commandLine 'docker', 'build', '-t', "${project.name}:${project.version}", '.'
+}
+
+// 코드 품질 검사 태스크
+tasks.register('codeQuality') {
+    dependsOn checkstyleMain, checkstyleTest, spotbugsMain, spotbugsTest
+    description = 'Runs all code quality checks'
+    group = 'verification'
+}
+
+// 테스트 보고서 통합 태스크
+tasks.register('testReport') {
+    dependsOn test, integrationTest, jacocoTestReport
+    description = 'Generates comprehensive test reports'
+    group = 'reporting'
+}
+
+// 빌드 시 테스트는 기본적으로 실행
+build {
+    dependsOn test
+}
+
+// 클린 빌드 태스크
+tasks.register('cleanBuild') {
+    dependsOn clean, build
+    description = 'Clean and build the project'
+    group = 'build'
+}
+
+// Gradle Wrapper 설정
+wrapper {
+    gradleVersion = '8.5'
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+// 태스크 실행 순서 설정
+tasks.named('check') {
+    dependsOn codeQuality
+}
+
+tasks.named('build') {
+    mustRunAfter codeQuality
+}
+
+// 개발 환경을 위한 로컬 실행 태스크
+tasks.register('bootRunDev', BootRun) {
+    group = 'application'
+    description = 'Run the application with dev profile'
+    mainClass = 'org.envyw.dadmarketplace.DadMarketplaceApplication'
+    args = ['--spring.profiles.active=dev']
 }
