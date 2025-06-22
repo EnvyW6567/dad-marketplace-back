@@ -114,14 +114,41 @@ jobs:
     - name: Gradle 실행 권한 부여
       run: chmod +x ./gradlew
 
-    - name: 환경 변수 설정
+
+    - name: 환경 변수 설정 및 .env 파일 생성
       run: |
-        echo "MYSQL_DATABASE=testdb" >> $GITHUB_ENV
-        echo "MYSQL_USER=testuser" >> $GITHUB_ENV
-        echo "MYSQL_PASSWORD=testpassword" >> $GITHUB_ENV
-        echo "BASE_URL=http://localhost:8080" >> $GITHUB_ENV
-        echo "DISCORD_CLIENT_ID=test_client_id" >> $GITHUB_ENV
-        echo "DISCORD_CLIENT_SECRET=test_client_secret" >> $GITHUB_ENV
+        # .env 파일 생성
+        cat > .env << EOF
+        # MySQL 데이터베이스 설정
+        MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD || 'testpassword' }}
+        MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE || 'testdb' }}
+        MYSQL_USER=${{ secrets.MYSQL_USER || 'testuser' }}
+        MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD || 'testpassword' }}
+        
+        # Discord OAuth 설정
+        DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID || 'test_client_id' }}
+        DISCORD_CLIENT_SECRET=${{ secrets.DISCORD_CLIENT_SECRET || 'test_client_secret' }}
+        
+        # 애플리케이션 설정
+        BASE_URL=${{ secrets.BASE_URL || 'http://localhost:8080' }}
+        REGISTRATION_ID=discord
+        
+        # 테스트 환경 설정
+        SPRING_PROFILES_ACTIVE=test
+        EOF
+        
+        # .env 파일이 생성되었는지 확인 (민감한 정보는 로그에 출력하지 않음)
+        echo "✅ .env 파일이 생성되었습니다."
+        echo "파일 크기: $(wc -c < .env) bytes"
+        
+        # GitHub Environment Variables로도 설정
+        echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE || 'testdb' }}" >> $GITHUB_ENV
+        echo "MYSQL_USER=${{ secrets.MYSQL_USER || 'testuser' }}" >> $GITHUB_ENV
+        echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD || 'testpassword' }}" >> $GITHUB_ENV
+        echo "BASE_URL=${{ secrets.BASE_URL || 'http://localhost:8080' }}" >> $GITHUB_ENV
+        echo "DISCORD_CLIENT_ID=${{ secrets.DISCORD_CLIENT_ID || 'test_client_id' }}" >> $GITHUB_ENV
+        echo "DISCORD_CLIENT_SECRET=${{ secrets.DISCORD_CLIENT_SECRET || 'test_client_secret' }}" >> $GITHUB_ENV
+
 
     - name: 단위 테스트 실행
       if: matrix.test-type == 'unit'
