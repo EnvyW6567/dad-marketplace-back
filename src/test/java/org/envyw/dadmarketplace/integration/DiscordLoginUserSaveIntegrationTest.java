@@ -16,7 +16,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -94,12 +93,6 @@ class DiscordLoginUserSaveIntegrationTest {
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
                 attributes,
                 "id"
-        );
-
-        OAuth2AuthenticationToken authenticationToken = new OAuth2AuthenticationToken(
-                oauth2User,
-                oauth2User.getAuthorities(),
-                "discord"
         );
 
         // When - 사용자 정보 추출 및 저장
