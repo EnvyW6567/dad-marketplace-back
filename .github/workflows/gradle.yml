@@ -200,6 +200,9 @@ jobs:
   docker-build:
     name: "Docker 이미지 빌드 및 GHCR 푸시"
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     needs: build
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     
