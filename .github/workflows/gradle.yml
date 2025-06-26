@@ -1,4 +1,4 @@
-# .github/workflows/ci-cd.yml
+  # .github/workflows/ci-cd.yml
 name: CI/CD Pipeline for Dad Marketplace
 
 on:
@@ -241,12 +241,12 @@ jobs:
         path: build-info.txt
         retention-days: 7
 
-  # 4단계: Docker 이미지 빌드 (선택사항)
+  # 4단계: Docker 이미지 빌드 및 GHCR 푸시
   docker-build:
-    name: "Docker 이미지 빌드"
+    name: "Docker 이미지 빌드 및 GHCR 푸시"
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     
     steps:
     - name: 코드 체크아웃
@@ -255,12 +255,12 @@ jobs:
     - name: Docker Buildx 설정
       uses: docker/setup-buildx-action@v3
 
-    - name: Docker Hub 로그인
-      if: github.event_name != 'pull_request'
+    - name: GHCR 로그인
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: 빌드 아티팩트 다운로드
       uses: actions/download-artifact@v4
@@ -268,28 +268,58 @@ jobs:
         name: application-jar
         path: build/libs/
 
+    - name: 환경 변수 설정 및 .env 파일 생성 (Docker용)
+      run: |
+        # Docker 이미지에 포함될 .env 파일 생성
+        cat > .env << EOF
+        # MySQL 데이터베이스 설정
+        MYSQL_ROOT_PASSWORD=\${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE=\${MYSQL_DATABASE}
+        MYSQL_USER=\${MYSQL_USER}
+        MYSQL_PASSWORD=\${MYSQL_PASSWORD}
+        
+        # Discord OAuth 설정
+        DISCORD_CLIENT_ID=\${DISCORD_CLIENT_ID}
+        DISCORD_CLIENT_SECRET=\${DISCORD_CLIENT_SECRET}
+        
+        # 애플리케이션 설정
+        BASE_URL=\${BASE_URL}
+        REGISTRATION_ID=discord
+        
+        # 운영 환경 설정
+        SPRING_PROFILES_ACTIVE=docker
+        EOF
+        
+        echo "✅ Docker용 .env 템플릿이 생성되었습니다."
+
     - name: Docker 메타데이터 추출
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: |
-          ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT_NAME }}
+        images: ghcr.io/${{ github.repository }}
         tags: |
           type=ref,event=branch
           type=ref,event=pr
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value={{branch}}-{{date 'YYYYMMDD-HHmmss'}}
 
     - name: Docker 이미지 빌드 및 푸시
       uses: docker/build-push-action@v5
       with:
         context: .
         platforms: linux/amd64,linux/arm64
-        push: ${{ github.event_name != 'pull_request' }}
+        push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+
+    - name: 이미지 정보 출력
+      run: |
+        echo "🐳 Docker 이미지가 성공적으로 빌드되고 GHCR에 푸시되었습니다!"
+        echo "이미지 태그들:"
+        echo "${{ steps.meta.outputs.tags }}"
 
   # 5단계: 배포 (main 브랜치만)
   deploy:
