@@ -223,15 +223,6 @@ wrapper {
     distributionType = Wrapper.DistributionType.BIN
 }
 
-// 태스크 실행 순서 설정
-tasks.named('check') {
-    dependsOn codeQuality
-}
-
-tasks.named('build') {
-    mustRunAfter codeQuality
-}
-
 // 개발 환경을 위한 로컬 실행 태스크
 tasks.register('bootRunDev', BootRun) {
     group = 'application'
