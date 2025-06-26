@@ -1,0 +1,328 @@
+{
+  "body": [
+    {
+      "id": "ActionSpeed",
+      "display": "Action Speed",
+      "field": "action_speed",
+      "is_percentage": true
+    },
+    {
+      "id": "Agility",
+      "display": "Agility",
+      "field": "agility",
+      "is_percentage": false
+    },
+    {
+      "id": "ArmorPenetration",
+      "display": "Armor Penetration",
+      "field": "armor_penetration",
+      "is_percentage": true
+    },
+    {
+      "id": "ArmorRating",
+      "display": "Armor Rating",
+      "field": "armor_rating",
+      "is_percentage": false
+    },
+    {
+      "id": "ArmorRatingAdd",
+      "display": "Additional Armor Rating",
+      "field": "additional_armor_rating",
+      "is_percentage": false
+    },
+    {
+      "id": "BuffDurationBonus",
+      "display": "Buff Duration Bonus",
+      "field": "buff_duration_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "CooldownReductionBonus",
+      "display": "Cooldown Reduction Bonus",
+      "field": "cooldown_reduction_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "DebuffDurationBonus",
+      "display": "Debuff Duration Bonus",
+      "field": "debuff_duration_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "Dexterity",
+      "display": "Dexterity",
+      "field": "dexterity",
+      "is_percentage": false
+    },
+    {
+      "id": "HeadshotReductionMod",
+      "display": "Headshot Damage Reduction",
+      "field": "headshot_damage_reduction",
+      "is_percentage": true
+    },
+    {
+      "id": "ItemEquipSpeed",
+      "display": "Item Equip Speed",
+      "field": "equip_speed",
+      "is_percentage": false
+    },
+    {
+      "id": "Knowledge",
+      "display": "Knowledge",
+      "field": "knowledge",
+      "is_percentage": false
+    },
+    {
+      "id": "Luck",
+      "display": "Luck",
+      "field": "luck",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicPenetration",
+      "display": "Magic Penetration",
+      "field": "magic_penetration",
+      "is_percentage": true
+    },
+    {
+      "id": "MagicRegistance",
+      "display": "Magic Resistance",
+      "field": "magic_resistance",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalDamage",
+      "display": "Magical Damage",
+      "field": "magical_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalDamageAdd",
+      "display": "Additional Magical Damage",
+      "field": "additional_magical_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalDamageBonus",
+      "display": "Magical Damage Bonus",
+      "field": "magical_damage_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "MagicalDamageReduction",
+      "display": "Magical Damage Reduction",
+      "field": "magical_damage_reduction",
+      "is_percentage": true
+    },
+    {
+      "id": "MagicalDamageTrue",
+      "display": "True Magical Damage",
+      "field": "true_magical_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalHealing",
+      "display": "Magical Healing",
+      "field": "magical_healing",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalInteractionSpeed",
+      "display": "Magical Interaction Speed",
+      "field": "magical_interaction_speed",
+      "is_percentage": true
+    },
+    {
+      "id": "MagicalPower",
+      "display": "Magical Power",
+      "field": "magical_power",
+      "is_percentage": false
+    },
+    {
+      "id": "MagicalWeaponDamage",
+      "display": "Magic Weapon Damage",
+      "field": "magic_weapon_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "ManualDexterity",
+      "display": "Manual Dexterity",
+      "field": "manual_dexterity",
+      "is_percentage": false
+    },
+    {
+      "id": "MaxHealthAdd",
+      "display": "Max Health",
+      "field": "max_health",
+      "is_percentage": false
+    },
+    {
+      "id": "MaxHealthBonus",
+      "display": "Max Health Bonus",
+      "field": "max_health_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "MemoryCapacityAdd",
+      "display": "Additional Memory Capacity",
+      "field": "additional_memory_capacity",
+      "is_percentage": false
+    },
+    {
+      "id": "MemoryCapacityBonus",
+      "display": "Memory Capacity Bonus",
+      "field": "memory_capacity_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "MoveSpeed",
+      "display": "Move Speed",
+      "field": "move_speed",
+      "is_percentage": false
+    },
+    {
+      "id": "MoveSpeedAdd",
+      "display": "Additional Move Speed",
+      "field": "additional_move_speed",
+      "is_percentage": false
+    },
+    {
+      "id": "MoveSpeedBonus",
+      "display": "Move Speed Bonus",
+      "field": "move_speed_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "Persuasiveness",
+      "display": "Persuasiveness",
+      "field": "persuasiveness",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalDamageAdd",
+      "display": "Additional Physical",
+      "field": "additional_physical_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalDamageBonus",
+      "display": "Physical Damage Bonus",
+      "field": "physical_damage_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "PhysicalDamageReduction",
+      "display": "Physical Damage Reduction",
+      "field": "physical_damage_reduction",
+      "is_percentage": true
+    },
+    {
+      "id": "PhysicalDamageTrue",
+      "display": "True Physical Damage",
+      "field": "true_physical_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalHealing",
+      "display": "Physical Healing",
+      "field": "physical_healing",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalPower",
+      "display": "Physical Power",
+      "field": "physical_power",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalWeaponDamage",
+      "display": "Weapon Damage",
+      "field": "weapon_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "PhysicalWeaponDamageAdd",
+      "display": "Additional Weapon Damage",
+      "field": "additional_weapon_damage",
+      "is_percentage": false
+    },
+    {
+      "id": "Primitive",
+      "display": "All Attributes",
+      "field": "all_attributes",
+      "is_percentage": false
+    },
+    {
+      "id": "ProjectileReductionMod",
+      "display": "Projectile Damage Reduction",
+      "field": "projectile_damage_reduction",
+      "is_percentage": true
+    },
+    {
+      "id": "RegularInteractionSpeed",
+      "display": "Regular Interaction Speed",
+      "field": "regular_interaction_speed",
+      "is_percentage": true
+    },
+    {
+      "id": "Resourcefulness",
+      "display": "Resourcefulness",
+      "field": "resourcefulness",
+      "is_percentage": false
+    },
+    {
+      "id": "SpellCastingSpeed",
+      "display": "Spell Casting Speed",
+      "field": "spell_casting_speed",
+      "is_percentage": true
+    },
+    {
+      "id": "Strength",
+      "display": "Strength",
+      "field": "strength",
+      "is_percentage": false
+    },
+    {
+      "id": "UndeadDamageMod",
+      "display": "Undead Damage Bonus",
+      "field": "undead_damage_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "UtilityEffectivenessAdd",
+      "display": "Additional Utility Effectiveness",
+      "field": "additional_utility_effectiveness",
+      "is_percentage": false
+    },
+    {
+      "id": "UtilityEffectivenessBonus",
+      "display": "Utility Effectiveness Bonus",
+      "field": "utility_effectiveness_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "Vigor",
+      "display": "Vigor",
+      "field": "vigor",
+      "is_percentage": false
+    },
+    {
+      "id": "WeightLimitAdd",
+      "display": "Additional Weight Limit",
+      "field": "additional_weight_limit",
+      "is_percentage": false
+    },
+    {
+      "id": "WeightLimitBonus",
+      "display": "Weight Limit Bonus",
+      "field": "weight_limit_bonus",
+      "is_percentage": true
+    },
+    {
+      "id": "Will",
+      "display": "Will",
+      "field": "will",
+      "is_percentage": false
+    }
+  ]
+}

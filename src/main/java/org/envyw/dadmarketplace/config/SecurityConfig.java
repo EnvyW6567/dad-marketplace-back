@@ -1,43 +1,47 @@
 package org.envyw.dadmarketplace.config;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
+import org.envyw.dadmarketplace.security.jwt.JwtAuthenticationWebFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.server.DefaultServerOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.client.web.server.ServerOAuth2AuthorizationRequestResolver;
+import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
-import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
-
-import java.net.URI;
 
 @Configuration
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
+@Slf4j
 public class SecurityConfig {
+
+    private final CustomOAuth2LoginSuccessHandler authenticationSuccessHandler;
+    private final JwtAuthenticationWebFilter jwtAuthenticationWebFilter;
+    private final ReactiveJwtDecoder reactiveJwtDecoder;
+
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
+                .addFilterBefore(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/", "/api/auth/login/**", "/api/auth/status", "/oauth2/**").permitAll()
+                        .pathMatchers("/", "/api/auth/**", "/oauth2/**", "/api/search-keyword/**",
+                                "/favicon.ico", "/login/oauth2/code/discord", "/debug/**").permitAll()
                         .anyExchange().authenticated())
                 .oauth2Login(oauth2 -> oauth2
-                        .authenticationSuccessHandler(authenticationSuccessHandler()))
+                        .authenticationSuccessHandler(authenticationSuccessHandler))
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtDecoder(reactiveJwtDecoder)))
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .build();
     }
 
-    @Bean
-    public ServerAuthenticationSuccessHandler authenticationSuccessHandler() {
-        RedirectServerAuthenticationSuccessHandler successHandler =
-                new RedirectServerAuthenticationSuccessHandler();
-
-        successHandler.setLocation(URI.create("/"));
-
-        return successHandler;
-    }
 
     @Bean
     public ServerOAuth2AuthorizationRequestResolver serverOAuth2AuthorizationRequestResolver(

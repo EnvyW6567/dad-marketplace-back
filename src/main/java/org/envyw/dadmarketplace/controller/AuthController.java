@@ -1,27 +1,33 @@
 package org.envyw.dadmarketplace.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.envyw.dadmarketplace.dto.request.RefreshReqDto;
+import org.envyw.dadmarketplace.dto.response.RefreshResDto;
 import org.envyw.dadmarketplace.service.AuthService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
     private final AuthService authService;
 
     @GetMapping("/login/discord")
-    public Mono<ResponseEntity<Map<String, String>>> getDiscordLoginUrl(ServerWebExchange exchange) {
-        return authService.getAuthorizationRequestUrl(exchange, "discord")
-                .map(authorizationUrl -> ResponseEntity.ok(Map.of("redirectUrl", authorizationUrl)))
-                .switchIfEmpty(Mono.just(ResponseEntity.badRequest().build()));
+    public Mono<Void> discordLogin(ServerWebExchange exchange) {
+        ServerHttpResponse response = exchange.getResponse();
+
+        response.setStatusCode(HttpStatus.FOUND);
+        response.getHeaders().setLocation(URI.create("/oauth2/authorization/discord"));
+
+        return response.setComplete();
     }
 
     @GetMapping("/status")
@@ -29,5 +35,10 @@ public class AuthController {
         return exchange.getPrincipal()
                 .map(principal -> Map.of("authenticated", true))
                 .defaultIfEmpty(Map.of("authenticated", false));
+    }
+
+    @PostMapping("/refresh")
+    public Mono<RefreshResDto> refresh(@RequestBody RefreshReqDto refreshReqDto) {
+        return authService.refresh(refreshReqDto);
     }
 }

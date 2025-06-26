@@ -1,10 +1,19 @@
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+
 spring:
   application:
     name: dad-marketplace
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/mydatabase
-    username: myuser
-    password: secret
+    url: r2dbc:mysql://localhost:3307/${MYSQL_DATABASE}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+  web:
+    resources:
+      add-mappings: false
   security:
     oauth2:
       client:
@@ -19,7 +28,19 @@ spring:
             scope: identify, email
         provider:
           discord:
-            authorization-uri: https://discord.com/api/oauth2/authorize
+            authorization-uri: https://discord.com/oauth2/authorize
             token-uri: https://discord.com/api/oauth2/token
             user-info-uri: https://discord.com/api/users/@me
             user-name-attribute: id
+
+logging:
+  level:
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+app:
+  jwt:
+    key-id: dad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-keydad-marketplace-key
+    refresh-token-expiration: 604800
+    access-token-expiration: 7200
