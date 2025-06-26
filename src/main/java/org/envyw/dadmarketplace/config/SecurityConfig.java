@@ -31,7 +31,7 @@ public class SecurityConfig {
         return http
                 .addFilterBefore(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/", "/api/auth/login/**", "/api/auth/status", "/oauth2/**",
+                        .pathMatchers("/", "/api/auth/**", "/oauth2/**", "/api/search-keyword/**",
                                 "/favicon.ico", "/login/oauth2/code/discord", "/debug/**").permitAll()
                         .anyExchange().authenticated())
                 .oauth2Login(oauth2 -> oauth2
