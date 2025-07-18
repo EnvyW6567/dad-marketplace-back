@@ -2,1168 +2,1458 @@
   "body": [
     {
       "name": "Arcane Hood",
-      "archetype": "ArcaneHood"
+      "archetype": "ArcaneHood",
+      "id": "ArcaneHood_1001"
     },
     {
       "name": "Armet",
-      "archetype": "Armet"
+      "archetype": "Armet",
+      "id": "Armet_1001"
     },
     {
       "name": "Barbuta Helm",
-      "archetype": "BarbutaHelm"
+      "archetype": "BarbutaHelm",
+      "id": "BarbutaHelm_1001"
     },
     {
       "name": "Ceremonial Headdress",
-      "archetype": "CeremonialHeaddress"
+      "archetype": "CeremonialHeaddress",
+      "id": "CeremonialHeaddress_1001"
     },
     {
       "name": "Chapel De Fer",
-      "archetype": "ChapelDeFer"
+      "archetype": "ChapelDeFer",
+      "id": "ChapelDeFer_1001"
     },
     {
       "name": "Chaperon",
-      "archetype": "Chaperon"
+      "archetype": "Chaperon",
+      "id": "Chaperon_1001"
     },
     {
       "name": "Coif",
-      "archetype": "Coif"
+      "archetype": "Coif",
+      "id": "Coif_1001"
     },
     {
       "name": "Crusader Helm",
-      "archetype": "CrusaderHelm"
+      "archetype": "CrusaderHelm",
+      "id": "CrusaderHelm_1001"
     },
     {
       "name": "Darkgrove Hood",
-      "archetype": "DarkgroveHood"
+      "archetype": "DarkgroveHood",
+      "id": "DarkgroveHood_1001"
     },
     {
       "name": "Elkwood Crown",
-      "archetype": "ElkwoodCrown"
+      "archetype": "ElkwoodCrown",
+      "id": "ElkwoodCrown_1001"
     },
     {
       "name": "Feathered Hat",
-      "archetype": "FeatheredHat"
+      "archetype": "FeatheredHat",
+      "id": "FeatheredHat_1001"
     },
     {
       "name": "Forest Hood",
-      "archetype": "ForestHood"
+      "archetype": "ForestHood",
+      "id": "ForestHood_1001"
     },
     {
       "name": "Gjermundbu",
-      "archetype": "Gjermundbu"
+      "archetype": "Gjermundbu",
+      "id": "Gjermundbu_1001"
     },
     {
       "name": "Great Helm",
-      "archetype": "GreatHelm"
+      "archetype": "GreatHelm",
+      "id": "GreatHelm_1001"
     },
     {
       "name": "Hounskull",
-      "archetype": "Hounskull"
+      "archetype": "Hounskull",
+      "id": "Hounskull_1001"
     },
     {
       "name": "Kettle Hat",
-      "archetype": "KettleHat"
+      "archetype": "KettleHat",
+      "id": "KettleHat_1001"
     },
     {
       "name": "Leather Bonnet",
-      "archetype": "LeatherBonnet"
+      "archetype": "LeatherBonnet",
+      "id": "LeatherBonnet_1001"
     },
     {
       "name": "Leather Cap",
-      "archetype": "LeatherCap"
+      "archetype": "LeatherCap",
+      "id": "LeatherCap_1001"
     },
     {
       "name": "Norman Nasal Helm",
-      "archetype": "NormanNasalHelm"
+      "archetype": "NormanNasalHelm",
+      "id": "NormanNasalHelm_1001"
     },
     {
       "name": "Occultist Hood",
-      "archetype": "OccultistHood"
+      "archetype": "OccultistHood",
+      "id": "OccultistHood_1001"
     },
     {
       "name": "Open Sallet",
-      "archetype": "OpenSallet"
+      "archetype": "OpenSallet",
+      "id": "OpenSallet_1001"
     },
     {
       "name": "Ranger Hood",
-      "archetype": "RangerHood"
+      "archetype": "RangerHood",
+      "id": "RangerHood_1001"
     },
     {
       "name": "Rogue Cowl",
-      "archetype": "RogueCowl"
+      "archetype": "RogueCowl",
+      "id": "RogueCowl_1001"
     },
     {
       "name": "Sallet",
-      "archetype": "Sallet"
+      "archetype": "Sallet",
+      "id": "OpenSallet_1001"
     },
     {
       "name": "Shadow Hood",
-      "archetype": "ShadowHood"
+      "archetype": "ShadowHood",
+      "id": "ShadowHood_1001"
     },
     {
       "name": "Shadow Mask",
-      "archetype": "ShadowMask"
+      "archetype": "ShadowMask",
+      "id": "ShadowMask_1001"
     },
     {
       "name": "Spangenhelm",
-      "archetype": "Spangenhelm"
+      "archetype": "Spangenhelm",
+      "id": "Spangenhelm_1001"
     },
     {
       "name": "Straw Hat",
-      "archetype": "StrawHat"
+      "archetype": "StrawHat",
+      "id": "StrawHat_1001"
     },
     {
       "name": "Topfhelm",
-      "archetype": "Topfhelm"
+      "archetype": "Topfhelm",
+      "id": "Topfhelm_1001"
     },
     {
       "name": "Viking Helm",
-      "archetype": "VikingHelm"
+      "archetype": "VikingHelm",
+      "id": "VikingHelm_1001"
     },
     {
       "name": "Visored Barbuta Helm",
-      "archetype": "VisoredBarbutaHelm"
+      "archetype": "VisoredBarbutaHelm",
+      "id": "VisoredBarbutaHelm_1001"
     },
     {
       "name": "Visored Sallet",
-      "archetype": "VisoredSallet"
+      "archetype": "VisoredSallet",
+      "id": "VisoredSallet_1001"
     },
     {
       "name": "Wizard Hat",
-      "archetype": "WizardHat"
+      "archetype": "WizardHat",
+      "id": "WizardHat_1001"
     },
     {
       "name": "Cobalt Chapel De Fer",
-      "archetype": "CobaltChapelDeFer"
+      "archetype": "CobaltChapelDeFer",
+      "id": "CobaltChapelDeFer_4001"
     },
     {
       "name": "Cobalt Hat",
-      "archetype": "CobaltHat"
+      "archetype": "CobaltHat",
+      "id": "CobaltHat_4001"
     },
     {
       "name": "Cobalt Hood",
-      "archetype": "CobaltHood"
+      "archetype": "CobaltHood",
+      "id": "CobaltHood_4001"
     },
     {
       "name": "Cobalt Viking Helm",
-      "archetype": "CobaltVikingHelm"
+      "archetype": "CobaltVikingHelm",
+      "id": "CobaltVikingHelm_4001"
     },
     {
       "name": "Copperlight Kettle Hat",
-      "archetype": "CopperlightKettleHat"
+      "archetype": "CopperlightKettleHat",
+      "id": "CopperlightKettleHat_3001"
     },
     {
       "name": "Copperlight Shadow Hood",
-      "archetype": "CopperlightShadowHood"
+      "archetype": "CopperlightShadowHood",
+      "id": "CopperlightShadowHood_3001"
     },
     {
       "name": "Copperlight Straw Hat",
-      "archetype": "CopperlightStrawHat"
+      "archetype": "CopperlightStrawHat",
+      "id": "CopperlightStrawHat_3001"
     },
     {
       "name": "Cowl of Darkness",
-      "archetype": "CowlOfDarkness"
+      "archetype": "CowlOfDarkness",
+      "id": "CowlofDarkness_4001"
     },
     {
       "name": "Dread Hood",
-      "archetype": "DreadHood"
+      "archetype": "DreadHood",
+      "id": "DreadHood_4001"
     },
     {
       "name": "Frostlight Crusader Helm",
-      "archetype": "FrostlightCrusaderHelm"
+      "archetype": "FrostlightCrusaderHelm",
+      "id": "FrostlightCrusaderHelm_5001"
     },
     {
       "name": "Frostlight Feathered Hat",
-      "archetype": "FrostlightFeatheredHat"
+      "archetype": "FrostlightFeatheredHat",
+      "id": "FrostlightFeatheredHat_5001"
     },
     {
       "name": "Frostlight Hood",
-      "archetype": "FrostlightHood"
+      "archetype": "FrostlightHood",
+      "id": "FrostlightHood_5001"
     },
     {
       "name": "Frostlight Norman Nasal Helm",
-      "archetype": "FrostlightNormanNasalHelm"
+      "archetype": "FrostlightNormanNasalHelm",
+      "id": "FrostlightNormanNasalHelm_5001"
     },
     {
       "name": "Frostlight Wizard Hat",
-      "archetype": "FrostlightWizardHat"
+      "archetype": "FrostlightWizardHat",
+      "id": "FrostlightWizardHat_5001"
     },
     {
       "name": "Golden Armet",
-      "archetype": "GoldenArmet"
+      "archetype": "GoldenArmet",
+      "id": "GoldenArmet_5001"
     },
     {
       "name": "Golden Gjermundbu",
-      "archetype": "GoldenGjermundbu"
+      "archetype": "GoldenGjermundbu",
+      "id": "GoldenGjermundbu_5001"
     },
     {
       "name": "Golden Hounskull",
-      "archetype": "GoldenHounskull"
+      "archetype": "GoldenHounskull",
+      "id": "GoldenHounskull_5001"
     },
     {
       "name": "Golden Leaf Hood",
-      "archetype": "GoldenLeafHood"
+      "archetype": "GoldenLeafHood",
+      "id": "GoldenLeafHood_5001"
     },
     {
       "name": "Golden Scarf",
-      "archetype": "GoldenScarf"
+      "archetype": "GoldenScarf",
+      "id": "GoldenScarf_5001"
     },
     {
       "name": "Rubysilver Barbuta Helm",
-      "archetype": "RubysilverBarbutaHelm"
+      "archetype": "RubysilverBarbutaHelm",
+      "id": "RubysilverBarbutaHelm"
     },
     {
       "name": "Rubysilver Cap",
-      "archetype": "RubysilverCap"
+      "archetype": "RubysilverCap",
+      "id": "RubysilverLeatherCap"
     },
     {
       "name": "Rubysilver Hood",
-      "archetype": "RubysilverHood"
+      "archetype": "RubysilverHood",
+      "id": "RubysilverHood"
     },
     {
       "name": "Adventurer Tunic",
-      "archetype": "AdventurerTunic"
+      "archetype": "AdventurerTunic",
+      "id": "AdventurerTunic_1001"
     },
     {
       "name": "Arcane Garb",
-      "archetype": "ArcaneGarb"
+      "archetype": "ArcaneGarb",
+      "id": "ArcaneGarb_1001"
     },
     {
       "name": "Bloodwoven Robe",
-      "archetype": "BloodwovenRobe"
+      "archetype": "BloodwovenRobe",
+      "id": "BloodwovenRobe_1001"
     },
     {
       "name": "Champion Armor",
-      "archetype": "ChampionArmor"
+      "archetype": "ChampionArmor",
+      "id": "ChampionArmor_1001"
     },
     {
       "name": "Crusader Armor",
-      "archetype": "CrusaderArmor"
+      "archetype": "CrusaderArmor",
+      "id": "CrusaderArmor_1001"
     },
     {
       "name": "Dark Cuirass",
-      "archetype": "DarkCuirass"
+      "archetype": "DarkCuirass",
+      "id": "DarkCuirass_1001"
     },
     {
       "name": "Dark Plate Armor",
-      "archetype": "DarkPlateArmor"
+      "archetype": "DarkPlateArmor",
+      "id": "DarkPlateArmor_1001"
     },
     {
       "name": "Darkgrove Robe",
-      "archetype": "DarkgroveRobe"
+      "archetype": "DarkgroveRobe",
+      "id": "DarkgroveRobe_1001"
     },
     {
       "name": "Doublet",
-      "archetype": "Doublet"
+      "archetype": "Doublet",
+      "id": "Doublet_1001"
     },
     {
       "name": "Fine Cuirass",
-      "archetype": "FineCuirass"
+      "archetype": "FineCuirass",
+      "id": "FineCuirass_1001"
     },
     {
       "name": "Frock",
-      "archetype": "Frock"
+      "archetype": "Frock",
+      "id": "Frock_1001"
     },
     {
       "name": "Grand Brigandine",
-      "archetype": "GrandBrigandine"
+      "archetype": "GrandBrigandine",
+      "id": "GrandBrigandine_1001"
     },
     {
       "name": "Heavy Gambeson",
-      "archetype": "HeavyGambeson"
+      "archetype": "HeavyGambeson",
+      "id": "HeavyGambeson_1001"
     },
     {
       "name": "Light Aketon",
-      "archetype": "LightAketon"
+      "archetype": "LightAketon",
+      "id": "LightAketon_1001"
     },
     {
       "name": "Marauder Outfit",
-      "archetype": "MarauderOutfit"
+      "archetype": "MarauderOutfit",
+      "id": "MarauderOutfit_1001"
     },
     {
       "name": "Mystic Vestments",
-      "archetype": "MysticVestments"
+      "archetype": "MysticVestments",
+      "id": "MysticVestments_1001"
     },
     {
       "name": "Northern Full Tunic",
-      "archetype": "NorthernFullTunic"
+      "archetype": "NorthernFullTunic",
+      "id": "NorthernFullTunic_1001"
     },
     {
       "name": "Occultist Robe",
-      "archetype": "OccultistRobe"
+      "archetype": "OccultistRobe",
+      "id": "OccultistRobe_1001"
     },
     {
       "name": "Occultist Tunic",
-      "archetype": "OccultistTunic"
+      "archetype": "OccultistTunic",
+      "id": "OccultistTunic_1001"
     },
     {
       "name": "Oracle Robe",
-      "archetype": "OracleRobe"
+      "archetype": "OracleRobe",
+      "id": "OracleRobe_1001"
     },
     {
       "name": "Ornate Jazerant",
-      "archetype": "OrnateJazerant"
+      "archetype": "OrnateJazerant",
+      "id": "OrnateJazerant_1001"
     },
     {
       "name": "Padded Tunic",
-      "archetype": "PaddedTunic"
+      "archetype": "PaddedTunic",
+      "id": "PaddedTunic_1001"
     },
     {
       "name": "Pourpoint",
-      "archetype": "Pourpoint"
+      "archetype": "Pourpoint",
+      "id": "Poupoint_1001"
     },
     {
       "name": "Regal Gambeson",
-      "archetype": "RegalGambeson"
+      "archetype": "RegalGambeson",
+      "id": "RegalGambeson_1001"
     },
     {
       "name": "Ritual Robe",
-      "archetype": "RitualRobe"
+      "archetype": "RitualRobe",
+      "id": "RitualRobe_1001"
     },
     {
       "name": "Studded Leather",
-      "archetype": "StuddedLeather"
+      "archetype": "StuddedLeather",
+      "id": "StuddedLeather_1001"
     },
     {
       "name": "Templar Armor",
-      "archetype": "TemplarArmor"
+      "archetype": "TemplarArmor",
+      "id": "TemplarArmor_1001"
     },
     {
       "name": "Troubadour Outfit",
-      "archetype": "TroubadourOutfit"
+      "archetype": "TroubadourOutfit",
+      "id": "TroubadourOutfit_1001"
     },
     {
       "name": "Wanderer Attire",
-      "archetype": "WandererAttire"
+      "archetype": "WandererAttire",
+      "id": "WandererAttire_1001"
     },
     {
       "name": "Warden Outfit",
-      "archetype": "WardenOutfit"
+      "archetype": "WardenOutfit",
+      "id": "WardenOutfit_1001"
     },
     {
       "name": "Cobalt Frock",
-      "archetype": "CobaltFrock"
+      "archetype": "CobaltFrock",
+      "id": "CobaltFrock_4001"
     },
     {
       "name": "Cobalt Regal Gambeson",
-      "archetype": "CobaltRegalGambeson"
+      "archetype": "CobaltRegalGambeson",
+      "id": "CobaltRegalGambeson_4001"
     },
     {
       "name": "Cobalt Templar Armor",
-      "archetype": "CobaltTemplarArmor"
+      "archetype": "CobaltTemplarArmor",
+      "id": "CobaltTemplarArmor_4001"
     },
     {
       "name": "Copperlight Attire",
-      "archetype": "CopperlightAttire"
+      "archetype": "CopperlightAttire",
+      "id": "CopperlightAttire_3001"
     },
     {
       "name": "Copperlight Outfit",
-      "archetype": "CopperlightOutfit"
+      "archetype": "CopperlightOutfit",
+      "id": "CopperlightOutfit_3001"
     },
     {
       "name": "Copperlight Sanctum Plate Armor",
-      "archetype": "CopperlightSanctumPlateArmor"
+      "archetype": "CopperlightSanctumPlateArmor",
+      "id": "CopperlightSanctumPlateArmor_3001"
     },
     {
       "name": "Copperlight Tunic",
-      "archetype": "CopperlightTunic"
+      "archetype": "CopperlightTunic",
+      "id": "CopperlightTunic_3001"
     },
     {
       "name": "Dark Matter Tunic",
-      "archetype": "DarkMatterTunic"
+      "archetype": "DarkMatterTunic",
+      "id": "DarkMatterTunic_5001"
     },
     {
       "name": "Frostlight Abyss Plate Armor",
-      "archetype": "FrostlightAbyssPlateArmor"
+      "archetype": "FrostlightAbyssPlateArmor",
+      "id": "FrostlightAbyssPlateArmor_5001"
     },
     {
       "name": "Frostlight Aketon",
-      "archetype": "FrostlightAketon"
+      "archetype": "FrostlightAketon",
+      "id": "FrostlightAketon_5001"
     },
     {
       "name": "Frostlight Oracle Robe",
-      "archetype": "FrostlightOracleRobe"
+      "archetype": "FrostlightOracleRobe",
+      "id": "FrostlightOracleRobe_5001"
     },
     {
       "name": "Frostlight Warden Outfit",
-      "archetype": "FrostlightWardenOutfit"
+      "archetype": "FrostlightWardenOutfit",
+      "id": "FrostlightWardenOutfit_5001"
     },
     {
       "name": "Golden Padded Tunic",
-      "archetype": "GoldenPaddedTunic"
+      "archetype": "GoldenPaddedTunic",
+      "id": "GoldenPaddedTunic_5001"
     },
     {
       "name": "Golden Plate",
-      "archetype": "GoldenPlate"
+      "archetype": "GoldenPlate",
+      "id": "GoldenPlateBoots_5001"
     },
     {
       "name": "Golden Robe",
-      "archetype": "GoldenRobe"
+      "archetype": "GoldenRobe",
+      "id": "GoldenRobe_5001"
     },
     {
       "name": "Robe of Darkness",
-      "archetype": "RobeOfDarkness"
+      "archetype": "RobeOfDarkness",
+      "id": "RobeofDarkness_4001"
     },
     {
       "name": "Rubysilver Cuirass",
-      "archetype": "RubysilverCuirass"
+      "archetype": "RubysilverCuirass",
+      "id": "RubysilverFineCuirass"
     },
     {
       "name": "Rubysilver Doublet",
-      "archetype": "RubysilverDoublet"
+      "archetype": "RubysilverDoublet",
+      "id": "RubysilverDoublet"
     },
     {
       "name": "Rubysilver Vestments",
-      "archetype": "RubysilverVestments"
+      "archetype": "RubysilverVestments",
+      "id": "RubysilverMysticVestments"
     },
     {
       "name": "Studded Wyvern Leather",
-      "archetype": "StuddedWyvernLeather"
+      "archetype": "StuddedWyvernLeather",
+      "id": "StuddedWyvernLeather_5001"
     },
     {
       "name": "Tri-Pelt Doublet",
-      "archetype": "TriPeltDoublet"
+      "archetype": "TriPeltDoublet",
+      "id": "TriPeltDoublet_4001"
     },
     {
       "name": "Tri-Pelt Northern Full Tunic",
-      "archetype": "TriPeltNorthernFullTunic"
+      "archetype": "TriPeltNorthernFullTunic",
+      "id": "TriPeltNorthernFullTunic_4001"
     },
     {
       "name": "Bardic Pants",
-      "archetype": "BardicPants"
+      "archetype": "BardicPants",
+      "id": "BardicPants_1001"
     },
     {
       "name": "Buttoned Leggings",
-      "archetype": "ButtonedLeggings"
+      "archetype": "ButtonedLeggings",
+      "id": "ButtonedLeggings_1001"
     },
     {
       "name": "Cloth Pants",
-      "archetype": "ClothPants"
+      "archetype": "ClothPants",
+      "id": "ClothPants_1001"
     },
     {
       "name": "Copperlight Leggings",
-      "archetype": "CopperlightLeggings"
+      "archetype": "CopperlightLeggings",
+      "id": "CopperlightLeggings_3001"
     },
     {
       "name": "Dark Leather Leggings",
-      "archetype": "DarkLeatherLeggings"
+      "archetype": "DarkLeatherLeggings",
+      "id": "DarkLeatherLeggings_1001"
     },
     {
       "name": "Heavy Leather Leggings",
-      "archetype": "HeavyLeatherLeggings"
+      "archetype": "HeavyLeatherLeggings",
+      "id": "HeavyLeatherLeggings_1001"
     },
     {
       "name": "Leather Chausses",
-      "archetype": "LeatherChausses"
+      "archetype": "LeatherChausses",
+      "id": "LeatherChausses_1001"
     },
     {
       "name": "Leather Leggings",
-      "archetype": "LeatherLeggings"
+      "archetype": "LeatherLeggings",
+      "id": "DarkLeatherLeggings_1001"
     },
     {
       "name": "Loose Trousers",
-      "archetype": "LooseTrousers"
+      "archetype": "LooseTrousers",
+      "id": "LooseTrousers_1001"
     },
     {
       "name": "Occultist Pants",
-      "archetype": "OccultistPants"
+      "archetype": "OccultistPants",
+      "id": "OccultistPants_1001"
     },
     {
       "name": "Padded Leggings",
-      "archetype": "PaddedLeggings"
+      "archetype": "PaddedLeggings",
+      "id": "PaddedLeggings_1001"
     },
     {
       "name": "Plate Pants",
-      "archetype": "PlatePants"
+      "archetype": "PlatePants",
+      "id": "PlatePants_1001"
     },
     {
       "name": "Sleek Hide Pants",
-      "archetype": "SleekHidePants"
+      "archetype": "SleekHidePants",
+      "id": "SleekHidePants_1001"
     },
     {
       "name": "Tanglethread Trousers",
-      "archetype": "TanglethreadTrousers"
+      "archetype": "TanglethreadTrousers",
+      "id": "TanglethreadTrousers_5001"
     },
     {
       "name": "Brave Hunter's Pants",
-      "archetype": "BraveHuntersPants"
+      "archetype": "BraveHuntersPants",
+      "id": "BraveHunterPants_4001"
     },
     {
       "name": "Cobalt Plate Pants",
-      "archetype": "CobaltPlatePants"
+      "archetype": "CobaltPlatePants",
+      "id": "CobaltPlatePants_4001"
     },
     {
       "name": "Cobalt Trousers",
-      "archetype": "CobaltTrousers"
+      "archetype": "CobaltTrousers",
+      "id": "CobaltTrousers_4001"
     },
     {
       "name": "Copperlight Pants",
-      "archetype": "CopperlightPants"
+      "archetype": "CopperlightPants",
+      "id": "CopperlightPants_3001"
     },
     {
       "name": "Copperlight Plate Pants",
-      "archetype": "CopperlightPlatePants"
+      "archetype": "CopperlightPlatePants",
+      "id": "CopperlightPlatePants_3001"
     },
     {
       "name": "Demonclad Leggings",
-      "archetype": "DemoncladLeggings"
+      "archetype": "DemoncladLeggings",
+      "id": "DemoncladLeggings_4001"
     },
     {
       "name": "Frostlight Leather Leggings",
-      "archetype": "FrostlightLeatherLeggings"
+      "archetype": "FrostlightLeatherLeggings",
+      "id": "FrostlightLeatherLeggings_5001"
     },
     {
       "name": "Frostlight Plate Pants",
-      "archetype": "FrostlightPlatePants"
+      "archetype": "FrostlightPlatePants",
+      "id": "FrostlightPlatePants_5001"
     },
     {
       "name": "Frostlight Trousers",
-      "archetype": "FrostlightTrousers"
+      "archetype": "FrostlightTrousers",
+      "id": "FrostlightTrousers_5001"
     },
     {
       "name": "Golden Chausses",
-      "archetype": "GoldenChausses"
+      "archetype": "GoldenChausses",
+      "id": "GoldenChausses_5001"
     },
     {
       "name": "Golden Leggings",
-      "archetype": "GoldenLeggings"
+      "archetype": "GoldenLeggings",
+      "id": "GoldenLeggings_5001"
     },
     {
       "name": "Golden Plate Pants",
-      "archetype": "GoldenPlatePants"
+      "archetype": "GoldenPlatePants",
+      "id": "GoldenPlatePants_5001"
     },
     {
       "name": "Rubysilver Leggings",
-      "archetype": "RubysilverLeggings"
+      "archetype": "RubysilverLeggings",
+      "id": "RubysilverLeatherLeggings"
     },
     {
       "name": "Rubysilver Plate Pants",
-      "archetype": "RubysilverPlatePants"
+      "archetype": "RubysilverPlatePants",
+      "id": "RubysilverPlatePants"
     },
     {
       "name": "Wolf Hunter Leggings",
-      "archetype": "WolfHunterLeggings"
+      "archetype": "WolfHunterLeggings",
+      "id": "WolfHunterLeggings_4001"
     },
     {
       "name": "Arcane Gloves",
-      "archetype": "ArcaneGloves"
+      "archetype": "ArcaneGloves",
+      "id": "ArcaneGloves_1001"
     },
     {
       "name": "Bloodwoven Gloves",
-      "archetype": "BloodwovenGloves"
+      "archetype": "BloodwovenGloves",
+      "id": "BloodwovenGloves_1001"
     },
     {
       "name": "Elkwood Gloves",
-      "archetype": "ElkwoodGloves"
+      "archetype": "ElkwoodGloves",
+      "id": "ElkwoodGloves_1001"
     },
     {
       "name": "Gloves of Utility",
-      "archetype": "GlovesOfUtility"
+      "archetype": "GlovesOfUtility",
+      "id": "GlovesOfUtility_1001"
     },
     {
       "name": "Heavy Gauntlets",
-      "archetype": "HeavyGauntlets"
+      "archetype": "HeavyGauntlets",
+      "id": "HeavyGauntlet_1001"
     },
     {
       "name": "Leather Gloves",
-      "archetype": "LeatherGloves"
+      "archetype": "LeatherGloves",
+      "id": "LeatherGloves_1001"
     },
     {
       "name": "Light Gauntlets",
-      "archetype": "LightGauntlets"
+      "archetype": "LightGauntlets",
+      "id": "LightGauntlets_1001"
     },
     {
       "name": "Mystic Gloves",
-      "archetype": "MysticGloves"
+      "archetype": "MysticGloves",
+      "id": "MysticGloves_1001"
     },
     {
       "name": "Rawhide Gloves",
-      "archetype": "RawhideGloves"
+      "archetype": "RawhideGloves",
+      "id": "RawhideGloves_1001"
     },
     {
       "name": "Reinforced Gloves",
-      "archetype": "ReinforcedGloves"
+      "archetype": "ReinforcedGloves",
+      "id": "ReinforcedGloves_1001"
     },
     {
       "name": "Riveted Gloves",
-      "archetype": "RivetedGloves"
+      "archetype": "RivetedGloves",
+      "id": "RivetedGloves_1001"
     },
     {
       "name": "Runestone Gloves",
-      "archetype": "RunestoneGloves"
+      "archetype": "RunestoneGloves",
+      "id": "RunestoneGloves_1001"
     },
     {
       "name": "Cobalt Heavy Gauntlet",
-      "archetype": "CobaltHeavyGauntlet"
+      "archetype": "CobaltHeavyGauntlet",
+      "id": "CobaltHeavyGauntlet_4001"
     },
     {
       "name": "Cobalt Leather Gloves",
-      "archetype": "CobaltLeatherGloves"
+      "archetype": "CobaltLeatherGloves",
+      "id": "CobaltLeatherGloves_4001"
     },
     {
       "name": "Copperlight Gauntlets",
-      "archetype": "CopperlightGauntlets"
+      "archetype": "CopperlightGauntlets",
+      "id": "CopperlightGauntlets_3001"
     },
     {
       "name": "Copperlight Riveted Gloves",
-      "archetype": "CopperlightRivetedGloves"
+      "archetype": "CopperlightRivetedGloves",
+      "id": "CopperlightRivetedGloves_3001"
     },
     {
       "name": "Demon Grip Gloves",
-      "archetype": "DemonGripGloves"
+      "archetype": "DemonGripGloves",
+      "id": "DemonGripGloves_4001"
     },
     {
       "name": "Frostlight Gauntlets",
-      "archetype": "FrostlightGauntlets"
+      "archetype": "FrostlightGauntlets",
+      "id": "FrostlightGauntlets_5001"
     },
     {
       "name": "Frostlight Mystic Gloves",
-      "archetype": "FrostlightMysticGloves"
+      "archetype": "FrostlightMysticGloves",
+      "id": "FrostlightMysticGloves_5001"
     },
     {
       "name": "Frostlight Riveted Gloves",
-      "archetype": "FrostlightRivetedGloves"
+      "archetype": "FrostlightRivetedGloves",
+      "id": "FrostlightRivetedGloves_5001"
     },
     {
       "name": "Frostlight Runestone Gloves",
-      "archetype": "FrostlightRunestoneGloves"
+      "archetype": "FrostlightRunestoneGloves",
+      "id": "FrostlightRunestoneGloves_5001"
     },
     {
       "name": "Golden Gauntlets",
-      "archetype": "GoldenGauntlets"
+      "archetype": "GoldenGauntlets",
+      "id": "GoldenGauntlets_5001"
     },
     {
       "name": "Golden Gloves",
-      "archetype": "GoldenGloves"
+      "archetype": "GoldenGloves",
+      "id": "GoldenGloves_5001"
     },
     {
       "name": "Gravewolf Gloves",
-      "archetype": "GravewolfGloves"
+      "archetype": "GravewolfGloves",
+      "id": "GravewolfGloves_4001"
     },
     {
       "name": "Rubysilver Gauntlets",
-      "archetype": "RubysilverGauntlets"
+      "archetype": "RubysilverGauntlets",
+      "id": "RubysilverHeavyGauntlet"
     },
     {
       "name": "Rubysilver Rawhide Gloves",
-      "archetype": "RubysilverRawhideGloves"
+      "archetype": "RubysilverRawhideGloves",
+      "id": "RubysilverRawhideGloves"
     },
     {
       "name": "Adventurer Boots",
-      "archetype": "AdventurerBoots"
+      "archetype": "AdventurerBoots",
+      "id": "AdventurerBoots_1001"
     },
     {
       "name": "Buckled Boots",
-      "archetype": "BuckledBoots"
+      "archetype": "BuckledBoots",
+      "id": "BuckledBoots_1001"
     },
     {
       "name": "Buttoned Boots",
-      "archetype": "ButtonedBoots"
+      "archetype": "ButtonedBoots",
+      "id": "ButtonedBoots_1001"
     },
     {
       "name": "Cuffed Boots",
-      "archetype": "CuffedBoots"
+      "archetype": "CuffedBoots",
+      "id": "CuffedBoots_1001"
     },
     {
       "name": "Darkleaf Boots",
-      "archetype": "DarkleafBoots"
+      "archetype": "DarkleafBoots",
+      "id": "DarkleafBoots_1001"
     },
     {
       "name": "Dashing Boots",
-      "archetype": "DashingBoots"
+      "archetype": "DashingBoots",
+      "id": "DashingBoots_1001"
     },
     {
       "name": "Forest Boots",
-      "archetype": "ForestBoots"
+      "archetype": "ForestBoots",
+      "id": "ForestBoots_1001"
     },
     {
       "name": "Heavy Boots",
-      "archetype": "HeavyBoots"
+      "archetype": "HeavyBoots",
+      "id": "HeavyBoots_1001"
     },
     {
       "name": "Laced Turnshoe",
-      "archetype": "LacedTurnshoe"
+      "archetype": "LacedTurnshoe",
+      "id": "LacedTurnshoe_1001"
     },
     {
       "name": "Lightfoot Boots",
-      "archetype": "LightfootBoots"
+      "archetype": "LightfootBoots",
+      "id": "LightfootBoots_1001"
     },
     {
       "name": "Low Boots",
-      "archetype": "LowBoots"
+      "archetype": "LowBoots",
+      "id": "LowBoots_1001"
     },
     {
       "name": "Occultist Boots",
-      "archetype": "OccultistBoots"
+      "archetype": "OccultistBoots",
+      "id": "OccultistBoots_1001"
     },
     {
       "name": "Old Shoes",
-      "archetype": "OldShoes"
+      "archetype": "OldShoes",
+      "id": "OldShoes_1001"
     },
     {
       "name": "Plate Boots",
-      "archetype": "PlateBoots"
+      "archetype": "PlateBoots",
+      "id": "PlateBoots_1001"
     },
     {
       "name": "Rugged Boots",
-      "archetype": "RuggedBoots"
+      "archetype": "RuggedBoots",
+      "id": "RuggedBoots_1001"
     },
     {
       "name": "Stillmend Boots",
-      "archetype": "StillmendBoots"
+      "archetype": "StillmendBoots",
+      "id": "StillmendBoots_5001"
     },
     {
       "name": "Stitched Turnshoe",
-      "archetype": "StitchedTurnshoe"
+      "archetype": "StitchedTurnshoe",
+      "id": "StitchedTurnshoe_1001"
     },
     {
       "name": "Turnshoe",
-      "archetype": "Turnshoe"
+      "archetype": "Turnshoe",
+      "id": "LacedTurnshoe_1001"
     },
     {
       "name": "Wizard Shoes",
-      "archetype": "WizardShoes"
+      "archetype": "WizardShoes",
+      "id": "WizardShoes_1001"
     },
     {
       "name": "Cobalt Lightfoot Boots",
-      "archetype": "CobaltLightfootBoots"
+      "archetype": "CobaltLightfootBoots",
+      "id": "CobaltLightfootBoots_4001"
     },
     {
       "name": "Cobalt Plate Boots",
-      "archetype": "CobaltPlateBoots"
+      "archetype": "CobaltPlateBoots",
+      "id": "CobaltPlateBoots_4001"
     },
     {
       "name": "Copperlight Lightfoot Boots",
-      "archetype": "CopperlightLightfootBoots"
+      "archetype": "CopperlightLightfootBoots",
+      "id": "CopperlightLightfootBoots_3001"
     },
     {
       "name": "Copperlight Plate Boots",
-      "archetype": "CopperlightPlateBoots"
+      "archetype": "CopperlightPlateBoots",
+      "id": "CopperlightPlateBoots_3001"
     },
     {
       "name": "Foul Boots",
-      "archetype": "FoulBoots"
+      "archetype": "FoulBoots",
+      "id": "FoulBoots_4001"
     },
     {
       "name": "Frostlight Lightfoot Boots",
-      "archetype": "FrostlightLightfootBoots"
+      "archetype": "FrostlightLightfootBoots",
+      "id": "FrostlightLightfootBoots_5001"
     },
     {
       "name": "Frostlight Plate Boots",
-      "archetype": "FrostlightPlateBoots"
+      "archetype": "FrostlightPlateBoots",
+      "id": "FrostlightPlateBoots_5001"
     },
     {
       "name": "Frostlight Rugged Boots",
-      "archetype": "FrostlightRuggedBoots"
+      "archetype": "FrostlightRuggedBoots",
+      "id": "FrostlightRuggedBoots_5001"
     },
     {
       "name": "Golden Boots",
-      "archetype": "GoldenBoots"
+      "archetype": "GoldenBoots",
+      "id": "GoldenBoots_5001"
     },
     {
       "name": "Golden Plate Boots",
-      "archetype": "GoldenPlateBoots"
+      "archetype": "GoldenPlateBoots",
+      "id": "GoldenPlateBoots_5001"
     },
     {
       "name": "Rubysilver Adventurer Boots",
-      "archetype": "RubysilverAdventurerBoots"
+      "archetype": "RubysilverAdventurerBoots",
+      "id": "RubysilverAdventurerBoots"
     },
     {
       "name": "Rubysilver Plate Boots",
-      "archetype": "RubysilverPlateBoots"
+      "archetype": "RubysilverPlateBoots",
+      "id": "RubysilverPlateBoots"
     },
     {
       "name": "Shoes of Darkness",
-      "archetype": "ShoesOfDarkness"
+      "archetype": "ShoesOfDarkness",
+      "id": "ShoesofDarkness_4001"
     },
     {
       "name": "Adventurer Cloak",
-      "archetype": "AdventurerCloak"
+      "archetype": "AdventurerCloak",
+      "id": "AdventurerCloak_1001"
     },
     {
       "name": "Mercurial Cloak",
-      "archetype": "MercurialCloak"
+      "archetype": "MercurialCloak",
+      "id": "MercurialCloak_1001"
     },
     {
       "name": "Radiant Cloak",
-      "archetype": "RadiantCloak"
+      "archetype": "RadiantCloak",
+      "id": "RadiantCloak_1001"
     },
     {
       "name": "Splendid Cloak",
-      "archetype": "SplendidCloak"
+      "archetype": "SplendidCloak",
+      "id": "SplendidCloak_1001"
     },
     {
       "name": "Tattered Cloak",
-      "archetype": "TatteredCloak"
+      "archetype": "TatteredCloak",
+      "id": "TatteredCloak_1001"
     },
     {
       "name": "Vigilant Cloak",
-      "archetype": "VigilantCloak"
+      "archetype": "VigilantCloak",
+      "id": "VigilantCloak_1001"
     },
     {
       "name": "Watchman Cloak",
-      "archetype": "WatchmanCloak"
+      "archetype": "WatchmanCloak",
+      "id": "WatchmanCloak_1001"
     },
     {
       "name": "Cloak of Darkness",
-      "archetype": "CloakOfDarkness"
+      "archetype": "CloakOfDarkness",
+      "id": "CloakofDarkness_4001"
     },
     {
       "name": "Frostlight Cloak",
-      "archetype": "FrostlightCloak"
+      "archetype": "FrostlightCloak",
+      "id": "FrostlightCloak_5001"
     },
     {
       "name": "Golden Cloak",
-      "archetype": "GoldenCloak"
+      "archetype": "GoldenCloak",
+      "id": "GoldenCloak_5001"
     },
     {
       "name": "Bare Hands",
-      "archetype": "BareHands"
+      "archetype": "BareHands",
+      "id": "BareHands"
     },
     {
       "name": "Arming Sword",
-      "archetype": "ArmingSword"
+      "archetype": "ArmingSword",
+      "id": "ArmingSword_1001"
     },
     {
       "name": "Crystal Sword",
-      "archetype": "CrystalSword"
+      "archetype": "CrystalSword",
+      "id": "CrystalSword_1001"
     },
     {
       "name": "Falchion",
-      "archetype": "Falchion"
+      "archetype": "Falchion",
+      "id": "Falchion_1001"
     },
     {
       "name": "Longsword",
-      "archetype": "Longsword"
+      "archetype": "Longsword",
+      "id": "Longsword_1001"
     },
     {
       "name": "Rapier",
-      "archetype": "Rapier"
+      "archetype": "Rapier",
+      "id": "Rapier_1001"
     },
     {
       "name": "Short Sword",
-      "archetype": "ShortSword"
+      "archetype": "ShortSword",
+      "id": "ShortSword_1001"
     },
     {
       "name": "Viking Sword",
-      "archetype": "VikingSword"
+      "archetype": "VikingSword",
+      "id": "VikingSword_1001"
     },
     {
       "name": "Zweihander",
-      "archetype": "Zweihander"
+      "archetype": "Zweihander",
+      "id": "Zweihander_1001"
     },
     {
       "name": "Blade of Righteousness",
-      "archetype": "BladeOfRighteousness"
+      "archetype": "BladeOfRighteousness",
+      "id": "BladeOfRighteousness_3001"
     },
     {
       "name": "Demon's Glee",
-      "archetype": "DemonsGlee"
+      "archetype": "DemonsGlee",
+      "id": "DemonsGlee_5001"
     },
     {
       "name": "Divine Blade",
-      "archetype": "DivineBlade"
+      "archetype": "DivineBlade",
+      "id": "DivineBlade_4001"
     },
     {
       "name": "Divine Short Sword",
-      "archetype": "DivineShortSword"
+      "archetype": "DivineShortSword",
+      "id": "DivineShortSword_4001"
     },
     {
       "name": "Falchion of Honor",
-      "archetype": "FalchionOfHonor"
+      "archetype": "FalchionOfHonor",
+      "id": "FalchionofHonor_5001"
     },
     {
       "name": "Frostlight Crystal Sword",
-      "archetype": "FrostlightCrystalSword"
+      "archetype": "FrostlightCrystalSword",
+      "id": "FrostlightCrystalSword_5001"
     },
     {
       "name": "Golden Viking Sword",
-      "archetype": "GoldenVikingSword"
+      "archetype": "GoldenVikingSword",
+      "id": "GoldenVikingSword_5001"
     },
     {
       "name": "Grimslayer",
-      "archetype": "Grimslayer"
+      "archetype": "Grimslayer",
+      "id": "GrimSlayer_5001"
     },
     {
       "name": "Short Sword of Righteousness",
-      "archetype": "ShortSwordOfRighteousness"
+      "archetype": "ShortSwordOfRighteousness",
+      "id": "ShortSwordOfRighteousness_3001"
     },
     {
       "name": "Sovereign's Ghostblade",
-      "archetype": "SovereignsGhostblade"
+      "archetype": "SovereignsGhostblade",
+      "id": "SovereignsGhostblade_5001"
     },
     {
       "name": "Sterling Blade",
-      "archetype": "SterlingBlade"
+      "archetype": "SterlingBlade",
+      "id": "SterlingBlade_2001"
     },
     {
       "name": "Sterling Short Sword",
-      "archetype": "SterlingShortSword"
+      "archetype": "SterlingShortSword",
+      "id": "SterlingShortSword_2001"
     },
     {
       "name": "Void Blade",
-      "archetype": "VoidBlade"
+      "archetype": "VoidBlade",
+      "id": "VoidBlade_5001"
     },
     {
       "name": "Club",
-      "archetype": "Club"
+      "archetype": "Club",
+      "id": "Club_1001"
     },
     {
       "name": "Flanged Mace",
-      "archetype": "FlangedMace"
+      "archetype": "FlangedMace",
+      "id": "FlangedMace_1001"
     },
     {
       "name": "Lute",
-      "archetype": "Lute"
+      "archetype": "Lute",
+      "id": "Flute_1001"
     },
     {
       "name": "Morning Star",
-      "archetype": "MorningStar"
+      "archetype": "MorningStar",
+      "id": "MorningStar_1001"
     },
     {
       "name": "Quarterstaff",
-      "archetype": "Quarterstaff"
+      "archetype": "Quarterstaff",
+      "id": "Quarterstaff_1001"
     },
     {
       "name": "Torch",
-      "archetype": "Torch"
+      "archetype": "Torch",
+      "id": "Torch_1001"
     },
     {
       "name": "War Hammer",
-      "archetype": "WarHammer"
+      "archetype": "WarHammer",
+      "id": "WarHammer_1001"
     },
     {
       "name": "War Maul",
-      "archetype": "WarMaul"
+      "archetype": "WarMaul",
+      "id": "WarMaul_1001"
     },
     {
       "name": "Boneshaper",
-      "archetype": "Boneshaper"
+      "archetype": "Boneshaper",
+      "id": "Boneshaper_5001"
     },
     {
       "name": "Divine Rod",
-      "archetype": "DivineRod"
+      "archetype": "DivineRod",
+      "id": "DivineRod_4001"
     },
     {
       "name": "Divine Staff",
-      "archetype": "DivineStaff"
+      "archetype": "DivineStaff",
+      "id": "DivineStaff_4001"
     },
     {
       "name": "Light Bringer",
-      "archetype": "LightBringer"
+      "archetype": "LightBringer",
+      "id": "LightBringer_5001"
     },
     {
       "name": "Rod of Righteousness",
-      "archetype": "RodOfRighteousness"
+      "archetype": "RodOfRighteousness",
+      "id": "RodOfRighteousness_3001"
     },
     {
       "name": "Staff of Righteousness",
-      "archetype": "StaffOfRighteousness"
+      "archetype": "StaffOfRighteousness",
+      "id": "StaffOfRighteousness_3001"
     },
     {
       "name": "Sterling Rod",
-      "archetype": "SterlingRod"
+      "archetype": "SterlingRod",
+      "id": "SterlingRod_2001"
     },
     {
       "name": "Sterling Staff",
-      "archetype": "SterlingStaff"
+      "archetype": "SterlingStaff",
+      "id": "SterlingStaff_2001"
     },
     {
       "name": "Troll's Bane",
-      "archetype": "TrollsBane"
+      "archetype": "TrollBane",
+      "id": "TrollBane_5001"
     },
     {
       "name": "Castillon Dagger",
-      "archetype": "CastillonDagger"
+      "archetype": "CastillonDagger",
+      "id": "CastillonDagger_1001"
     },
     {
       "name": "Kris Dagger",
-      "archetype": "KrisDagger"
+      "archetype": "KrisDagger",
+      "id": "KrisDagger_1001"
     },
     {
       "name": "Rondel Dagger",
-      "archetype": "RondelDagger"
+      "archetype": "RondelDagger",
+      "id": "RondelDagger_1001"
     },
     {
       "name": "Stiletto Dagger",
-      "archetype": "StilettoDagger"
+      "archetype": "StilettoDagger",
+      "id": "StilettoDagger_1001"
     },
     {
       "name": "Dagger of Righteousness",
-      "archetype": "DaggerOfRighteousness"
+      "archetype": "DaggerOfRighteousness",
+      "id": "DaggerOfRighteousness_3001"
     },
     {
       "name": "Divine Dagger",
-      "archetype": "DivineDagger"
+      "archetype": "DivineDagger",
+      "id": "DivineDagger_4001"
     },
     {
       "name": "Icefang",
-      "archetype": "Icefang"
+      "archetype": "Icefang",
+      "id": "Icefang_5001"
     },
     {
       "name": "Sterling Dagger",
-      "archetype": "SterlingDagger"
+      "archetype": "SterlingDagger",
+      "id": "SterlingDagger_2001"
     },
     {
       "name": "Throwing Knife",
-      "archetype": "ThrowingKnife"
+      "archetype": "ThrowingKnife",
+      "id": "ThrowingKnife_1001"
     },
     {
       "name": "Bardiche",
-      "archetype": "Bardiche"
+      "archetype": "Bardiche",
+      "id": "Bardiche_1001"
     },
     {
       "name": "Halberd",
-      "archetype": "Halberd"
+      "archetype": "Halberd",
+      "id": "Halberd_1001"
     },
     {
       "name": "Spear",
-      "archetype": "Spear"
+      "archetype": "Spear",
+      "id": "Spear_1001"
     },
     {
       "name": "Frostlight Spear",
-      "archetype": "FrostlightSpear"
+      "archetype": "FrostlightSpear",
+      "id": "FrostlightSpear_5001"
     },
     {
       "name": "Spear of Rot",
-      "archetype": "SpearOfRot"
+      "archetype": "SpearOfRot",
+      "id": "SpearofRot_5001"
     },
     {
       "name": "Battle Axe",
-      "archetype": "BattleAxe"
+      "archetype": "BattleAxe",
+      "id": "BattleAxe_1001"
     },
     {
       "name": "Double Axe",
-      "archetype": "DoubleAxe"
+      "archetype": "DoubleAxe",
+      "id": "DoubleAxe_1001"
     },
     {
       "name": "Felling Axe",
-      "archetype": "FellingAxe"
+      "archetype": "FellingAxe",
+      "id": "FellingAxe_1001"
     },
     {
       "name": "Hatchet",
-      "archetype": "Hatchet"
+      "archetype": "Hatchet",
+      "id": "Hatchet_1001"
     },
     {
       "name": "Horseman's Axe",
-      "archetype": "HorsemansAxe"
+      "archetype": "HorsemansAxe",
+      "id": "HorsemansAxe_1001"
     },
     {
       "name": "Axe of Righteousness",
-      "archetype": "AxeOfRighteousness"
+      "archetype": "AxeOfRighteousness",
+      "id": "AxeOfRighteousness_3001"
     },
     {
       "name": "Divine Axe",
-      "archetype": "DivineAxe"
+      "archetype": "DivineAxe",
+      "id": "DivineAxe_4001"
     },
     {
       "name": "Francisca Axe",
-      "archetype": "FranciscaAxe"
+      "archetype": "FranciscaAxe",
+      "id": "FranciscaAxe_1001"
     },
     {
       "name": "Golden Felling Axe",
-      "archetype": "GoldenFellingAxe"
+      "archetype": "GoldenFellingAxe",
+      "id": "GoldenFellingAxe_5001"
     },
     {
       "name": "Sterling Axe",
-      "archetype": "SterlingAxe"
+      "archetype": "SterlingAxe",
+      "id": "SterlingAxe_2001"
     },
     {
       "name": "Longbow",
-      "archetype": "Longbow"
+      "archetype": "Longbow",
+      "id": "Longbow_1001"
     },
     {
       "name": "Recurve Bow",
-      "archetype": "RecurveBow"
+      "archetype": "RecurveBow",
+      "id": "RecurveBow_1001"
     },
     {
       "name": "Survival Bow",
-      "archetype": "SurvivalBow"
+      "archetype": "SurvivalBow",
+      "id": "SurvivalBow_1001"
     },
     {
       "name": "Bow of Righteousness",
-      "archetype": "BowOfRighteousness"
+      "archetype": "BowOfRighteousness",
+      "id": "BowOfRighteousness_3001"
     },
     {
       "name": "Centaur's Madness",
-      "archetype": "CentaursMadness"
+      "archetype": "CentaursMadness",
+      "id": "CentaurMadness_5001"
     },
     {
       "name": "Divine Bow",
-      "archetype": "DivineBow"
+      "archetype": "DivineBow",
+      "id": "DivineBow_4001"
     },
     {
       "name": "Sterling Bow",
-      "archetype": "SterlingBow"
+      "archetype": "SterlingBow",
+      "id": "SterlingBow_2001"
     },
     {
       "name": "Crossbow",
-      "archetype": "Crossbow"
+      "archetype": "Crossbow",
+      "id": "Crossbow_1001"
     },
     {
       "name": "Hand Crossbow",
-      "archetype": "HandCrossbow"
+      "archetype": "HandCrossbow",
+      "id": "HandCrossbow_1001"
     },
     {
       "name": "Windlass Crossbow",
-      "archetype": "WindlassCrossbow"
+      "archetype": "WindlassCrossbow",
+      "id": "WindlassCrossbow_1001"
     },
     {
       "name": "Ceremonial Staff",
-      "archetype": "CeremonialStaff"
+      "archetype": "CeremonialStaff",
+      "id": "CeremonialStaff_1001"
     },
     {
       "name": "Crystal Ball",
-      "archetype": "CrystalBall"
+      "archetype": "CrystalBall",
+      "id": "CrystalBall_1001"
     },
     {
       "name": "Magic Staff",
-      "archetype": "MagicStaff"
+      "archetype": "MagicStaff",
+      "id": "WizardStaff_1001"
     },
     {
       "name": "Spellbook",
-      "archetype": "Spellbook"
+      "archetype": "Spellbook",
+      "id": "Spellbook_1001"
     },
     {
       "name": "Cyclops Vision Crystal",
-      "archetype": "CyclopsVisionCrystal"
+      "archetype": "CyclopsVisionCrystal",
+      "id": "CyclopsVisionCrystal_5001"
     },
     {
       "name": "Mana Sphere",
-      "archetype": "ManaSphere"
+      "archetype": "ManaSphere",
+      "id": "ManaSphere_5001"
     },
     {
       "name": "Staff of Gluttony",
-      "archetype": "StaffOfGluttony"
+      "archetype": "StaffOfGluttony",
+      "id": "StaffofGluttony_5001"
     },
     {
       "name": "Tome of Sheol",
-      "archetype": "TomeOfSheol"
+      "archetype": "TomeOfSheol",
+      "id": "TomeofSheol_5001"
     },
     {
       "name": "Buckler",
-      "archetype": "Buckler"
+      "archetype": "Buckler",
+      "id": "Buckler_1001"
     },
     {
       "name": "Heater Shield",
-      "archetype": "HeaterShield"
+      "archetype": "HeaterShield",
+      "id": "HeaterShield_1001"
     },
     {
       "name": "Lantern Shield",
-      "archetype": "LanternShield"
+      "archetype": "LanternShield",
+      "id": "LanternShield_1001"
     },
     {
       "name": "Pavise",
-      "archetype": "Pavise"
+      "archetype": "Pavise",
+      "id": "Pavise_1001"
     },
     {
       "name": "Round Shield",
-      "archetype": "RoundShield"
+      "archetype": "RoundShield",
+      "id": "RoundShield_1001"
     },
     {
       "name": "Frostlight Lantern Shield",
-      "archetype": "FrostlightLanternShield"
+      "archetype": "FrostlightLanternShield",
+      "id": "FrostlightLanternShield_5001"
     }
   ]
 }
-
