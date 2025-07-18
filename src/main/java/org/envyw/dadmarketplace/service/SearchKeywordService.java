@@ -107,7 +107,8 @@ public class SearchKeywordService {
         for (Map<String, Object> item : body) {
             EquipmentDto equipment = new EquipmentDto(
                     (String) item.get("name"),
-                    (String) item.get("archetype")
+                    (String) item.get("archetype"),
+                    (String) item.get("id")
             );
             equipments.add(equipment);
         }
