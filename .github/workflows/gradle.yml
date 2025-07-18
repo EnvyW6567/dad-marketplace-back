@@ -297,6 +297,7 @@ jobs:
 
     - name: 배포 서버 웹훅 호출
       run: |
+        echo "${{ secrets.DEPLOY_WEBHOOK_URL }}"
         # 배포 서버의 웹훅 엔드포인트 호출
         curl -X POST "${{ secrets.DEPLOY_WEBHOOK_URL }}" \
           -H "Content-Type: application/json" \
