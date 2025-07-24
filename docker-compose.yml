@@ -10,6 +10,7 @@ services:
     container_name: dad-marketplace-app
     ports:
       - "8080:8080"
+      - "8443:8443"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - MYSQL_HOST=mysql
@@ -19,7 +20,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID}
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET}
-      - BASE_URL=${BASE_URL:-http://localhost:8080}
+      - BASE_URL=${BASE_URL}
+      - REGISTRATION_ID=discord
     depends_on:
       mysql:
         condition: service_healthy
