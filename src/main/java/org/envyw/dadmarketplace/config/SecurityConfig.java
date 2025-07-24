@@ -37,7 +37,7 @@ public class SecurityConfig {
         return http
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/", "/api/auth/**", "/oauth2/**", "/api/search-keyword/**",
-                                "/api/proxy/darkerdb/**", "/favicon.ico", "/login/oauth2/code/discord",
+                                "/api/darkerdb/**", "/favicon.ico", "/login/oauth2/code/discord",
                                 "/debug/**").permitAll()
                         .anyExchange().authenticated())
                 .addFilterBefore(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
