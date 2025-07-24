@@ -7,6 +7,51 @@ server:
 spring:
   application:
     name: dad-marketplace
+  cloud:
+    gateway:
+      routes:
+        # DarkerDB API 프록시 라우트
+        - id: darkerdb-proxy
+          uri: https://api.darkerdb.com
+          predicates:
+            - Path=/api/proxy/darkerdb/**
+          filters:
+            - StripPrefix=3
+            # RemoveRequestHeader를 사용해서 기존 헤더 제거 후 새로 추가
+            - RemoveRequestHeader=X-Forwarded-For
+            - PreserveHostHeader=true
+            # 간단한 고정 값 사용
+            - AddRequestHeader=X-Proxied-By, dad-marketplace
+            # CORS 응답 헤더
+            - AddResponseHeader=Access-Control-Allow-Origin, *
+            - AddResponseHeader=Access-Control-Allow-Methods, GET,POST,PUT,DELETE,OPTIONS
+            - AddResponseHeader=Access-Control-Allow-Headers, *
+
+      # CORS 글로벌 설정
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "http://localhost:*"
+              - "https://www.highrollermarket.com"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+            exposedHeaders:
+              - Content-Type
+              - Cache-Control
+              - ETag
+
+      # 타임아웃 설정
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 10s
+
   r2dbc:
     url: r2dbc:mysql://localhost:3307/${MYSQL_DATABASE}
     username: ${MYSQL_USER}
