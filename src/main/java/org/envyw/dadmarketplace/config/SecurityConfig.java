@@ -35,11 +35,12 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
-                .addFilterBefore(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/", "/api/auth/**", "/oauth2/**", "/api/search-keyword/**",
-                                "/favicon.ico", "/login/oauth2/code/discord", "/debug/**").permitAll()
+                                "/api/proxy/darkerdb/**", "/favicon.ico", "/login/oauth2/code/discord",
+                                "/debug/**").permitAll()
                         .anyExchange().authenticated())
+                .addFilterBefore(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .oauth2Login(oauth2 -> oauth2
                         .authenticationSuccessHandler(authenticationSuccessHandler))
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtDecoder(reactiveJwtDecoder)))
