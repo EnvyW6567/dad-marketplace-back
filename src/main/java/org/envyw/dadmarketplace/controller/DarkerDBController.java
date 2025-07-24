@@ -21,7 +21,7 @@ public class DarkerDBController {
     @GetMapping("/**")
     public Mono<ResponseEntity<Object>> proxyGetRequest(ServerHttpRequest request) {
         String requestPath = request.getPath().value();
-        String proxyBasePath = "/api/proxy/darkerdb";
+        String proxyBasePath = "/api/darkerdb";
 
         String targetPath = requestPath.substring(proxyBasePath.length());
         if (targetPath.startsWith("/")) {
