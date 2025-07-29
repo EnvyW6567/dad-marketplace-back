@@ -2,6 +2,7 @@ package org.envyw.dadmarketplace.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,10 @@ import java.util.Map;
 @Slf4j
 public class ExternalApiService {
 
-    private static final String EXTERNAL_API_BASE_URL = "https://api.darkerdb.com/v1";
-    private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(10);
+    @Value("${app.external-api.darkerdb-base-url}")
+    private String EXTERNAL_API_BASE_URL;
+
+    private final Duration REQUEST_TIMEOUT = Duration.ofSeconds(10);
 
     private final WebClient webClient;
 
