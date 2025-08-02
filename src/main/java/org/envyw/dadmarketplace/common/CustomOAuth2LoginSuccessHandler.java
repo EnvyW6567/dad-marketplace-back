@@ -29,7 +29,7 @@ import java.util.Optional;
 @Component
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
-    @Value("{app.redirect-url}")
+    @Value("${app.login.redirect-url}")
     private String REDIRECT_URL;
 
     private final UserService userService;
