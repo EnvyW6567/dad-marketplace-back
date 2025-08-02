@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
 import org.envyw.dadmarketplace.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +28,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Component
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
+
+    @Value("{app.redirect-url}")
+    private String REDIRECT_URL;
 
     private final UserService userService;
     private final JwtTokenService jwtTokenService;
@@ -106,7 +110,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
     private Mono<Void> redirectToHomePage(WebFilterExchange webFilterExchange) {
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
         response.setStatusCode(HttpStatus.FOUND);
-        response.getHeaders().setLocation(URI.create("/"));
+        response.getHeaders().setLocation(URI.create(REDIRECT_URL));
         return response.setComplete();
     }
 }
