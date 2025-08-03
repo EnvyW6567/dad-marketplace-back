@@ -29,6 +29,8 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
 
     private final UserService userService;
     private final JwtTokenService jwtTokenService;
+    @Value("${app.domain}")
+    private String DOMAIN;
     @Value("${app.login.redirect-url}")
     private String REDIRECT_URL;
     @Value("${app.jwt.access-token-expiration:7200}")
@@ -93,6 +95,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                     .secure(true)
                     .sameSite("Lax")
                     .path("/")
+                    .domain(DOMAIN)
                     .maxAge(Duration.ofSeconds(ACCESS_TOKEN_EXPIRATION))
                     .build();
 
@@ -101,6 +104,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                     .secure(true)
                     .sameSite("Lax")
                     .path("/")
+                    .domain(DOMAIN)
                     .maxAge(Duration.ofSeconds(REFRESH_TOKEN_EXPIRATION))
                     .build();
 
