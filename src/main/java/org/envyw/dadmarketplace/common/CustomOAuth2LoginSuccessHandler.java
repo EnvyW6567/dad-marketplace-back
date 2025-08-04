@@ -7,7 +7,6 @@ import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
 import org.envyw.dadmarketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.security.core.Authentication;
@@ -87,9 +86,6 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                                             String accessToken,
                                             String refreshToken) {
         try {
-            response.setStatusCode(HttpStatus.OK);
-            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-
             ResponseCookie accessTokenCookie = ResponseCookie.from("accessToken", accessToken)
                     .httpOnly(true)
                     .secure(true)
