@@ -5,7 +5,6 @@ import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
 import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
 import org.envyw.dadmarketplace.service.UserService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -40,7 +39,7 @@ import static org.mockito.Mockito.*;
 public class CustomOAuth2LoginSuccessHandlerTest {
 
     @Value("${app.login.redirect-url}")
-    private String REDIRECT_URL = "www.highrollermarket.com";
+    private String REDIRECT_URL;
     @Mock
     private WebFilterExchange webFilterExchange;
     @Mock
@@ -56,11 +55,6 @@ public class CustomOAuth2LoginSuccessHandlerTest {
 
     @Autowired
     private CustomOAuth2LoginSuccessHandler customOAuth2LoginSuccessHandler;
-
-    @BeforeEach
-    void setup() {
-        System.setProperty("app.login.redirect-url", "www.highrollermarket.com");
-    }
 
     @Test
     @DisplayName("OAuth2User에서 디스코드 사용자 정보를 추출할 수 있어야 한다")
