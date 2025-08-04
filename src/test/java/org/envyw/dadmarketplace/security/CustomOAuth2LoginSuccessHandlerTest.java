@@ -3,13 +3,15 @@ package org.envyw.dadmarketplace.security;
 import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.entity.User;
 import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
 import org.envyw.dadmarketplace.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.http.server.reactive.MockServerHttpResponse;
@@ -17,6 +19,8 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.server.WebFilterExchange;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -30,23 +34,33 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+
+@SpringBootTest
+@TestPropertySource(locations = "classpath:application-test.yml")
 public class CustomOAuth2LoginSuccessHandlerTest {
 
-    @Mock
-    private UserService userService;
-
-    @InjectMocks
-    private CustomOAuth2LoginSuccessHandler handler;
-
+    @Value("${app.login.redirect-url}")
+    private String REDIRECT_URL = "www.highrollermarket.com";
     @Mock
     private WebFilterExchange webFilterExchange;
-
     @Mock
     private ServerWebExchange exchange;
-
     @Mock
     private MockServerHttpResponse response;
+
+    @MockitoBean
+    private JwtTokenService jwtTokenService;
+
+    @MockitoBean
+    private UserService userService;
+
+    @Autowired
+    private CustomOAuth2LoginSuccessHandler customOAuth2LoginSuccessHandler;
+
+    @BeforeEach
+    void setup() {
+        System.setProperty("app.login.redirect-url", "www.highrollermarket.com");
+    }
 
     @Test
     @DisplayName("OAuth2User에서 디스코드 사용자 정보를 추출할 수 있어야 한다")
@@ -64,7 +78,7 @@ public class CustomOAuth2LoginSuccessHandlerTest {
                 "id");
 
         // when
-        DiscordUserDto result = handler.extractDiscordUserInfo(oauth2User);
+        DiscordUserDto result = customOAuth2LoginSuccessHandler.extractDiscordUserInfo(oauth2User);
 
         // then
         assertThat(result).isNotNull();
@@ -107,15 +121,17 @@ public class CustomOAuth2LoginSuccessHandlerTest {
         when(response.setStatusCode(HttpStatus.FOUND)).thenReturn(true);
         when(response.getHeaders()).thenReturn(mock(HttpHeaders.class));
         when(response.setComplete()).thenReturn(Mono.empty());
+        when(jwtTokenService.generateAccessToken(any(User.class))).thenReturn("jwt.token.access");
+        when(jwtTokenService.generateRefreshToken(any(User.class))).thenReturn("jwt.token.refresh");
 
         // when
-        Mono<Void> result = handler.onAuthenticationSuccess(webFilterExchange, authentication);
+        Mono<Void> result = customOAuth2LoginSuccessHandler.onAuthenticationSuccess(webFilterExchange, authentication);
 
         // then
         StepVerifier.create(result)
                 .verifyComplete();
 
         verify(response).setStatusCode(HttpStatus.FOUND);
-        verify(response.getHeaders()).setLocation(URI.create("/"));
+        verify(response.getHeaders()).setLocation(URI.create(REDIRECT_URL));
     }
 }
