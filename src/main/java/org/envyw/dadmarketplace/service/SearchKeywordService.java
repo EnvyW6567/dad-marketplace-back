@@ -2,10 +2,10 @@ package org.envyw.dadmarketplace.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.envyw.dadmarketplace.dto.AttributeDto;
-import org.envyw.dadmarketplace.dto.EquipmentDto;
-import org.envyw.dadmarketplace.dto.RarityDto;
 import org.envyw.dadmarketplace.dto.response.SearchKeywordResDto;
+import org.envyw.dadmarketplace.dto.searchKey.AttributeDto;
+import org.envyw.dadmarketplace.dto.searchKey.EquipmentDto;
+import org.envyw.dadmarketplace.dto.searchKey.RarityDto;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;

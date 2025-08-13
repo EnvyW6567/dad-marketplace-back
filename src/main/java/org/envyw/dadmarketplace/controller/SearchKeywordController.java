@@ -1,10 +1,10 @@
 package org.envyw.dadmarketplace.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.envyw.dadmarketplace.dto.AttributeDto;
-import org.envyw.dadmarketplace.dto.EquipmentDto;
-import org.envyw.dadmarketplace.dto.RarityDto;
 import org.envyw.dadmarketplace.dto.response.SearchKeywordResDto;
+import org.envyw.dadmarketplace.dto.searchKey.AttributeDto;
+import org.envyw.dadmarketplace.dto.searchKey.EquipmentDto;
+import org.envyw.dadmarketplace.dto.searchKey.RarityDto;
 import org.envyw.dadmarketplace.service.SearchKeywordService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
