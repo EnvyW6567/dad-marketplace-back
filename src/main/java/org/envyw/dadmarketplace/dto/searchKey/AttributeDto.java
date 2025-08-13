@@ -1,4 +1,4 @@
-package org.envyw.dadmarketplace.dto;
+package org.envyw.dadmarketplace.dto.searchKey;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
