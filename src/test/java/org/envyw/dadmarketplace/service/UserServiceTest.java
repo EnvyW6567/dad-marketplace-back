@@ -1,9 +1,10 @@
 package org.envyw.dadmarketplace.service;
 
-import org.envyw.dadmarketplace.entity.User;
+import org.envyw.dadmarketplace.application.service.UserService;
 import org.envyw.dadmarketplace.fixture.UserTestDataBuilder;
-import org.envyw.dadmarketplace.repository.UserRepository;
-import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.repository.UserRepository;
+import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Tag;
@@ -37,7 +38,7 @@ class UserServiceTest {
         @DisplayName("신규 사용자 등록 시 올바른 User 객체 반환")
         void saveNewUser_ReturnsCorrectUser() {
             // Given
-            DiscordUserDto discordUser = UserTestDataBuilder.baseDiscordUser();
+            DiscordUser discordUser = UserTestDataBuilder.baseDiscordUser();
             User expectedUser = UserTestDataBuilder.baseUser().build();
 
             when(userRepository.findByDiscordId(discordUser.id())).thenReturn(Mono.empty());
@@ -65,7 +66,7 @@ class UserServiceTest {
                     .email("old@email.com")
                     .build();
 
-            DiscordUserDto updatedInfo = UserTestDataBuilder.discordUserWith("newname", "new@email.com");
+            DiscordUser updatedInfo = UserTestDataBuilder.discordUserWith("newname", "new@email.com");
 
             User updatedUser = UserTestDataBuilder.baseUser()
                     .username("newname")
@@ -92,7 +93,7 @@ class UserServiceTest {
         @DisplayName("동일한 정보로 업데이트해도 정상 처리")
         void updateWithSameInfo_ProcessesNormally() {
             // Given
-            DiscordUserDto discordUser = UserTestDataBuilder.baseDiscordUser();
+            DiscordUser discordUser = UserTestDataBuilder.baseDiscordUser();
             User existingUser = UserTestDataBuilder.baseUser()
                     .username(discordUser.username())
                     .email(discordUser.email())
@@ -157,7 +158,7 @@ class UserServiceTest {
         @DisplayName("Repository 에러 시 예외 전파")
         void repositoryError_PropagatesException() {
             // Given
-            DiscordUserDto discordUser = UserTestDataBuilder.baseDiscordUser();
+            DiscordUser discordUser = UserTestDataBuilder.baseDiscordUser();
             when(userRepository.findByDiscordId(discordUser.id()))
                     .thenReturn(Mono.error(new RuntimeException("DB 연결 실패")));
 

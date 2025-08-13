@@ -1,10 +1,10 @@
 package org.envyw.dadmarketplace.security;
 
-import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
-import org.envyw.dadmarketplace.entity.User;
-import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
-import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
-import org.envyw.dadmarketplace.service.UserService;
+import org.envyw.dadmarketplace.application.service.UserService;
+import org.envyw.dadmarketplace.infrastructure.common.CustomOAuth2LoginSuccessHandler;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtTokenService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -72,7 +72,7 @@ public class CustomOAuth2LoginSuccessHandlerTest {
                 "id");
 
         // when
-        DiscordUserDto result = customOAuth2LoginSuccessHandler.extractDiscordUserInfo(oauth2User);
+        DiscordUser result = customOAuth2LoginSuccessHandler.extractDiscordUserInfo(oauth2User);
 
         // then
         assertThat(result).isNotNull();
@@ -108,7 +108,7 @@ public class CustomOAuth2LoginSuccessHandlerTest {
                 .build();
 
 
-        when(userService.saveOrUpdateUser(any(DiscordUserDto.class)))
+        when(userService.saveOrUpdateUser(any(DiscordUser.class)))
                 .thenReturn(Mono.just(mockUser));
         when(webFilterExchange.getExchange()).thenReturn(exchange);
         when(exchange.getResponse()).thenReturn(response);

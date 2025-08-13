@@ -4,7 +4,8 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -209,7 +210,7 @@ class UserTest {
                 .avatarUrl("https://old-avatar.com/old.png")
                 .build();
 
-        DiscordUserDto discordUser = DiscordUserDto.builder()
+        DiscordUser discordUser = DiscordUser.builder()
                 .id("123456789012345678")
                 .username("newuser")
                 .displayName("New User")
@@ -256,7 +257,7 @@ class UserTest {
         String email = "test@example.com";
         String avatarUrl = "https://cdn.discordapp.com/avatars/123/abc.png";
 
-        DiscordUserDto discordUser = DiscordUserDto.builder()
+        DiscordUser discordUser = DiscordUser.builder()
                 .id(discordId)
                 .username(username)
                 .displayName(displayName)

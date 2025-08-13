@@ -1,7 +1,7 @@
 package org.envyw.dadmarketplace.fixture;
 
-import org.envyw.dadmarketplace.entity.User;
-import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 
 public class UserTestDataBuilder {
 
@@ -25,8 +25,8 @@ public class UserTestDataBuilder {
                 .avatarUrl("https://avatar.com/test.png");
     }
 
-    public static DiscordUserDto baseDiscordUser() {
-        return new DiscordUserDto(
+    public static DiscordUser baseDiscordUser() {
+        return new DiscordUser(
                 "123456789012345678",
                 "testuser",
                 "https://avatar.com/test.png",
@@ -35,8 +35,8 @@ public class UserTestDataBuilder {
         );
     }
 
-    public static DiscordUserDto discordUserWith(String username, String email) {
-        return new DiscordUserDto(
+    public static DiscordUser discordUserWith(String username, String email) {
+        return new DiscordUser(
                 "123456789012345678",
                 username,
                 "https://avatar.com/test.png",

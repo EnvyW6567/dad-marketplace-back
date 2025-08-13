@@ -1,9 +1,10 @@
 package org.envyw.dadmarketplace.repository;
 
 import io.r2dbc.spi.ConnectionFactory;
-import org.envyw.dadmarketplace.config.R2dbcConfig;
-import org.envyw.dadmarketplace.entity.User;
-import org.envyw.dadmarketplace.security.dto.DiscordUserDto;
+import org.envyw.dadmarketplace.infrastructure.config.R2dbcConfig;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.repository.UserRepository;
+import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,8 @@ class UserRepositoryTest {
             .withUsername("testuser")
             .withPassword("testpassword")
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
+    @Autowired
+    private UserRepository userRepository;
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -44,9 +47,6 @@ class UserRepositoryTest {
         registry.add("spring.r2dbc.username", mysql::getUsername);
         registry.add("spring.r2dbc.password", mysql::getPassword);
     }
-
-    @Autowired
-    private UserRepository userRepository;
 
     @BeforeAll
     static void initSchema(@Autowired ConnectionFactory connectionFactory) {
@@ -143,7 +143,7 @@ class UserRepositoryTest {
                 .avatarUrl("https://avatar.com/original.png")
                 .build();
 
-        DiscordUserDto discordUser = DiscordUserDto.builder()
+        DiscordUser discordUser = DiscordUser.builder()
                 .id("111111111111111111")
                 .username("updateduser")
                 .displayName("Updated User")

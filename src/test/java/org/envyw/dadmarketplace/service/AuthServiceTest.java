@@ -1,9 +1,11 @@
 package org.envyw.dadmarketplace.service;
 
-import org.envyw.dadmarketplace.dto.request.RefreshReqDto;
-import org.envyw.dadmarketplace.dto.response.RefreshResDto;
-import org.envyw.dadmarketplace.entity.User;
-import org.envyw.dadmarketplace.security.jwt.JwtTokenService;
+import org.envyw.dadmarketplace.application.dto.request.RefreshReqDto;
+import org.envyw.dadmarketplace.application.dto.response.RefreshResDto;
+import org.envyw.dadmarketplace.application.service.AuthService;
+import org.envyw.dadmarketplace.application.service.UserService;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtTokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

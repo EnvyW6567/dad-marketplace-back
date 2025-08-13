@@ -1,11 +1,11 @@
 package org.envyw.dadmarketplace.integration;
 
 import io.r2dbc.spi.ConnectionFactory;
-import org.envyw.dadmarketplace.common.CustomOAuth2LoginSuccessHandler;
-import org.envyw.dadmarketplace.config.R2dbcConfig;
-import org.envyw.dadmarketplace.entity.User;
-import org.envyw.dadmarketplace.repository.UserRepository;
-import org.envyw.dadmarketplace.service.UserService;
+import org.envyw.dadmarketplace.application.service.UserService;
+import org.envyw.dadmarketplace.infrastructure.common.CustomOAuth2LoginSuccessHandler;
+import org.envyw.dadmarketplace.infrastructure.config.R2dbcConfig;
+import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.infrastructure.repository.UserRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,6 +47,12 @@ class DiscordLoginUserSaveIntegrationTest {
             .withUsername("testuser")
             .withPassword("testpassword")
             .withCommand("--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci");
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private CustomOAuth2LoginSuccessHandler successHandler;
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
@@ -55,15 +61,6 @@ class DiscordLoginUserSaveIntegrationTest {
         registry.add("spring.r2dbc.username", mysql::getUsername);
         registry.add("spring.r2dbc.password", mysql::getPassword);
     }
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private CustomOAuth2LoginSuccessHandler successHandler;
 
     @BeforeAll
     static void initSchema(@Autowired ConnectionFactory connectionFactory) {

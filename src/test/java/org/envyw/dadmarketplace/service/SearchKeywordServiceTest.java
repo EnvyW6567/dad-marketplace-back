@@ -1,9 +1,10 @@
 package org.envyw.dadmarketplace.service;
 
-import org.envyw.dadmarketplace.dto.response.SearchKeywordResDto;
-import org.envyw.dadmarketplace.dto.searchKey.AttributeDto;
-import org.envyw.dadmarketplace.dto.searchKey.EquipmentDto;
-import org.envyw.dadmarketplace.dto.searchKey.RarityDto;
+import org.envyw.dadmarketplace.application.dto.response.SearchKeywordResDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.AttributeDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.EquipmentDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.RarityDto;
+import org.envyw.dadmarketplace.application.service.SearchKeywordService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

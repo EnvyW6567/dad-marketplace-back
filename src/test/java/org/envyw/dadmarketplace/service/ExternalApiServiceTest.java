@@ -1,5 +1,6 @@
 package org.envyw.dadmarketplace.service;
 
+import org.envyw.dadmarketplace.application.service.ExternalApiService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,22 +30,17 @@ import static org.mockito.Mockito.*;
 @DisplayName("ExternalApiService 테스트")
 class ExternalApiServiceTest {
 
+    private final String EXTERNAL_API_BASE_URL = "https://api.darkerdb.com/v1";
     @Mock
     private WebClient webClient;
-
     @Mock
     private WebClient.RequestHeadersUriSpec requestHeadersUriSpec;
-
     @Mock
     private WebClient.RequestHeadersSpec requestHeadersSpec;
-
     @Mock
     private WebClient.ResponseSpec responseSpec;
-
     @InjectMocks
     private ExternalApiService externalApiService;
-
-    private final String EXTERNAL_API_BASE_URL = "https://api.darkerdb.com/v1";
 
     @BeforeEach
     void setUp(TestInfo testInfo) {
