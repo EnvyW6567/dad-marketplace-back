@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.application.service.UserService;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
-import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtTokenService;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAdapter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
     private final UserService userService;
-    private final JwtTokenService jwtTokenService;
+    private final JwtAdapter jwtAdapter;
     @Value("${app.domain}")
     private String DOMAIN;
     @Value("${app.login.redirect-url}")
@@ -58,17 +58,17 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
 
         if (authentication instanceof OAuth2AuthenticationToken oauth2Token) {
             OAuth2User oauth2User = oauth2Token.getPrincipal();
-            DiscordUser userInfo = this.extractDiscordUserInfo(oauth2User);
+            DiscordUser discordUser = this.extractDiscordUserInfo(oauth2User);
 
-            log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}, displayName={}", userInfo.id(),
-                    userInfo.username(),
-                    userInfo.avatarUrl(),
-                    userInfo.displayName());
+            log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}, displayName={}", discordUser.id(),
+                    discordUser.username(),
+                    discordUser.avatarUrl(),
+                    discordUser.displayName());
 
-            return userService.saveOrUpdateUser(userInfo)
-                    .flatMap(savedUser -> {
-                        String accessToken = jwtTokenService.generateAccessToken(savedUser);
-                        String refreshToken = jwtTokenService.generateRefreshToken(savedUser);
+            return userService.saveOrUpdateUser(discordUser)
+                    .flatMap(userId -> {
+                        String accessToken = jwtAdapter.generateAccessToken(userId);
+                        String refreshToken = jwtAdapter.generateRefreshToken(userId);
 
                         return sendJwtTokenResponse(response, accessToken, refreshToken);
                     })

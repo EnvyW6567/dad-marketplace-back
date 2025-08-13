@@ -15,30 +15,33 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public Mono<User> saveOrUpdateUser(DiscordUser discordUser) {
-        return userRepository.findByDiscordId(discordUser.id())
-                .flatMap(existingUser -> {
-                    log.info("기존 사용자 정보 업데이트: discordId={}, username={}",
-                            discordUser.id(), discordUser.username());
+    public Mono<Long> saveOrUpdateUser(DiscordUser discordUser) {
+        Mono<User> user = userRepository.findByDiscordId(discordUser.id())
+                .flatMap(existingUser -> updateUser(existingUser, discordUser))
+                .switchIfEmpty(Mono.defer(() -> createUser(discordUser)));
 
-                    existingUser.updateInfo(discordUser);
-
-                    return userRepository.save(existingUser);
-                })
-                .switchIfEmpty(
-                        Mono.defer(() -> {
-                            log.info("신규 사용자 저장: discordId={}, username={}",
-                                    discordUser.id(), discordUser.username());
-
-                            User newUser = User.fromDiscordUser(discordUser);
-
-                            return userRepository.save(newUser);
-                        })
-                );
+        return user.map(User::getId);
     }
 
-    public Mono<User> findByDiscordId(String discordId) {
-        return userRepository.findByDiscordId(discordId);
+    public Mono<Long> findByDiscordId(String discordId) {
+        // TODO: Validation and Throw Exception
+        return userRepository.findIdByDiscordId(discordId);
     }
 
+    private Mono<User> updateUser(User user, DiscordUser discordUser) {
+        log.info("기존 사용자 정보 업데이트: discordId={}, username={}",
+                discordUser.id(), discordUser.username());
+
+        user.updateInfo(discordUser);
+        return userRepository.save(user);
+    }
+
+    private Mono<User> createUser(DiscordUser discordUser) {
+        log.info("신규 사용자 저장: discordId={}, username={}",
+                discordUser.id(), discordUser.username());
+
+        User newUser = User.fromDiscordUser(discordUser);
+        return userRepository.save(newUser);
+
+    }
 }

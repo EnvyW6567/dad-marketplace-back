@@ -3,7 +3,7 @@ package org.envyw.dadmarketplace.presentation.controller;
 import lombok.RequiredArgsConstructor;
 import org.envyw.dadmarketplace.application.dto.request.RefreshReqDto;
 import org.envyw.dadmarketplace.application.dto.response.RefreshResDto;
-import org.envyw.dadmarketplace.application.service.AuthService;
+import org.envyw.dadmarketplace.application.service.JwtService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthService authService;
+    private final JwtService jwtService;
 
     @GetMapping("/login/discord")
     public Mono<Void> discordLogin(ServerWebExchange exchange) {
@@ -39,6 +39,6 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public Mono<RefreshResDto> refresh(@RequestBody RefreshReqDto refreshReqDto) {
-        return authService.refresh(refreshReqDto);
+        return jwtService.refresh(refreshReqDto);
     }
 }

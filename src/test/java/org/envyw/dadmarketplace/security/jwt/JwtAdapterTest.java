@@ -1,7 +1,7 @@
 package org.envyw.dadmarketplace.security.jwt;
 
 import org.envyw.dadmarketplace.infrastructure.persistence.User;
-import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtTokenService;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAdapter;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.exception.InvalidTokenTypeException;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.exception.JwtAuthenticationException;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("JWT 토큰 서비스 테스트")
-class JwtTokenServiceTest {
+class JwtAdapterTest {
 
     @Mock
     private JwtEncoder jwtEncoder;
@@ -36,7 +36,7 @@ class JwtTokenServiceTest {
     private JwtDecoder jwtDecoder;
 
     @InjectMocks
-    private JwtTokenService jwtTokenService;
+    private JwtAdapter jwtAdapter;
 
     private User testUser;
 
@@ -63,7 +63,7 @@ class JwtTokenServiceTest {
         when(jwtEncoder.encode(any(JwtEncoderParameters.class))).thenReturn(mockJwt);
 
         // When
-        String token = jwtTokenService.generateAccessToken(testUser);
+        String token = jwtAdapter.generateAccessToken(testUser);
 
         // Then
         assertThat(token).isNotNull();
@@ -85,7 +85,7 @@ class JwtTokenServiceTest {
         when(jwtEncoder.encode(any(JwtEncoderParameters.class))).thenReturn(mockJwt);
 
         // When
-        String token = jwtTokenService.generateRefreshToken(testUser);
+        String token = jwtAdapter.generateRefreshToken(testUser);
 
         // Then
         assertThat(token).isNotNull();
@@ -105,11 +105,11 @@ class JwtTokenServiceTest {
     @DisplayName("null 사용자로 토큰 생성 시 예외가 발생해야 한다")
     void shouldThrowExceptionWhenUserIsNull() {
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.generateAccessToken(null))
+        assertThatThrownBy(() -> jwtAdapter.generateAccessToken(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사용자 정보는 null일 수 없습니다");
 
-        assertThatThrownBy(() -> jwtTokenService.generateRefreshToken(null))
+        assertThatThrownBy(() -> jwtAdapter.generateRefreshToken(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("사용자 정보는 null일 수 없습니다");
 
@@ -126,7 +126,7 @@ class JwtTokenServiceTest {
         when(jwtDecoder.decode(tokenValue)).thenReturn(jwt);
 
         // When
-        Authentication authentication = jwtTokenService.authenticate(tokenValue);
+        Authentication authentication = jwtAdapter.extractDiscordId(tokenValue);
 
         // Then
         assertThat(authentication).isInstanceOf(JwtAuthenticationToken.class);
@@ -146,7 +146,7 @@ class JwtTokenServiceTest {
                 .thenThrow(new JwtException("Invalid JWT token"));
 
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.authenticate(invalidToken))
+        assertThatThrownBy(() -> jwtAdapter.extractDiscordId(invalidToken))
                 .isInstanceOf(JwtAuthenticationException.class)
                 .hasMessage("JWT 토큰 인증에 실패했습니다")
                 .hasCauseInstanceOf(JwtException.class);
@@ -163,7 +163,7 @@ class JwtTokenServiceTest {
                 .thenThrow(new JwtException("JWT token is expired"));
 
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.authenticate(expiredToken))
+        assertThatThrownBy(() -> jwtAdapter.extractDiscordId(expiredToken))
                 .isInstanceOf(JwtAuthenticationException.class)
                 .hasMessage("JWT 토큰 인증에 실패했습니다");
 
@@ -177,9 +177,9 @@ class JwtTokenServiceTest {
         Jwt jwt = createMockJwt("ACCESS");
 
         // When
-        String discordId = jwtTokenService.extractDiscordId(jwt);
-        String username = jwtTokenService.extractUsername(jwt);
-        String displayName = jwtTokenService.extractDisplayName(jwt);
+        String discordId = jwtAdapter.extractDiscordId(jwt);
+        String username = jwtAdapter.extractUsername(jwt);
+        String displayName = jwtAdapter.extractDisplayName(jwt);
 
         // Then
         assertThat(discordId).isEqualTo("123456789012345678");
@@ -195,11 +195,11 @@ class JwtTokenServiceTest {
         Jwt refreshJwt = createMockJwt("REFRESH");
 
         // When & Then
-        assertThat(jwtTokenService.isAccessToken(accessJwt)).isTrue();
-        assertThat(jwtTokenService.isRefreshToken(accessJwt)).isFalse();
+        assertThat(jwtAdapter.isAccessToken(accessJwt)).isTrue();
+        assertThat(jwtAdapter.isRefreshToken(accessJwt)).isFalse();
 
-        assertThat(jwtTokenService.isAccessToken(refreshJwt)).isFalse();
-        assertThat(jwtTokenService.isRefreshToken(refreshJwt)).isTrue();
+        assertThat(jwtAdapter.isAccessToken(refreshJwt)).isFalse();
+        assertThat(jwtAdapter.isRefreshToken(refreshJwt)).isTrue();
     }
 
     @Test
@@ -212,7 +212,7 @@ class JwtTokenServiceTest {
         when(jwtEncoder.encode(any(JwtEncoderParameters.class))).thenReturn(newAccessJwt);
 
         // When
-        String newAccessToken = jwtTokenService.renewAccessToken(refreshJwt, testUser);
+        String newAccessToken = jwtAdapter.refreshAccessToken(refreshJwt, testUser);
 
         // Then
         assertThat(newAccessToken).isNotNull();
@@ -232,7 +232,7 @@ class JwtTokenServiceTest {
         Jwt accessJwt = createMockJwt("ACCESS");
 
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.renewAccessToken(accessJwt, testUser))
+        assertThatThrownBy(() -> jwtAdapter.refreshAccessToken(accessJwt, testUser))
                 .isInstanceOf(InvalidTokenTypeException.class)
                 .hasMessage("Refresh Token만 사용하여 토큰을 갱신할 수 있습니다");
 
@@ -247,7 +247,7 @@ class JwtTokenServiceTest {
         String bearerToken = "Bearer valid.jwt.token";
 
         // When
-        String extractedToken = jwtTokenService.extractTokenFromBearer(bearerToken);
+        String extractedToken = jwtAdapter.extractTokenFromBearer(bearerToken);
 
         // Then
         assertThat(extractedToken).isEqualTo("valid.jwt.token");
@@ -260,7 +260,7 @@ class JwtTokenServiceTest {
         String tokenWithoutBearer = "valid.jwt.token";
 
         // When
-        String extractedToken = jwtTokenService.extractTokenFromBearer(tokenWithoutBearer);
+        String extractedToken = jwtAdapter.extractTokenFromBearer(tokenWithoutBearer);
 
         // Then
         assertThat(extractedToken).isEqualTo("valid.jwt.token");
@@ -270,15 +270,15 @@ class JwtTokenServiceTest {
     @DisplayName("빈 문자열이나 null 토큰은 예외를 발생시켜야 한다")
     void shouldThrowExceptionForEmptyOrNullToken() {
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.extractTokenFromBearer(null))
+        assertThatThrownBy(() -> jwtAdapter.extractTokenFromBearer(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("토큰이 비어있습니다");
 
-        assertThatThrownBy(() -> jwtTokenService.extractTokenFromBearer(""))
+        assertThatThrownBy(() -> jwtAdapter.extractTokenFromBearer(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("토큰이 비어있습니다");
 
-        assertThatThrownBy(() -> jwtTokenService.extractTokenFromBearer("   "))
+        assertThatThrownBy(() -> jwtAdapter.extractTokenFromBearer("   "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("토큰이 비어있습니다");
     }
@@ -291,7 +291,7 @@ class JwtTokenServiceTest {
         when(jwtEncoder.encode(any(JwtEncoderParameters.class))).thenReturn(mockJwt);
 
         // When
-        jwtTokenService.generateAccessToken(testUser);
+        jwtAdapter.generateAccessToken(testUser);
 
         // Then - ArgumentCaptor를 사용하여 전달된 파라미터 상세 검증
         verify(jwtEncoder).encode(argThat(params -> {
@@ -322,7 +322,7 @@ class JwtTokenServiceTest {
                 .thenThrow(new JwtException("Malformed JWT token"));
 
         // When & Then
-        assertThatThrownBy(() -> jwtTokenService.authenticate(malformedToken))
+        assertThatThrownBy(() -> jwtAdapter.extractDiscordId(malformedToken))
                 .isInstanceOf(JwtAuthenticationException.class)
                 .hasMessage("JWT 토큰 인증에 실패했습니다")
                 .hasCauseInstanceOf(JwtException.class);

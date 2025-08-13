@@ -1,7 +1,7 @@
 package org.envyw.dadmarketplace.security.jwt;
 
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAdapter;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAuthenticationWebFilter;
-import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtTokenService;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.exception.JwtAuthenticationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -38,7 +38,7 @@ class JwtAuthenticationWebFilterTest {
     private JwtAuthenticationWebFilter jwtAuthenticationWebFilter;
 
     @Mock
-    private JwtTokenService jwtTokenService;
+    private JwtAdapter jwtAdapter;
 
     @Mock
     private WebFilterChain filterChain;
@@ -47,7 +47,7 @@ class JwtAuthenticationWebFilterTest {
 
     @BeforeEach
     void setUp() {
-        jwtAuthenticationWebFilter = new JwtAuthenticationWebFilter(jwtTokenService);
+        jwtAuthenticationWebFilter = new JwtAuthenticationWebFilter(jwtAdapter);
 
         // Mock FilterChain이 빈 Mono를 반환하도록 설정
         when(filterChain.filter(any(ServerWebExchange.class))).thenReturn(Mono.empty());
@@ -68,8 +68,8 @@ class JwtAuthenticationWebFilterTest {
 
         // JWT 인증 성공을 위한 Mock 설정
         JwtAuthenticationToken mockAuthentication = createMockAuthentication();
-        when(jwtTokenService.extractTokenFromBearer(bearerToken)).thenReturn(jwtToken);
-        when(jwtTokenService.authenticate(jwtToken)).thenReturn(mockAuthentication);
+        when(jwtAdapter.extractTokenFromBearer(bearerToken)).thenReturn(jwtToken);
+        when(jwtAdapter.extractDiscordId(jwtToken)).thenReturn(mockAuthentication);
 
         // When
         Mono<Void> result = jwtAuthenticationWebFilter.filter(exchange, filterChain);
@@ -79,8 +79,8 @@ class JwtAuthenticationWebFilterTest {
                 .verifyComplete();
 
         // 검증
-        verify(jwtTokenService).extractTokenFromBearer(bearerToken);
-        verify(jwtTokenService).authenticate(jwtToken);
+        verify(jwtAdapter).extractTokenFromBearer(bearerToken);
+        verify(jwtAdapter).extractDiscordId(jwtToken);
         verify(filterChain).filter(exchange);
     }
 
@@ -98,8 +98,8 @@ class JwtAuthenticationWebFilterTest {
         exchange = MockServerWebExchange.from(request);
 
         // JWT 인증 실패를 위한 Mock 설정
-        when(jwtTokenService.extractTokenFromBearer(bearerToken)).thenReturn(invalidToken);
-        when(jwtTokenService.authenticate(invalidToken))
+        when(jwtAdapter.extractTokenFromBearer(bearerToken)).thenReturn(invalidToken);
+        when(jwtAdapter.extractDiscordId(invalidToken))
                 .thenThrow(new JwtAuthenticationException("Invalid token"));
 
         // When
@@ -110,8 +110,8 @@ class JwtAuthenticationWebFilterTest {
                 .verifyComplete();
 
         // 검증: 인증 실패해도 다음 필터로 진행
-        verify(jwtTokenService).extractTokenFromBearer(bearerToken);
-        verify(jwtTokenService).authenticate(invalidToken);
+        verify(jwtAdapter).extractTokenFromBearer(bearerToken);
+        verify(jwtAdapter).extractDiscordId(invalidToken);
         verify(filterChain).filter(exchange);
     }
 
@@ -132,8 +132,8 @@ class JwtAuthenticationWebFilterTest {
                 .verifyComplete();
 
         // 검증: JWT 관련 메서드가 호출되지 않고 바로 다음 필터로 진행
-        verify(jwtTokenService, never()).extractTokenFromBearer(anyString());
-        verify(jwtTokenService, never()).authenticate(anyString());
+        verify(jwtAdapter, never()).extractTokenFromBearer(anyString());
+        verify(jwtAdapter, never()).extractDiscordId(anyString());
         verify(filterChain).filter(exchange);
     }
 
@@ -155,8 +155,8 @@ class JwtAuthenticationWebFilterTest {
                 .verifyComplete();
 
         // 검증: JWT 관련 메서드가 호출되지 않음
-        verify(jwtTokenService, never()).extractTokenFromBearer(anyString());
-        verify(jwtTokenService, never()).authenticate(anyString());
+        verify(jwtAdapter, never()).extractTokenFromBearer(anyString());
+        verify(jwtAdapter, never()).extractDiscordId(anyString());
         verify(filterChain).filter(exchange);
     }
 
@@ -186,8 +186,8 @@ class JwtAuthenticationWebFilterTest {
                     .verifyComplete();
 
             // 검증: OAuth2 경로에서는 JWT 처리하지 않음
-            verify(jwtTokenService, never()).extractTokenFromBearer(anyString());
-            verify(jwtTokenService, never()).authenticate(anyString());
+            verify(jwtAdapter, never()).extractTokenFromBearer(anyString());
+            verify(jwtAdapter, never()).extractDiscordId(anyString());
         }
 
         verify(filterChain, times(oauth2Paths.length)).filter(any(ServerWebExchange.class));
@@ -206,7 +206,7 @@ class JwtAuthenticationWebFilterTest {
         exchange = MockServerWebExchange.from(request);
 
         // 토큰 추출 시 예외 발생
-        when(jwtTokenService.extractTokenFromBearer(invalidBearerToken))
+        when(jwtAdapter.extractTokenFromBearer(invalidBearerToken))
                 .thenThrow(new IllegalArgumentException("토큰이 비어있습니다"));
 
         // When
@@ -217,8 +217,8 @@ class JwtAuthenticationWebFilterTest {
                 .verifyComplete();
 
         // 검증: 예외 발생해도 다음 필터로 진행
-        verify(jwtTokenService).extractTokenFromBearer(invalidBearerToken);
-        verify(jwtTokenService, never()).authenticate(anyString());
+        verify(jwtAdapter).extractTokenFromBearer(invalidBearerToken);
+        verify(jwtAdapter, never()).extractDiscordId(anyString());
         verify(filterChain).filter(exchange);
     }
 
@@ -236,8 +236,8 @@ class JwtAuthenticationWebFilterTest {
         exchange = MockServerWebExchange.from(request);
 
         JwtAuthenticationToken mockAuthentication = createMockAuthentication();
-        when(jwtTokenService.extractTokenFromBearer(bearerToken)).thenReturn(jwtToken);
-        when(jwtTokenService.authenticate(jwtToken)).thenReturn(mockAuthentication);
+        when(jwtAdapter.extractTokenFromBearer(bearerToken)).thenReturn(jwtToken);
+        when(jwtAdapter.extractDiscordId(jwtToken)).thenReturn(mockAuthentication);
 
         // When
         TestPublisher<Void> chainPublisher = TestPublisher.create();
@@ -278,8 +278,8 @@ class JwtAuthenticationWebFilterTest {
         StepVerifier.create(result)
                 .verifyComplete();
 
-        verify(jwtTokenService, never()).extractTokenFromBearer(anyString());
-        verify(jwtTokenService, never()).authenticate(anyString());
+        verify(jwtAdapter, never()).extractTokenFromBearer(anyString());
+        verify(jwtAdapter, never()).extractDiscordId(anyString());
         verify(filterChain).filter(exchange);
     }
 

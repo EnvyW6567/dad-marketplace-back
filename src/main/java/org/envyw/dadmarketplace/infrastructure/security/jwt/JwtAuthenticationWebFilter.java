@@ -18,7 +18,8 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class JwtAuthenticationWebFilter implements WebFilter {
 
-    private final JwtTokenService jwtTokenService;
+    private final JwtAdapter jwtAdapter;
+    private final JwtAuthenticator jwtAuthenticator;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
@@ -35,8 +36,8 @@ public class JwtAuthenticationWebFilter implements WebFilter {
         }
 
         try {
-            String token = jwtTokenService.extractTokenFromBearer(authHeader);
-            Authentication authentication = jwtTokenService.authenticate(token);
+            String token = jwtAuthenticator.extractTokenFromBearer(authHeader);
+            Authentication authentication = jwtAuthenticator.authenticate(token);
 
             log.info("JWT 인증 성공: path={}, user={}", path, authentication.getName());
 

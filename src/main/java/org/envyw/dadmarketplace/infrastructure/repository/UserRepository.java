@@ -8,4 +8,6 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface UserRepository extends ReactiveCrudRepository<User, Long> {
     Mono<User> findByDiscordId(String discordId);
+
+    Mono<Long> findIdByDiscordId(String discordId);
 }
