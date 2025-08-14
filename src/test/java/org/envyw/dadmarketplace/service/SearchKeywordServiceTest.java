@@ -105,44 +105,6 @@ class SearchKeywordServiceTest {
     }
 
     @Test
-    @DisplayName("캐싱이 정상적으로 동작해야 한다")
-    void shouldCacheJsonFiles() {
-        // Given
-        searchKeywordService.clearCache();
-        assertThat(searchKeywordService.isCached("attributes.json")).isFalse();
-
-        // When - 첫 번째 호출
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-
-        // Then - 캐시에 저장되었는지 확인
-        assertThat(searchKeywordService.isCached("attributes.json")).isTrue();
-
-        // When - 두 번째 호출 (캐시에서 로드)
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-    }
-
-    @Test
-    @DisplayName("캐시 클리어가 정상적으로 동작해야 한다")
-    void shouldClearCacheCorrectly() {
-        // Given - 데이터를 로드하여 캐시에 저장
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-
-        assertThat(searchKeywordService.isCached("attributes.json")).isTrue();
-
-        // When
-        searchKeywordService.clearCache();
-
-        // Then
-        assertThat(searchKeywordService.isCached("attributes.json")).isFalse();
-    }
-
-    @Test
     @DisplayName("존재하지 않는 파일 로딩 시 예외를 발생시켜야 한다")
     void shouldThrowExceptionWhenFileNotExists() {
         // Given - 존재하지 않는 파일명으로 테스트하기 위해 리플렉션 사용

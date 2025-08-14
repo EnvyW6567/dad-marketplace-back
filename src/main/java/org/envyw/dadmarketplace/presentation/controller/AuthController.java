@@ -11,7 +11,6 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,13 +27,6 @@ public class AuthController {
         response.getHeaders().setLocation(URI.create("/oauth2/authorization/discord"));
 
         return response.setComplete();
-    }
-
-    @GetMapping("/status")
-    public Mono<Map<String, Boolean>> getAuthStatus(ServerWebExchange exchange) {
-        return exchange.getPrincipal()
-                .map(principal -> Map.of("authenticated", true))
-                .defaultIfEmpty(Map.of("authenticated", false));
     }
 
     @PostMapping("/refresh")

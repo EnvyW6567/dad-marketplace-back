@@ -9,12 +9,10 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
 import static org.envyw.dadmarketplace.infrastructure.security.jwt.constants.JwtConstants.AUTHORITIES_CLAIM;
-import static org.envyw.dadmarketplace.infrastructure.security.jwt.constants.JwtConstants.BEARER_PREFIX;
 
 @Component
 @RequiredArgsConstructor
@@ -41,18 +39,6 @@ public class JwtAuthenticator {
             log.error("JWT 토큰 인증 실패: {}", e.getMessage());
             throw new JwtAuthenticationException("JWT 토큰 인증에 실패했습니다", e);
         }
-    }
-
-    public String extractTokenFromBearer(String bearerToken) {
-        if (!StringUtils.hasText(bearerToken)) {
-            throw new IllegalArgumentException("토큰이 비어있습니다");
-        }
-
-        if (bearerToken.startsWith(BEARER_PREFIX)) {
-            return bearerToken.substring(BEARER_PREFIX.length());
-        }
-
-        return bearerToken;
     }
 
 }

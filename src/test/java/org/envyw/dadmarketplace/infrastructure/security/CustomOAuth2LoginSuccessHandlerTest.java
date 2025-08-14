@@ -1,10 +1,11 @@
-package org.envyw.dadmarketplace.security;
+package org.envyw.dadmarketplace.infrastructure.security;
 
 import org.envyw.dadmarketplace.application.service.UserService;
 import org.envyw.dadmarketplace.infrastructure.common.CustomOAuth2LoginSuccessHandler;
 import org.envyw.dadmarketplace.infrastructure.persistence.User;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAdapter;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -46,6 +47,8 @@ public class CustomOAuth2LoginSuccessHandlerTest {
     private ServerWebExchange exchange;
     @Mock
     private MockServerHttpResponse response;
+    @Mock
+    private JwtProvider jwtProvider;
 
     @MockitoBean
     private JwtAdapter jwtAdapter;
@@ -109,14 +112,14 @@ public class CustomOAuth2LoginSuccessHandlerTest {
 
 
         when(userService.saveOrUpdateUser(any(DiscordUser.class)))
-                .thenReturn(Mono.just(mockUser));
+                .thenReturn(Mono.just(1L));
         when(webFilterExchange.getExchange()).thenReturn(exchange);
         when(exchange.getResponse()).thenReturn(response);
         when(response.setStatusCode(HttpStatus.FOUND)).thenReturn(true);
         when(response.getHeaders()).thenReturn(mock(HttpHeaders.class));
         when(response.setComplete()).thenReturn(Mono.empty());
-        when(jwtAdapter.generateAccessToken(any(User.class))).thenReturn("jwt.token.access");
-        when(jwtAdapter.generateRefreshToken(any(User.class))).thenReturn("jwt.token.refresh");
+        when(jwtProvider.generateAccessToken(any(Long.class))).thenReturn("jwt.token.access");
+        when(jwtProvider.generateRefreshToken(any(Long.class))).thenReturn("jwt.token.refresh");
 
         // when
         Mono<Void> result = customOAuth2LoginSuccessHandler.onAuthenticationSuccess(webFilterExchange, authentication);

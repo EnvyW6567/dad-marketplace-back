@@ -10,4 +10,6 @@ public interface UserRepository extends ReactiveCrudRepository<User, Long> {
     Mono<User> findByDiscordId(String discordId);
 
     Mono<Long> findIdByDiscordId(String discordId);
+
+    Mono<User> findById(Long id);
 }
