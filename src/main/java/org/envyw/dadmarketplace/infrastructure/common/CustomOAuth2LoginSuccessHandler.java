@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.application.service.UserService;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
-import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtAdapter;
+import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -27,7 +27,7 @@ import java.util.Optional;
 public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHandler {
 
     private final UserService userService;
-    private final JwtAdapter jwtAdapter;
+    private final JwtProvider jwtProvider;
     @Value("${app.domain}")
     private String DOMAIN;
     @Value("${app.login.redirect-url}")
@@ -67,8 +67,8 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
 
             return userService.saveOrUpdateUser(discordUser)
                     .flatMap(userId -> {
-                        String accessToken = jwtAdapter.generateAccessToken(userId);
-                        String refreshToken = jwtAdapter.generateRefreshToken(userId);
+                        String accessToken = jwtProvider.generateAccessToken(userId);
+                        String refreshToken = jwtProvider.generateRefreshToken(userId);
 
                         return sendJwtTokenResponse(response, accessToken, refreshToken);
                     })
