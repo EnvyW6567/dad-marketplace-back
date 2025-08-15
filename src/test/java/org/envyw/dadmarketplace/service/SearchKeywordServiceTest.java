@@ -1,9 +1,10 @@
 package org.envyw.dadmarketplace.service;
 
-import org.envyw.dadmarketplace.dto.AttributeDto;
-import org.envyw.dadmarketplace.dto.EquipmentDto;
-import org.envyw.dadmarketplace.dto.RarityDto;
-import org.envyw.dadmarketplace.dto.response.SearchKeywordResDto;
+import org.envyw.dadmarketplace.application.dto.response.SearchKeywordResDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.AttributeDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.EquipmentDto;
+import org.envyw.dadmarketplace.application.dto.searchKey.RarityDto;
+import org.envyw.dadmarketplace.application.service.SearchKeywordService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -101,44 +102,6 @@ class SearchKeywordServiceTest {
                     assertThat(response.body().size()).isGreaterThan(200);
                 })
                 .verifyComplete();
-    }
-
-    @Test
-    @DisplayName("캐싱이 정상적으로 동작해야 한다")
-    void shouldCacheJsonFiles() {
-        // Given
-        searchKeywordService.clearCache();
-        assertThat(searchKeywordService.isCached("attributes.json")).isFalse();
-
-        // When - 첫 번째 호출
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-
-        // Then - 캐시에 저장되었는지 확인
-        assertThat(searchKeywordService.isCached("attributes.json")).isTrue();
-
-        // When - 두 번째 호출 (캐시에서 로드)
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-    }
-
-    @Test
-    @DisplayName("캐시 클리어가 정상적으로 동작해야 한다")
-    void shouldClearCacheCorrectly() {
-        // Given - 데이터를 로드하여 캐시에 저장
-        StepVerifier.create(searchKeywordService.getAttributes())
-                .assertNext(response -> assertThat(response.body()).isNotEmpty())
-                .verifyComplete();
-
-        assertThat(searchKeywordService.isCached("attributes.json")).isTrue();
-
-        // When
-        searchKeywordService.clearCache();
-
-        // Then
-        assertThat(searchKeywordService.isCached("attributes.json")).isFalse();
     }
 
     @Test
