@@ -39,7 +39,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
 
         if (authentication instanceof OAuth2AuthenticationToken oauth2Token) {
             OAuth2User oauth2User = oauth2Token.getPrincipal();
-            DiscordUser discordUser = this.extractDiscordUserInfo(oauth2User);
+            DiscordUser discordUser = this.extractDiscordUser(oauth2User);
 
             log.info("디스코드 사용자 인증 성공: id={}, username={}, avatar={}, displayName={}", discordUser.id(),
                     discordUser.username(),
@@ -63,7 +63,7 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
         return redirectToHomePage(response);
     }
 
-    private DiscordUser extractDiscordUserInfo(OAuth2User oauth2User) {
+    private DiscordUser extractDiscordUser(OAuth2User oauth2User) {
         String id = oauth2User.getAttribute("id");
         String username = oauth2User.getAttribute("username");
         String avatar = oauth2User.getAttribute("avatar");
