@@ -33,21 +33,6 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
     @Value("${app.login.redirect-url}")
     private String REDIRECT_URL;
 
-    public DiscordUser extractDiscordUserInfo(OAuth2User oauth2User) {
-        String id = oauth2User.getAttribute("id");
-        String username = oauth2User.getAttribute("username");
-        String avatar = oauth2User.getAttribute("avatar");
-        String email = oauth2User.getAttribute("email");
-        String displayName = oauth2User.getAttribute("global_name");
-
-        String avatarUrl = Optional.ofNullable(avatar)
-                .filter(a -> !a.isBlank())
-                .map(a -> String.format("https://cdn.discordapp.com/avatars/%s/%s.png", id, a))
-                .orElse("https://dafault-avatar-url.png");
-
-        return new DiscordUser(id, username, avatarUrl, email, displayName);
-    }
-
     @Override
     public Mono<Void> onAuthenticationSuccess(WebFilterExchange webFilterExchange, Authentication authentication) {
         ServerHttpResponse response = webFilterExchange.getExchange().getResponse();
@@ -76,6 +61,21 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
         }
 
         return redirectToHomePage(response);
+    }
+
+    private DiscordUser extractDiscordUserInfo(OAuth2User oauth2User) {
+        String id = oauth2User.getAttribute("id");
+        String username = oauth2User.getAttribute("username");
+        String avatar = oauth2User.getAttribute("avatar");
+        String email = oauth2User.getAttribute("email");
+        String displayName = oauth2User.getAttribute("global_name");
+
+        String avatarUrl = Optional.ofNullable(avatar)
+                .filter(a -> !a.isBlank())
+                .map(a -> String.format("https://cdn.discordapp.com/avatars/%s/%s.png", id, a))
+                .orElse("https://dafault-avatar-url.png");
+
+        return new DiscordUser(id, username, avatarUrl, email, displayName);
     }
 
     private Mono<Void> sendJwtTokenResponse(ServerHttpResponse response,
