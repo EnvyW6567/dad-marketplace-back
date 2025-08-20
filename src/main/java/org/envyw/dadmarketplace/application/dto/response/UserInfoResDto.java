@@ -1,7 +1,7 @@
 package org.envyw.dadmarketplace.application.dto.response;
 
 import lombok.Builder;
-import org.envyw.dadmarketplace.infrastructure.persistence.User;
+import org.envyw.dadmarketplace.domain.User;
 
 @Builder
 public record UserInfoResDto(
@@ -10,7 +10,6 @@ public record UserInfoResDto(
         String username
 ) {
 
-    // TODO: Infra's Persistence User >> Domain User / 변경 필요
     public static UserInfoResDto fromEntity(User user) {
         return UserInfoResDto.builder()
                 .avatarUrl(user.getAvatarUrl())

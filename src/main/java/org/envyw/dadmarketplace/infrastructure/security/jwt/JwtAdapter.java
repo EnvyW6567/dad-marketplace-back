@@ -17,7 +17,7 @@ import static org.envyw.dadmarketplace.infrastructure.security.jwt.constants.Jwt
 public class JwtAdapter implements JwtOutPort {
     private final JwtProvider jwtProvider;
     private final JwtAuthenticator jwtAuthenticator;
-    
+
     public String refresh(String refreshToken) {
         JwtAuthenticationToken authentication = jwtAuthenticator.authenticate(refreshToken);
         Jwt jwt = authentication.getToken();

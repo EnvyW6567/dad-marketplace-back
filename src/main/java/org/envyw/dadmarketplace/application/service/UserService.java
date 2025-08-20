@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.application.dto.response.UserInfoResDto;
 import org.envyw.dadmarketplace.application.port.out.AuthenticationPort;
+import org.envyw.dadmarketplace.application.repository.UserRepository;
 import org.envyw.dadmarketplace.domain.AuthenticatedUser;
-import org.envyw.dadmarketplace.infrastructure.persistence.User;
-import org.envyw.dadmarketplace.infrastructure.repository.UserRepository;
+import org.envyw.dadmarketplace.domain.User;
+import org.envyw.dadmarketplace.domain.factory.UserFactory;
 import org.envyw.dadmarketplace.infrastructure.security.auth.exception.UnauthorizedException;
 import org.envyw.dadmarketplace.infrastructure.security.auth.exception.UserNotFoundException;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
@@ -26,12 +27,7 @@ public class UserService {
                 .flatMap(existingUser -> updateUser(existingUser, discordUser))
                 .switchIfEmpty(Mono.defer(() -> createUser(discordUser)));
 
-        return user.map(User::getId);
-    }
-
-    public Mono<Long> findByDiscordId(String discordId) {
-        // TODO: Validation and Throw Exception
-        return userRepository.findIdByDiscordId(discordId);
+        return user.map(User::getUserId);
     }
 
     public Mono<UserInfoResDto> getCurrentUserInfo() {
@@ -49,7 +45,7 @@ public class UserService {
         log.info("기존 사용자 정보 업데이트: discordId={}, username={}",
                 discordUser.id(), discordUser.username());
 
-        user.updateInfo(discordUser);
+        user.updateByDiscordUser(discordUser);
         return userRepository.save(user);
     }
 
@@ -57,7 +53,7 @@ public class UserService {
         log.info("신규 사용자 저장: discordId={}, username={}",
                 discordUser.id(), discordUser.username());
 
-        User newUser = User.fromDiscordUser(discordUser);
+        User newUser = UserFactory.fromDiscordUser(discordUser);
         return userRepository.save(newUser);
 
     }
