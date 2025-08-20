@@ -2,12 +2,12 @@ package org.envyw.dadmarketplace.infrastructure.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.envyw.dadmarketplace.common.enums.TokenType;
+import org.envyw.dadmarketplace.common.utils.CookieUtil;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.exception.JwtAuthenticationException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -18,25 +18,20 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class JwtAuthenticationWebFilter implements WebFilter {
 
-    private final JwtUtil jwtUtil;
+    private final CookieUtil cookieUtil;
     private final JwtAuthenticator jwtAuthenticator;
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getPath().value();
 
+        // 인증이 필요하지 않는 Path는 필터링 대상에서 제외
         if (isOAuth2Path(path)) {
             return chain.filter(exchange);
         }
 
-        String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-
-        if (!StringUtils.hasText(authHeader) || !authHeader.startsWith("Bearer ")) {
-            return chain.filter(exchange);
-        }
-
         try {
-            String token = jwtUtil.extractTokenFromBearer(authHeader);
+            String token = cookieUtil.extractTokenFromCookie(exchange, TokenType.ACCESS_TOKEN);
             Authentication authentication = jwtAuthenticator.authenticate(token);
 
             log.info("JWT 인증 성공: path={}, user={}", path, authentication.getName());

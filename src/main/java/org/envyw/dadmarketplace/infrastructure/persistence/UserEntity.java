@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import org.envyw.dadmarketplace.domain.User;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -16,12 +16,11 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Getter
 @Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 @Table("users")
-public class User {
+public class UserEntity {
 
     @Id
     private Long id;
@@ -57,8 +56,8 @@ public class User {
     @Column("updated_at")
     private LocalDateTime updatedAt;
 
-    public static User fromDiscordUser(DiscordUser discordUser) {
-        return User.builder()
+    public static UserEntity fromDiscordUser(DiscordUser discordUser) {
+        return UserEntity.builder()
                 .discordId(discordUser.id())
                 .username(discordUser.username())
                 .displayName(discordUser.displayName())
@@ -67,10 +66,12 @@ public class User {
                 .build();
     }
 
-    public void updateInfo(DiscordUser discordUser) {
-        this.username = discordUser.username();
-        this.displayName = discordUser.displayName();
-        this.email = discordUser.email();
-        this.avatarUrl = discordUser.avatarUrl();
+    public static UserEntity fromUser(User user) {
+        return UserEntity.builder()
+                .username(user.getUsername())
+                .displayName(user.getDisplayName())
+                .email(user.getEmail())
+                .avatarUrl(user.getAvatarUrl())
+                .build();
     }
 }

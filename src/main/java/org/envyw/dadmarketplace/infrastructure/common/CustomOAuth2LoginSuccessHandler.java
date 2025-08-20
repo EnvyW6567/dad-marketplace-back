@@ -3,6 +3,8 @@ package org.envyw.dadmarketplace.infrastructure.common;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.envyw.dadmarketplace.application.service.UserService;
+import org.envyw.dadmarketplace.common.enums.TokenType;
+import org.envyw.dadmarketplace.common.utils.CookieUtil;
 import org.envyw.dadmarketplace.infrastructure.security.dto.DiscordUser;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +20,6 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.time.Duration;
 import java.util.Optional;
 
 @Slf4j
@@ -28,14 +29,9 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
 
     private final UserService userService;
     private final JwtProvider jwtProvider;
-    @Value("${app.domain}")
-    private String DOMAIN;
+    private final CookieUtil cookieUtil;
     @Value("${app.login.redirect-url}")
     private String REDIRECT_URL;
-    @Value("${app.jwt.access-token-expiration:7200}")
-    private long ACCESS_TOKEN_EXPIRATION;
-    @Value("${app.jwt.refresh-token-expiration:604800}")
-    private long REFRESH_TOKEN_EXPIRATION;
 
     public DiscordUser extractDiscordUserInfo(OAuth2User oauth2User) {
         String id = oauth2User.getAttribute("id");
@@ -86,23 +82,8 @@ public class CustomOAuth2LoginSuccessHandler implements ServerAuthenticationSucc
                                             String accessToken,
                                             String refreshToken) {
         try {
-            ResponseCookie accessTokenCookie = ResponseCookie.from("accessToken", accessToken)
-                    .httpOnly(true)
-                    .secure(true)
-                    .sameSite("Lax")
-                    .path("/")
-                    .domain(DOMAIN)
-                    .maxAge(Duration.ofSeconds(ACCESS_TOKEN_EXPIRATION))
-                    .build();
-
-            ResponseCookie refreshTokenCookie = ResponseCookie.from("refreshToken", refreshToken)
-                    .httpOnly(true)
-                    .secure(true)
-                    .sameSite("Lax")
-                    .path("/")
-                    .domain(DOMAIN)
-                    .maxAge(Duration.ofSeconds(REFRESH_TOKEN_EXPIRATION))
-                    .build();
+            ResponseCookie accessTokenCookie = cookieUtil.generateJwtCookie(accessToken, TokenType.ACCESS_TOKEN);
+            ResponseCookie refreshTokenCookie = cookieUtil.generateJwtCookie(refreshToken, TokenType.REFRESH_TOKEN);
 
             response.addCookie(accessTokenCookie);
             response.addCookie(refreshTokenCookie);

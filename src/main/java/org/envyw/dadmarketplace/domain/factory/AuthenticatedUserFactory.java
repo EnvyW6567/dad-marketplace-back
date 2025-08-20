@@ -13,3 +13,4 @@ public class AuthenticatedUserFactory {
         return new AuthenticatedUser(userId, authorities, true);
     }
 }
+
