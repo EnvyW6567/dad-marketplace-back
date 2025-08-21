@@ -2,8 +2,8 @@ package org.envyw.dadmarketplace.infrastructure.security.jwt;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.envyw.dadmarketplace.common.enums.TokenType;
 import org.envyw.dadmarketplace.common.utils.CookieUtil;
+import org.envyw.dadmarketplace.common.utils.TokenType;
 import org.envyw.dadmarketplace.infrastructure.security.jwt.exception.JwtAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
