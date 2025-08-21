@@ -1,4 +1,4 @@
-package org.envyw.dadmarketplace.common.enums;
+package org.envyw.dadmarketplace.common.utils;
 
 import lombok.Getter;
 
