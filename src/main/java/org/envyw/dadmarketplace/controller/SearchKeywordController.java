@@ -1,4 +1,4 @@
-package org.envyw.dadmarketplace.presentation.controller;
+package org.envyw.dadmarketplace.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.envyw.dadmarketplace.application.dto.response.SearchKeywordResDto;
