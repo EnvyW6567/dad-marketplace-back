@@ -2,8 +2,8 @@ package org.envyw.dadmarketplace.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.envyw.dadmarketplace.application.port.out.JwtOutPort;
-import org.envyw.dadmarketplace.common.enums.TokenType;
 import org.envyw.dadmarketplace.common.utils.CookieUtil;
+import org.envyw.dadmarketplace.common.utils.TokenType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.server.reactive.ServerHttpResponse;

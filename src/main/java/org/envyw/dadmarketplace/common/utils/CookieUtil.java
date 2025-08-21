@@ -1,6 +1,5 @@
 package org.envyw.dadmarketplace.common.utils;
 
-import org.envyw.dadmarketplace.common.enums.TokenType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.ResponseCookie;
