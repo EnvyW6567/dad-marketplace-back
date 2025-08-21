@@ -1,17 +1,14 @@
-package org.envyw.dadmarketplace.infrastructure.repository;
+package org.envyw.dadmarketplace.infrastructure.persistence.user;
 
 import lombok.RequiredArgsConstructor;
 import org.envyw.dadmarketplace.application.repository.UserRepository;
 import org.envyw.dadmarketplace.domain.User;
-import org.envyw.dadmarketplace.infrastructure.persistence.UserEntity;
-import org.envyw.dadmarketplace.infrastructure.repository.dao.UserDao;
-import org.envyw.dadmarketplace.infrastructure.repository.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Repository
-public class JpaUserRepository implements UserRepository {
+public class UserR2dbcRepository implements UserRepository {
     private final UserDao userDao;
     private final UserMapper userMapper;
 

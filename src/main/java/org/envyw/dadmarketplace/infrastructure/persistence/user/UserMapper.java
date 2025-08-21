@@ -1,7 +1,6 @@
-package org.envyw.dadmarketplace.infrastructure.repository.mapper;
+package org.envyw.dadmarketplace.infrastructure.persistence.user;
 
 import org.envyw.dadmarketplace.domain.User;
-import org.envyw.dadmarketplace.infrastructure.persistence.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
