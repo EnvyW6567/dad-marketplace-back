@@ -42,8 +42,8 @@ public class UserService {
     }
 
     private Mono<User> updateUser(User user, DiscordUser discordUser) {
-        log.info("기존 사용자 정보 업데이트: discordId={}, username={}, userId={}",
-                discordUser.id(), discordUser.username(), user.getUserId());
+        log.info("기존 사용자 정보 업데이트: discordId={}, username={}, userId={}, userDiscordId={}",
+                discordUser.id(), discordUser.username(), user.getUserId(), user.getDiscordId());
 
         user.updateByDiscordUser(discordUser);
         return userRepository.save(user);
@@ -55,6 +55,5 @@ public class UserService {
 
         User newUser = UserFactory.fromDiscordUser(discordUser);
         return userRepository.save(newUser);
-
     }
 }
