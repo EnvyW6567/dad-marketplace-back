@@ -68,6 +68,8 @@ public class UserEntity {
 
     public static UserEntity fromUser(User user) {
         return UserEntity.builder()
+                .id(user.getUserId())
+                .discordId(user.getDiscordId())
                 .username(user.getUsername())
                 .displayName(user.getDisplayName())
                 .email(user.getEmail())
